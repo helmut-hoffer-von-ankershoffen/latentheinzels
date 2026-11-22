@@ -30,7 +30,6 @@ NAMES = {
     "Heinzels",
     "Latent Heinzels",
     "YouTube",
-    "YouTube Music",
     "SoundCloud",
     "Instagram",
     "Suno",
