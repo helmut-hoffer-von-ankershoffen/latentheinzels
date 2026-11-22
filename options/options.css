@@ -1,0 +1,43 @@
+/* The three previews: every track with its own still, in playlist order. */
+.option-note { justify-self: start; max-width: 62ch; background: var(--night); color: var(--dim); }
+.day { display: grid; gap: 22px; padding: 24px; background: var(--pane); border-bottom: 5px solid var(--glow); min-width: 0; }
+.day h3 span { color: var(--glow); }
+.day h4 { margin: 0; padding-top: 18px; border-top: 1px solid var(--glow); color: var(--dim); font-weight: 400; font-size: 15px; }
+.tiles { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 22px 18px; }
+.tile { flex: 0 0 232px; display: grid; gap: 8px; min-width: 0; }
+.tile.interlude { flex-basis: 120px; }
+.still { position: relative; display: block; width: 100%; min-height: 0; padding: 0; border: 0; border-radius: 4px; background: var(--night); color: var(--fg); overflow: hidden; }
+.still img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+button.still { cursor: pointer; }
+.still .badge { position: absolute; left: 8px; bottom: 8px; padding: 5px 10px; border-radius: 3px; background: var(--glow); color: var(--night); font: 700 15px/1.2 system-ui, sans-serif; }
+.tile.soon-tile .still img { opacity: .5; }
+.tile.soon-tile .badge { background: var(--night); color: var(--fg); }
+.about { display: grid; gap: 2px; align-content: start; min-width: 0; }
+.name { line-height: 1.3; overflow-wrap: break-word; }
+.interlude .name { font-size: 14px; }
+.time { color: var(--dim); font-size: 14px; font-variant-numeric: tabular-nums; }
+.open { justify-self: start; min-height: 44px; display: inline-flex; align-items: center; font-size: 14px; }
+.tile.current .still { outline: 3px solid var(--glow); outline-offset: 3px; }
+
+/* A: the card itself becomes the player. */
+.tile.playing { flex-basis: 100%; }
+.tile.playing .still { display: none; }
+.card-frame { display: block; width: 100%; height: 166px; border: 0; }
+
+/* C: one bar at the bottom. */
+.bar { position: fixed; z-index: 3; left: 0; right: 0; bottom: 0; display: grid; gap: 4px; padding: 6px max(8px, env(safe-area-inset-right)) max(6px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left)); background: var(--night); border-top: 2px solid var(--lamp); }
+.bar[hidden] { display: none; }
+.bar-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-width: 0; }
+.bar-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar button { flex: none; color: var(--fg); }
+.bar iframe { display: block; width: 100%; height: 120px; border: 0; }
+.with-bar { padding-bottom: 210px; }
+
+@media (max-width: 760px) {
+  .day { padding: 18px 14px; }
+  .tiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .tile { grid-template-columns: 124px minmax(0, 1fr); align-items: center; gap: 12px; }
+  .tile.interlude { grid-template-columns: 80px minmax(0, 1fr); padding-left: 20px; }
+  .interlude .badge { left: 4px; bottom: 4px; padding: 4px 6px; font-size: 12px; }
+  .tile.playing { grid-template-columns: minmax(0, 1fr); padding-left: 0; }
+}
