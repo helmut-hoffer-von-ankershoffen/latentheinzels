@@ -1,7 +1,8 @@
 # Latent Heinzels
 
 The website at [latentheinzels.heinzel.team](https://latentheinzels.heinzel.team), a sister site of
-[heinzel.team](https://heinzel.team). Static files on GitHub Pages: no build, no trackers, no external requests.
+[heinzel.team](https://heinzel.team). Static files on GitHub Pages: no build, no trackers of its own, and no external requests
+until you press play. A player then loads SoundCloud, which receives your IP address and may set cookies.
 
 The band is on [YouTube](https://www.youtube.com/@latentheinzels),
 [YouTube Music](https://music.youtube.com/@latentheinzels),
