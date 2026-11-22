@@ -1,0 +1,45 @@
+/* The main page only. style.css is shared with the previews under options/, which stay as they are. */
+h1 { font-size: clamp(50px, 8vw, 108px); }
+h1 span:last-child { margin-left: min(4vw, 48px); }
+/* Room is kept for what the scripts reveal, so nothing moves as they run. */
+header > #motion[hidden] { display: inline-grid; visibility: hidden; }
+.featured-play[hidden] { display: inline-flex; visibility: hidden; }
+.hero { grid-template-columns: minmax(0, 1fr) min(54%, max(300px, 100vh - 132px)); grid-template-columns: minmax(0, 1fr) min(54%, max(300px, 100svh - 132px)); grid-template-rows: auto auto 1fr auto; grid-template-areas: "name visual" "song visual" "bio visual" "channels channels"; align-items: start; column-gap: 48px; }
+.hero > h1 { grid-area: name; }
+.hero > .bio { grid-area: bio; }
+.hero > nav { grid-area: channels; }
+.featured { grid-area: song; min-width: 0; }
+.featured-slot { min-height: 166px; display: grid; align-content: start; gap: 8px; }
+.featured-play { width: 100%; min-height: 80px; gap: 16px; padding: 10px 18px; border-radius: 4px; background: var(--lamp); color: var(--night); text-align: left; line-height: 1.2; }
+.featured-play .mark { font-size: 30px; }
+.featured-play .song { display: block; font: 800 24px/1.15 var(--display); }
+.featured-play .version { font-size: 16px; }
+.featured-note { padding: 2px 0; background: var(--night); color: var(--dim); font-size: 14px; line-height: 1.4; }
+.featured-slot.playing > :not(iframe) { display: none; }
+.featured-frame { display: block; width: 100%; height: 166px; border: 0; }
+/* The box is cropped, the breathing layer keeps the picture's shape, so the glow stays on the black hole. */
+.visual { grid-area: visual; position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 4px; background: #2a1208; }
+.breath { position: absolute; inset: 0; transform-origin: 69.8% 22.8%; }
+.breath picture { display: block; height: 100%; }
+.breath img { width: 100%; height: 100%; object-fit: cover; }
+.breath::after { content: ""; position: absolute; left: 69.8%; top: 22.8%; width: 56%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; background: radial-gradient(closest-side, transparent 58%, rgb(255 150 50 / .5) 70%, transparent 100%); mix-blend-mode: screen; opacity: 0; pointer-events: none; }
+.band .street { grid-column: 1 / -1; border-radius: 0; }
+@media (max-width: 760px) {
+  .hero { --tall: clamp(220px, 100vh - 236px, (100vw - 32px) * 1.7917); --tall: clamp(220px, 100svh - 236px, (100vw - 32px) * 1.7917); grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "name" "visual" "song" "bio" "channels"; row-gap: 8px; }
+  h1 { display: flex; gap: .25em; font-size: min(9.4vw, 38px); line-height: 1; }
+  .visual { height: var(--tall); aspect-ratio: auto; }
+  .breath { inset: auto; left: 50%; top: 50%; width: max(100%, var(--tall) * .5581); aspect-ratio: 1536 / 2752; translate: -50% -50%; transform-origin: 69.9% 35.7%; }
+  .breath::after { left: 69.9%; top: 35.7%; width: 55%; }
+  .featured-play { min-height: 64px; padding: 6px 12px; gap: 12px; }
+  .featured-play .song { font-size: 18px; }
+  .featured-play .version { font-size: 14px; }
+  .hero > .bio { margin-top: 12px; }
+  .tile.playing { min-width: 0; }
+  h1 span:last-child { margin-left: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .moving .breath { animation: breathe 9s ease-in-out infinite alternate; }
+  .moving .breath::after { animation: glow 4.5s ease-in-out infinite alternate; }
+  @keyframes breathe { to { transform: scale(1.035); } }
+  @keyframes glow { to { opacity: .85; } }
+}

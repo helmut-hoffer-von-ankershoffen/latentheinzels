@@ -48,12 +48,27 @@
     current = null;
   }
 
-  function start(holder, frame, place) {
+  function start(holder, frame, place, preventScroll = false) {
     stop();
     current = { holder, frame };
     holder.classList.add("playing");
     place(frame);
-    frame.focus();
+    frame.focus({ preventScroll });
+  }
+
+  const album = addressOf("playlists", "album");
+  const albumTitle = document.querySelector('[data-playlist="album"]')?.dataset.title;
+
+  // The featured song's player takes the button's place, so its picture stays and nothing moves.
+  for (const featured of document.querySelectorAll("[data-featured]")) {
+    const url = addressOf("tracks", featured.dataset.featured);
+    if (!url) continue;
+    const slot = featured.querySelector(".featured-slot");
+    const button = slot.querySelector(".featured-play");
+    button.hidden = false;
+    button.addEventListener("click", () => {
+      start(slot, player(url, featured.dataset.title, "featured-frame"), frame => slot.append(frame), true);
+    });
   }
 
   for (const tile of document.querySelectorAll(".tile[data-track]")) {
