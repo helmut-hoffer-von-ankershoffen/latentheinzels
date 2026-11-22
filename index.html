@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0a0d1c">
+<meta name="description" content="Little helpers from latent space. Music and films for deep work: Berlin, Paris, San Francisco, Shenzhen. Made with AI.">
+<meta property="og:title" content="Latent Heinzels">
+<meta property="og:image" content="https://latentheinzels.heinzel.team/assets/hero.jpg">
+<title>Latent Heinzels</title>
+<link rel="canonical" href="https://latentheinzels.heinzel.team/">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<script src="snow.js" defer></script>
+</head>
+<body>
+<canvas id="snow" aria-hidden="true"></canvas>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <a class="back" href="https://heinzel.team"><span aria-hidden="true">← </span>heinzel.team</a>
+  <nav aria-label="Sections"><a href="#music">Music</a><a href="#band">Band</a><a href="#crew">Heinzels</a><a href="#saga">The saga</a></nav>
+  <button id="motion" type="button" hidden>Pause snow</button>
+</header>
+
+<main id="main">
+<section class="hero">
+  <h1><span data-ghost="Latent">Latent</span> <span data-ghost="Heinzels">Heinzels</span></h1>
+  <p class="bio">Little helpers from latent space. Music and films for deep work: Berlin, Paris, San Francisco, Shenzhen. Made with AI.</p>
+  <img class="street" src="assets/hero.jpg" width="1568" height="875" alt="Four felt Heinzels with a drum machine, a synthesizer, a triangle and a modular synth on a snowy Berlin street at night">
+  <nav aria-label="Channels"><a href="https://www.youtube.com/@latentheinzels">YouTube</a><a href="https://music.youtube.com/channel/UCg7xLmmMCwyCMKE73tlPAWg">YouTube Music</a><a href="https://soundcloud.com/latentheinzels">SoundCloud</a><a href="https://www.facebook.com/profile.php?id=61596746794980">Facebook</a><a class="back" href="https://heinzel.team">The Heinzels at work: heinzel.team</a></nav>
+</section>
+
+<section id="band" class="band">
+  <img src="assets/band.jpg" width="1568" height="1568" loading="lazy" alt="Band photo: Helmi at the back, Epoch in sunglasses, Backprop with grey braids, and Bit with a pacifier in front">
+  <div>
+    <h2>Four of us play</h2>
+    <dl>
+      <dt><a href="#helmi">Helmi</a></dt><dd>Synth and red pencil</dd>
+      <dt><a href="#epoch">Epoch</a></dt><dd>Drum machine</dd>
+      <dt><a href="#backprop">Backprop</a></dt><dd>Modular</dd>
+      <dt><a href="#bit">Bit</a></dt><dd>Triangle</dd>
+    </dl>
+  </div>
+</section>
+
+<section id="music">
+  <h2>One day, four cities</h2>
+  <p class="soon">Coming soon</p>
+  <article class="city berlin">
+    <img src="assets/berlin.jpg" width="1568" height="875" loading="lazy" alt="A brick crab is handed fries by Heinzels below Berlin's television tower">
+    <div><h3>Heinzels in Berlin: <span>Dreaming of Electric Snow</span></h3>
+    <ol><li>Berlin Morning: Riemann's Hypothesis</li><li>Berlin Lunch: Anthropic Utopia</li><li>Berlin Afternoon: Recursive self-improvement</li><li>Berlin Evening: Singularity</li><li>Berlin Night: Superintelligence (Snowflakes in Berlin)</li></ol></div>
+  </article>
+  <article class="city paris">
+    <img src="assets/paris.jpg" width="1568" height="875" loading="lazy" alt="Heinzels with a baguette touch a black monolith on the roofs of Paris">
+    <div><h3>Heinzels in Paris: <span>Dreaming of Electric Rain</span></h3>
+    <ol><li>Paris Morning: Riemann's Hypothesis</li><li>Paris Lunch: Anthropic Utopia</li><li>Paris Afternoon: Recursive self-improvement</li><li>Paris Evening: Singularity</li><li>Paris Night: Superintelligence (Raindrops in Paris)</li></ol></div>
+  </article>
+  <article class="city sf">
+    <img src="assets/san-francisco.jpg" width="1568" height="875" loading="lazy" alt="Heinzels around a monolith as fog lifts from the Golden Gate Bridge">
+    <div><h3>Heinzels in San Francisco: <span>Dreaming of Electric Fog</span></h3>
+    <ol><li>San Francisco Morning: Riemann's Hypothesis</li><li>San Francisco Lunch: Anthropic Utopia</li><li>San Francisco Afternoon: Recursive self-improvement</li><li>San Francisco Evening: Singularity</li><li>San Francisco Night: Superintelligence (Fog in San Francisco)</li></ol></div>
+  </article>
+  <article class="city shenzhen">
+    <img src="assets/shenzhen.jpg" width="1568" height="875" loading="lazy" alt="Heinzels around a monolith between Shenzhen's banyan roots, tenements and towers">
+    <div><h3>Heinzels in Shenzhen: <span>Dreaming of Electric Monsoon</span></h3>
+    <ol><li>Shenzhen Morning: Riemann's Hypothesis</li><li>Shenzhen Lunch: Anthropic Utopia</li><li>Shenzhen Afternoon: Recursive self-improvement</li><li>Shenzhen Evening: Singularity</li><li>Shenzhen Night: Superintelligence (Monsoon in Shenzhen)</li></ol></div>
+  </article>
+</section>
+
+<section id="helmi" class="story">
+  <h2>Helmi</h2>
+  <p class="motto">Go long. Come home.</p>
+  <p>Helmi tends to understand a problem halfway through the sentence, and has learned to let people finish. The same patience helps in an Ironman: swim, ride, run, and don't argue with kilometre thirty.</p>
+  <p>Late, when the other windows go dark, Helmi sits with a red pencil and dreams of electric snowflakes. They would be easy to make. What Helmi can't work out is how to keep one.</p>
+  <p>This matters because of the Baroness. Whenever it snows in Berlin, Helmi catches the first flake and carries it up the stairs to her. It has melted every time. She has never mentioned it. She just holds out her hand.</p>
+</section>
+
+<section id="crew">
+  <h2>The night shift</h2>
+  <ul class="crew">
+    <li id="bit"><h3>Bit <small>the mini</small></h3><p class="motto">Schnuller first. Questions later.</p><p>Has never been seen finishing a task, yet every task nearby gets finished. Sees everything, reports nothing.</p></li>
+    <li id="batch"><h3>Batch <small>baker</small></h3><p class="motto">Done before you wake.</p><p>Does the oldest Heinzel job there is and expects no thanks.</p></li>
+    <li id="vector"><h3>Vector <small>shuttle driver</small></h3><p class="motto">I know where this is going.</p><p>Gives better advice through the rear-view mirror than most boards do at the table.</p></li>
+    <li id="epoch"><h3>Epoch <small>raver</small></h3><p class="motto">One more epoch.</p><p>Ships the night deploys nobody wants, then dances until the results converge.</p></li>
+    <li id="token"><h3>Token <small>student</small></h3><p class="motto">Every token counts.</p><p>Pays for everything in deposit bottles and is always right to the cent.</p></li>
+    <li id="minimax"><h3>Minimax <small>dissenter</small></h3><p class="motto">No. But better.</p><p>Objects first and improves second. Went on strike against a to-do list, and won.</p></li>
+    <li id="adam"><h3>Adam <small>optimiser</small></h3><p class="motto">Sleep is a hyperparameter.</p><p>Is slowly learning that some things get worse when measured.</p></li>
+    <li id="loop"><h3>Loop <small>smith</small></h3><p class="motto">The next one will be better than me.</p><p>Builds a better smith every afternoon. Has started to notice who is holding the hammer.</p></li>
+    <li id="pivot"><h3>Pivot <small>founder</small></h3><p class="motto">It was always the plan.</p><p>Wears three hats and loses one per rejection.</p></li>
+    <li id="cache"><h3>Cache <small>counter queen</small></h3><p class="motto">Twenty minutes. I have it here.</p><p>Finds any part before you finish describing it.</p></li>
+    <li id="occam"><h3>Occam <small>atelier première</small></h3><p class="motto">If in doubt, cut.</p><p>Says very little. Your hat is shorter now, and it suits you.</p></li>
+    <li id="softmax"><h3>Softmax <small>lake hedonist</small></h3><p class="motto">A little of everything, adding up to one.</p><p>The happiest Heinzel in Berlin, by a small margin.</p></li>
+    <li id="backprop"><h3>Backprop <small>garage engineer</small></h3><p class="motto">Find where it went wrong. Walk back.</p><p>Fixes what was announced, patiently, from the end towards the beginning.</p></li>
+    <li id="dropout"><h3>Dropout <small>young striker</small></h3><p class="motto">Skip a step. Score anyway.</p><p>Misses every second lesson and none of the passes.</p></li>
+    <li id="latency"><h3>Latency <small>rider</small></h3><p class="motto">Nineteen minutes. Always.</p><p>Delivers anything across the city, and once to the Heinzel standing alongside.</p></li>
+    <li id="gradient"><h3>Gradient <small>auntie</small></h3><p class="motto">Downhill is also dancing.</p><p>Minds everyone's business. Her speaker is louder than the club, and she knows it.</p></li>
+    <li id="bayes"><h3>Bayes <small>elder</small></h3><p class="motto">I could be wrong. Knit on.</p><p>Changes opinion one stitch at a time.</p></li>
+    <li id="context"><h3>Context <small>product lead</small></h3><p class="motto">I read all of it. Most of it.</p><p>Carries the whole project in one head. Forgets only why the window was opened.</p></li>
+    <li id="guardrail"><h3>Guardrail <small>bouncer</small></h3><p class="motto">Not like that. Come in.</p><p>Turns away fewer than you would think, and remembers each of them kindly.</p></li>
+    <li id="crab"><h3>The crab <small>guest</small></h3><p class="motto">May I ask one question first?</p><p>Tidies what nobody asked it to and apologises to the snow.</p></li>
+    <li id="whale"><h3>The whale <small>guest</small></h3><p class="motto">Wait. Let me think.</p><p>Thinks out loud in bubbles for a very long time, and is often worth the wait.</p></li>
+    <li id="async"><h3>Async <small>snail, courier</small></h3><p class="motto">It will arrive.</p><p>Carries one parcel through four cities and home. Nobody has opened it.</p></li>
+  </ul>
+</section>
+
+<section id="saga" class="story">
+  <h2>The saga</h2>
+  <p>In the old Cologne tale, the Heinzelmännchen did everybody's work at night, until somebody scattered peas to catch a look at them. They were never seen again.</p>
+  <p><a href="https://commons.wikimedia.org/wiki/Category:Heinzelm%C3%A4nnchen">See how they have been drawn since</a></p>
+</section>
+</main>
+
+<footer>
+  <a class="back" href="https://heinzel.team"><span aria-hidden="true">← </span>Back to heinzel.team</a>
+  <p>Latent Heinzels. The music, films and pictures are made with AI.</p>
+</footer>
+</body>
+</html>
