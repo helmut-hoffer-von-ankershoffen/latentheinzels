@@ -1,7 +1,8 @@
 # Latent Heinzels
 
-The website at [latentheinzels.heinzel.team](https://latentheinzels.heinzel.team), a sister site of
-[heinzel.team](https://heinzel.team). Static files on GitHub Pages: no build, no trackers of its own, and no external requests
+**© 2026 Latent Heinzels. All rights reserved. No licence is granted: no copying, forking, reuse, AI training or text and data mining.** See [LICENSE](LICENSE).
+
+The website at [latentheinzels.heinzel.team](https://latentheinzels.heinzel.team). Static files on GitHub Pages: no build, no trackers of its own, and no external requests
 until you press play. A player then loads SoundCloud, which receives your IP address and may set cookies.
 
 The band is on [YouTube](https://www.youtube.com/@latentheinzels),
@@ -27,10 +28,3 @@ Preview it locally:
 ```sh
 python3 -m http.server
 ```
-
-## Licence
-
-The code (HTML markup, CSS, JavaScript) is under the [MIT licence](LICENSE).
-
-The licence does **not** cover the name "Latent Heinzels", the music, the artwork and characters, or the texts.
-All rights in those are reserved.
