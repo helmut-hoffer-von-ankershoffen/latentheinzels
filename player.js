@@ -1,10 +1,14 @@
-// One player per city. SoundCloud hears nothing from this page until someone presses play.
+// One player per city, and one per separate track. SoundCloud hears nothing from this page until someone presses play.
 (() => {
-  const address = /^https:\/\/soundcloud\.com\/latentheinzels\/sets\/[a-z0-9_-]+$/;
-  for (const box of document.querySelectorAll(".player[data-playlist]")) {
-    const url = box.dataset.playlist;
+  const addresses = {
+    playlist: /^https:\/\/soundcloud\.com\/latentheinzels\/sets\/[a-z0-9_-]+$/,
+    track: /^https:\/\/soundcloud\.com\/latentheinzels\/(?!sets$)[a-z0-9_-]+$/
+  };
+  for (const box of document.querySelectorAll(".player[data-playlist], .player[data-track]")) {
+    const kind = box.dataset.track ? "track" : "playlist";
+    const url = box.dataset[kind];
     const button = box.querySelector("button");
-    if (!button || !address.test(url)) continue;
+    if (!button || !addresses[kind].test(url)) continue;
     button.addEventListener("click", () => {
       const frame = document.createElement("iframe");
       const options = new URLSearchParams({
