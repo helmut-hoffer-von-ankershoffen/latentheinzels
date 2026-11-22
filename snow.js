@@ -75,7 +75,8 @@
     moving = on;
     cancelAnimationFrame(request);
     document.body.classList.toggle("still", !on);
-    button.textContent = on ? "Pause snow" : "Let it snow";
+    // The stylesheet shows the right label; a button holding plain text gets it written.
+    if (!button.firstElementChild) button.textContent = on ? "Pause snow" : "Let it snow";
     if (on) request = requestAnimationFrame(tick); else draw(0);
   }
 

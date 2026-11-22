@@ -28,6 +28,10 @@ header a, nav a, dt a, footer a, button { min-height: 44px; display: inline-flex
 .back { gap: .4em; color: var(--lamp); font-weight: 700; padding: 0 16px; border: 1px solid currentColor; border-radius: 3px; background: var(--night); }
 button { font: inherit; padding: 0 12px; border: 0; background: var(--night); color: var(--dim); cursor: pointer; }
 button[hidden] { display: none; }
+/* Both labels share one cell, so the wider one always sets the width and nothing moves when they swap. */
+#motion:not([hidden]) { display: inline-grid; place-items: center; }
+#motion > span { grid-area: 1 / 1; }
+body:not(.still) #motion > span + span, .still #motion > span:first-child { visibility: hidden; }
 .pending { min-height: 44px; display: inline-flex; align-items: center; color: var(--dim); cursor: default; }
 .skip { position: absolute; left: -999em; }
 .skip:focus { left: 16px; z-index: 2; background: var(--night); }
@@ -57,23 +61,35 @@ h3 { font-size: 26px; }
 dt { font: 700 30px/1 var(--display); }
 dd { color: var(--dim); margin-bottom: 12px; }
 
-.city { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); background: var(--pane); border-bottom: 5px solid var(--glow); }
-.city:nth-of-type(even) > img { order: 2; }
-.city > img { width: 100%; height: 100%; object-fit: cover; }
-.city > div { display: grid; gap: 18px; align-content: center; padding: 26px; }
-.city h3 span { display: block; color: var(--glow); margin-top: 6px; }
-.city ol { list-style: none; padding: 0; display: grid; gap: 8px; }
-.city .soon { background: none; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.extra { display: grid; justify-items: start; border-top: 1px solid var(--glow); padding-top: 12px; }
-.extra small { color: var(--dim); }
-.player { display: grid; gap: 6px; }
-.player[hidden] { display: none; }
-.play { justify-self: start; gap: .5em; padding: 0 16px; border-radius: 3px; background: var(--glow); color: var(--night); font-weight: 700; }
-.player .note { color: var(--dim); font-size: 14px; line-height: 1.4; }
-.player iframe { display: block; width: 100%; height: 360px; border: 0; }
-.player[data-track] iframe { height: 166px; }
-.city .between { padding-left: 18px; color: var(--dim); font-size: 14px; }
+/* Every track with its own still. Not `.still`: that is the body's class while the snow is paused. */
+.play-note { justify-self: start; max-width: 62ch; background: var(--night); color: var(--dim); }
+.day { display: grid; gap: 22px; padding: 24px; background: var(--pane); border-bottom: 5px solid var(--glow); min-width: 0; }
+.day h3 span { color: var(--glow); }
+.day h4 { margin: 0; padding-top: 18px; border-top: 1px solid var(--glow); color: var(--dim); font-weight: 400; font-size: 15px; }
+.day-head { display: grid; grid-template-columns: 148px minmax(0, 1fr); align-items: center; gap: 18px 20px; }
+.day-cover { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; }
+.day-title { display: grid; gap: 14px; min-width: 0; }
+.whole { min-height: 44px; }
+.play-all { gap: .5em; padding: 6px 16px; border-radius: 3px; background: var(--glow); color: var(--night); font-weight: 700; line-height: 1.25; text-align: left; }
+.day-head.playing .whole { display: none; }
+.list-frame { grid-column: 1 / -1; display: block; width: 100%; height: 360px; border: 0; }
+.tiles { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 22px 18px; }
+.tile { flex: 0 0 232px; display: grid; gap: 8px; min-width: 0; }
+.tile.interlude { flex-basis: 120px; }
+.cover { position: relative; display: block; width: 100%; min-height: 0; padding: 0; border: 0; border-radius: 4px; background: var(--night); color: var(--fg); overflow: hidden; }
+.cover img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.cover .badge { position: absolute; left: 8px; bottom: 8px; padding: 5px 10px; border-radius: 3px; background: var(--glow); color: var(--night); font: 700 15px/1.2 system-ui, sans-serif; }
+.cover .badge[hidden] { display: none; }
+.soon-tile .cover img { opacity: .5; }
+.soon-tile .badge { background: var(--night); color: var(--fg); }
+.about { display: grid; gap: 2px; align-content: start; min-width: 0; }
+.name { line-height: 1.3; overflow-wrap: break-word; }
+.interlude .name { font-size: 14px; }
+.time { color: var(--dim); font-size: 14px; font-variant-numeric: tabular-nums; }
+.tile.playing { flex-basis: 100%; }
+.tile.playing .cover { display: none; }
+.card-frame { display: block; width: 100%; height: 166px; border: 0; }
 .berlin { --glow: var(--spark); }
 .paris { --glow: var(--lamp); }
 .sf { --glow: var(--rose); }
@@ -88,15 +104,18 @@ dd { color: var(--dim); margin-bottom: 12px; }
 footer { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; padding: 12px; background: var(--night); color: var(--dim); }
 
 @media (max-width: 760px) {
-  .band, .city { grid-template-columns: minmax(0, 1fr); }
-  .city:nth-of-type(even) > img { order: 0; }
+  .band { grid-template-columns: minmax(0, 1fr); }
   h1 span:last-child { margin-left: 0; }
   main { gap: 72px; }
-}
-@media (min-width: 761px) {
-  /* Nine rows make a tall card: keep the whole still in view instead of cropping it to a strip. */
-  .city:nth-of-type(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
-  .city > img { height: auto; align-self: start; position: sticky; top: 0; }
+  .day { padding: 18px 14px; }
+  .day-head { grid-template-columns: 100px minmax(0, 1fr); gap: 14px; }
+  .day h3 { font-size: 21px; }
+  .play-all { padding: 6px 10px; }
+  .tiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .tile { grid-template-columns: 124px minmax(0, 1fr); align-items: center; gap: 12px; }
+  .tile.interlude { grid-template-columns: 80px minmax(0, 1fr); padding-left: 20px; }
+  .interlude .badge { left: 4px; bottom: 4px; padding: 4px 6px; font-size: 12px; }
+  .tile.playing { grid-template-columns: minmax(0, 1fr); padding-left: 0; }
 }
 @media (prefers-reduced-motion: no-preference) {
   h1 span::before, h1 span::after { animation: interpolate 9s ease-in-out infinite alternate; }
