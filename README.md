@@ -7,8 +7,9 @@ The band is on [YouTube](https://www.youtube.com/@latentheinzels),
 [YouTube Music](https://music.youtube.com/channel/UCg7xLmmMCwyCMKE73tlPAWg),
 [SoundCloud](https://soundcloud.com/latentheinzels),
 [Facebook](https://www.facebook.com/profile.php?id=61596746794980),
-[Instagram](https://www.instagram.com/latent_heinzels_ai/) and
-[Suno](https://suno.com/@latentheinzels).
+[Instagram](https://www.instagram.com/latent_heinzels_ai/),
+[Suno](https://suno.com/@latentheinzels) and
+[Spotify](https://open.spotify.com/user/312yu2y27py4xhg27ufftwmwqhby).
 
 Preview it locally:
 
