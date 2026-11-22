@@ -3,8 +3,10 @@
 (() => {
   const ID = "G-EL18RTQ5GY";
   const KEY = "latentheinzels-analytics";
-  // Google's default would set the cookies on all of heinzel.team.
+  // Google's default would set the cookies on all of heinzel.team, as the first version of this script did.
   const DOMAIN = "latentheinzels.heinzel.team";
+  const PARENT = "heinzel.team";
+  const SESSION = `_ga_${ID.slice(2)}`;
   const banner = document.querySelector(".consent");
   const settings = document.querySelector(".consent-settings");
   if (!banner || !settings) return;
@@ -31,25 +33,43 @@
     }
   }
 
+  function cookieNames() {
+    return document.cookie.split(";").map(part => part.split("=")[0].trim())
+      .filter(name => name === "_ga" || name.startsWith("_ga_"));
+  }
+
+  function expire(name, domain) {
+    document.cookie = `${name}=; path=/; max-age=0${domain ? `; domain=${domain}` : ""}`;
+  }
+
+  // On the parent domain only what is this site's: the session cookie always, _ga only beside it and only when no
+  // other _ga_* says that another heinzel.team site counts with the same _ga.
+  function removeParentCookies(names) {
+    expire(SESSION, PARENT);
+    const others = names.some(name => name !== "_ga" && name !== SESSION);
+    if (names.includes(SESSION) && !others) expire("_ga", PARENT);
+  }
+
   function removeCookies() {
-    for (const part of document.cookie.split(";")) {
-      const name = part.split("=")[0].trim();
-      if (name !== "_ga" && !name.startsWith("_ga_")) continue;
-      // Only this site's own cookies: its host, never the domain above it.
-      for (const domain of ["", `; domain=${location.hostname}`, `; domain=${DOMAIN}`]) {
-        document.cookie = `${name}=; path=/; max-age=0${domain}`;
-      }
+    const names = cookieNames();
+    for (const name of names) {
+      for (const domain of ["", location.hostname, DOMAIN]) expire(name, domain);
     }
+    removeParentCookies(names);
   }
 
   function load() {
     if (loaded) return;
     loaded = true;
+    // Who accepted the first version has the cookies on the parent domain: they go before Google's script loads.
+    removeParentCookies(cookieNames());
     window[`ga-disable-${ID}`] = false;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function gtag() {
       window.dataLayer.push(arguments);
     };
+    // First of all commands: later, and in config alone, the tag ignores it.
+    window.gtag("set", { cookie_domain: DOMAIN });
     window.gtag("consent", "default", {
       analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied"
     });
