@@ -1,0 +1,21 @@
+/* The share button, at the film and in its bar. */
+.share { display: inline-flex; align-items: center; justify-content: center; gap: .45em; min-height: 48px; padding: 4px 16px; border: 2px solid var(--lamp); border-radius: 4px; background: var(--night); color: var(--lamp); font-weight: 700; line-height: 1.1; }
+.share[hidden] { display: none; }
+.featured-slot > .share { width: 100%; min-height: 60px; font-size: 20px; }
+.featured-slot > .share[hidden] { display: inline-flex; visibility: hidden; }
+.film-bar button.share { display: inline-flex; color: var(--lamp); }
+.film-bar button.share > span + span { visibility: visible; }
+.share-status { position: fixed; z-index: 11; left: 50%; bottom: calc(86px + env(safe-area-inset-bottom)); translate: -50% 0; max-width: calc(100vw - 32px); padding: 10px 16px; border-radius: 4px; background: var(--lamp); color: var(--night); font-weight: 700; overflow-wrap: anywhere; }
+.share-status:empty { padding: 0; }
+.share-status a { color: inherit; }
+@media (max-width: 560px) {
+  .film-bar .share { flex: 0 0 auto; }
+}
+@media (max-width: 420px) {
+  .film-bar { gap: 6px; padding-left: max(8px, env(safe-area-inset-left)); padding-right: max(8px, env(safe-area-inset-right)); }
+  .film-bar button, .film-bar button.share { padding: 4px 8px; font-size: 15px; line-height: 1.1; min-width: 0; }
+  .film-bar .share .share-mark { display: none; }
+  .film-bar .film-toggle { flex: 0 0 auto; min-width: 0; }
+  .film-bar .film-sound { flex: 1 1 auto; min-width: 0; }
+  .film-bar .film-sound.wanted { min-width: 104px; font-size: 19px; }
+}

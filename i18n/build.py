@@ -16,8 +16,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://latentheinzels.heinzel.team"
 PAGES = ("", "imprint/", "privacy/")
+# The address people share: the main page under its own title and picture, open at the film.
+SHARE = "singularity/"
+SHARE_PICTURE = "assets/share/singularity-2cf5f2d3.jpg"
+SHARE_PICTURE_SIZE = (1200, 630)
 LANGUAGES = {"zh": "zh-Hans", "fr": "fr", "de": "de"}
-TEXT_ATTRIBUTES = ("alt", "aria-label", "data-label")
+TEXT_ATTRIBUTES = ("alt", "aria-label", "data-label", "data-share-text", "data-copied", "data-failed")
 VOID = {"br", "img", "link", "meta", "source"}
 # Only the profile link may name the platform.
 PROFILE = '<a href="https://suno.com/@latentheinzels">Suno</a>'
@@ -220,14 +224,63 @@ def translated_body(page: str, translator: Translator) -> str:
     return "".join(out)
 
 
+def rooted(page: str) -> str:
+    """The same page with addresses that work from any folder."""
+    page = re.sub(r'((?:href|src|data-src|srcset)="|, )(assets/)', r"\1/\2", page)
+    return re.sub(r'((?:href|src)=")((?:[a-z]+\.(?:css|js))\?v=)', r"\1/\2", page)
+
+
+def share_page(main_page: str, folder: str) -> str:
+    """The address to share, built from that language's main page. Crawlers need no script to read its card.
+
+    Raises:
+        BuildError: When the main page has no share button, still, switch or one of the tags it replaces.
+    """
+    button = re.search(r'<button class="share"[^>]*>', main_page)
+    still = re.search(r'<img id="featured-still"[^>]*>', main_page)
+    switch = re.search(r'<nav class="langs".*?</nav>', main_page, flags=re.DOTALL)
+    if not (button and still and switch):
+        message = f"/{folder}: the share button, still or language switch is missing"
+        raise BuildError(message)
+    title = attribute(button.group(0), "data-share-title") or ""
+    text = html.escape(attribute(button.group(0), "data-share-text") or "")
+    alt = html.escape(attribute(still.group(0), "alt") or "")
+    address, picture = f"{SITE}/{folder}{SHARE}", f"{SITE}/{SHARE_PICTURE}"
+    width, height = SHARE_PICTURE_SIZE
+    card = (
+        f'<meta name="description" content="{text}">\n'
+        f'<meta property="og:type" content="website">\n'
+        f'<meta property="og:site_name" content="Latent Heinzels">\n'
+        f'<meta property="og:url" content="{address}">\n'
+        f'<meta property="og:title" content="{html.escape(title)}">\n'
+        f'<meta property="og:description" content="{text}">\n'
+        f'<meta property="og:image" content="{picture}">\n'
+        f'<meta property="og:image:type" content="image/jpeg">\n'
+        f'<meta property="og:image:width" content="{width}">\n'
+        f'<meta property="og:image:height" content="{height}">\n'
+        f'<meta property="og:image:alt" content="{alt}">\n'
+        f'<meta name="twitter:card" content="summary_large_image">\n'
+        f"<title>{html.escape(title, quote=False)} · Latent Heinzels</title>"
+    )
+    page = re.sub(r'<meta (?:property="og:|name="(?:description|twitter:|google-site))[^>]*>\n', "", rooted(main_page))
+    page, titles = re.subn(r"<title>[^<]*</title>", lambda _: card, page, count=1)
+    page, bodies = re.subn(r"<body([^>]*)>", r'<body\1 data-open="film">', page, count=1)
+    if not (titles and bodies):
+        message = f"/{folder}: no title or body"
+        raise BuildError(message)
+    new = re.sub(r'href="(/(?:[a-z]+/)?)"', rf'href="\1{SHARE}"', switch.group(0))
+    page = page.replace(switch.group(0), new)
+    return re.sub(r'(<link rel="(?:canonical|alternate)"[^>]*href="[^"]+/)"', rf'\1{SHARE}"', page)
+
+
 def moved(page: str, language: str, path: str) -> str:
     """Addresses that still work one folder down, and links that stay in the language.
 
     Raises:
         BuildError: When the page has no language switch.
     """
-    page = re.sub(r'((?:href|src|data-src|srcset)="|, )(assets/)', r"\1/\2", page)
-    page = re.sub(r'((?:href|src)=")((?:[a-z]+\.(?:css|js))\?v=)', r"\1/\2", page)
+    page = rooted(page)
+    page = page.replace(f'data-share-url="/{SHARE}"', f'data-share-url="/{language}/{SHARE}"')
     # The language switch already names every language, so its links stay as they are.
     switch = re.search(r'<nav class="langs".*?</nav>', page, flags=re.DOTALL)
     if not switch:
@@ -267,7 +320,7 @@ def sitemap() -> str:
     """Every public page in every language, each with its alternates. The previews under options/ are not in it."""
     folders = {"en": "", **{tag: f"{language}/" for language, tag in LANGUAGES.items()}}
     entries = []
-    for path in PAGES:
+    for path in (*PAGES, SHARE):
         links = [(tag, f"{SITE}/{folder}{path}") for tag, folder in folders.items()]
         shared = "".join(
             f'    <xhtml:link rel="alternate" hreflang="{tag}" href="{url}"/>\n'
@@ -285,12 +338,14 @@ def build_all() -> tuple[dict[Path, str], dict[str, list[str]]]:
     """Every translated page, and what each language lacks."""
     sources = {path: (ROOT / path / "index.html").read_text(encoding="utf-8") for path in PAGES}
     names = set().union(*(names_in(source) for source in sources.values()))
-    pages, missing = {}, {}
+    pages, missing = {ROOT / SHARE / "index.html": share_page(sources[""], "")}, {}
     for language in LANGUAGES:
         strings = json.loads((ROOT / "i18n" / f"{language}.json").read_text(encoding="utf-8"))
         translator = Translator(strings, names)
         for path, source in sources.items():
             pages[ROOT / language / path / "index.html"] = built(source, language, path, translator)
+        main_page = pages[ROOT / language / "index.html"]
+        pages[ROOT / language / SHARE / "index.html"] = share_page(main_page, f"{language}/")
         if translator.missing:
             missing[language] = translator.missing
     pages[ROOT / "sitemap.xml"] = sitemap()
@@ -300,7 +355,7 @@ def build_all() -> tuple[dict[Path, str], dict[str, list[str]]]:
 def marked_english(path: Path, text: str, missing: dict[str, list[str]]) -> str:
     """A legal page that still shows English says so to screen readers and search engines."""
     folder = path.parent.relative_to(ROOT).parts
-    if len(folder) > 1 and folder[0] in missing:
+    if len(folder) > 1 and folder[0] in missing and f"{folder[1]}/" != SHARE:
         return text.replace('<main id="main">', '<main id="main" lang="en">', 1)
     return text
 

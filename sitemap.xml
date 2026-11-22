@@ -96,4 +96,36 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://latentheinzels.heinzel.team/de/privacy/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://latentheinzels.heinzel.team/privacy/"/>
   </url>
+  <url>
+    <loc>https://latentheinzels.heinzel.team/singularity/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://latentheinzels.heinzel.team/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://latentheinzels.heinzel.team/zh/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://latentheinzels.heinzel.team/fr/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://latentheinzels.heinzel.team/de/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://latentheinzels.heinzel.team/singularity/"/>
+  </url>
+  <url>
+    <loc>https://latentheinzels.heinzel.team/zh/singularity/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://latentheinzels.heinzel.team/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://latentheinzels.heinzel.team/zh/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://latentheinzels.heinzel.team/fr/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://latentheinzels.heinzel.team/de/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://latentheinzels.heinzel.team/singularity/"/>
+  </url>
+  <url>
+    <loc>https://latentheinzels.heinzel.team/fr/singularity/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://latentheinzels.heinzel.team/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://latentheinzels.heinzel.team/zh/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://latentheinzels.heinzel.team/fr/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://latentheinzels.heinzel.team/de/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://latentheinzels.heinzel.team/singularity/"/>
+  </url>
+  <url>
+    <loc>https://latentheinzels.heinzel.team/de/singularity/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://latentheinzels.heinzel.team/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://latentheinzels.heinzel.team/zh/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://latentheinzels.heinzel.team/fr/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://latentheinzels.heinzel.team/de/singularity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://latentheinzels.heinzel.team/singularity/"/>
+  </url>
 </urlset>
