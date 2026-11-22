@@ -9,6 +9,7 @@ h1 span:last-child { margin-left: 0; }
 /* Room is kept for what the scripts reveal, so nothing moves as they run. */
 header > #motion[hidden] { display: inline-grid; visibility: hidden; }
 .featured-play[hidden] { display: inline-flex; visibility: hidden; }
+.whole:empty { display: block; }
 .album-note { color: var(--dim); font-size: 14px; line-height: 1.4; }
 .featured { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "visual name" "visual song"; grid-template-rows: auto 1fr; gap: 20px 40px; align-items: start; padding: 24px; background: #1c100e; border-bottom: 5px solid var(--lamp); min-width: 0; }
 .featured-name { grid-area: name; display: grid; gap: 14px; padding-top: 24px; }
