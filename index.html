@@ -22,11 +22,11 @@
 <link rel="alternate" hreflang="x-default" href="https://latentheinzels.heinzel.team/">
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="style.css?v=45c1c202">
-<link rel="stylesheet" href="home.css?v=8223a12b">
+<link rel="stylesheet" href="home.css?v=b6ddbe07">
 <script src="snow.js?v=555f3e8a" defer></script>
-<script src="player.js?v=ab7f2a98" defer></script>
+<script src="player.js?v=f3fd605a" defer></script>
 <script src="info.js?v=e3eb4e8d" defer></script>
-<script src="film.js?v=a482d8f3" defer></script>
+<script src="film.js?v=3437702e" defer></script>
 <link rel="stylesheet" href="langs.css?v=1beda26c">
 <script src="langs.js?v=0afe3b42" defer></script>
 </head>
@@ -42,7 +42,7 @@
 <main id="main">
 <section class="hero">
   <img class="street" src="assets/hero.jpg" fetchpriority="high" width="1568" height="875" alt="Four felt Heinzels with a drum machine, a synthesizer, a triangle and a modular synth on a snowy Berlin street at night">
-  <h1><span data-ghost="Latent">Latent</span> <span data-ghost="Heinzels">Heinzels</span></h1>
+  <h1 translate="no"><span data-ghost="Latent">Latent</span> <span data-ghost="Heinzels">Heinzels</span></h1>
   <p class="bio">Little helpers from latent space. Music and films for deep work: Berlin, Paris, San Francisco, Shenzhen. Made with AI.</p>
   <nav aria-label="Channels"><a href="https://www.youtube.com/@latentheinzels">YouTube</a><a href="https://music.youtube.com/@latentheinzels">YouTube Music</a><a href="https://soundcloud.com/latentheinzels">SoundCloud</a><a href="https://www.facebook.com/profile.php?id=61596746794980">Facebook</a><a href="https://www.instagram.com/latent_heinzels_ai/">Instagram</a><a href="https://suno.com/@latentheinzels">Suno</a><span class="pending">Spotify · soon</span></nav>
 </section>
@@ -66,11 +66,12 @@
     <div class="featured-name"><p class="kicker">The top song</p><h3>Berlin Evening: Singularity (Extended Version)</h3></div>
     <div class="visual">
       <img id="featured-still" src="assets/stills/singularity-tall-bb06c654-720.webp" srcset="assets/stills/singularity-tall-bb06c654-720.webp 720w, assets/stills/singularity-tall-bb06c654-1080.webp 1080w" sizes="(max-width: 760px) calc(100vw - 56px), 420px" width="720" height="1290" loading="lazy" decoding="async" alt="Two Heinzels on a kerb watch a whale at a vast burning black hole over Berlin">
-      <video data-src="assets/film/singularity-loop-9d9ea203.mp4" width="720" height="1280" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video>
+      <video class="film" data-film="/assets/film/extended-83cffc52.mp4" width="720" height="1280" controls controlslist="nodownload" playsinline preload="none" aria-label="Berlin Evening: Singularity (Extended Version), the film with its music" hidden></video>
     </div>
     <div class="featured-slot">
       <button class="featured-play" type="button" aria-describedby="featured-still featured-note" hidden><span class="mark" aria-hidden="true">▶</span><span><span class="song">Berlin Evening: Singularity</span> <span class="version">(Extended Version), 11:16</span></span></button>
-      <p class="featured-note" id="featured-note">Pressing play loads SoundCloud, which receives your IP address and may set cookies.</p>
+      <p class="featured-note" id="featured-note">The film and its music come from this site and start when you visit, unless your device asks for less motion or less data. The whole film is 87 MB.</p>
+      <p class="featured-note film-failed" role="status"><span hidden>The film could not be played. Press play to try again.</span></p>
       <noscript><p class="featured-note"><a href="https://soundcloud.com/latentheinzels/berlin-evening-singularity-1">Listen to Berlin Evening: Singularity (Extended Version) on SoundCloud</a></p></noscript>
     </div>
   </article>
@@ -218,6 +219,11 @@
   <p><a href="https://commons.wikimedia.org/wiki/Category:Heinzelm%C3%A4nnchen">See how they have been drawn since</a></p>
 </section>
 </main>
+<div class="film-bar" role="group" aria-label="Berlin Evening: Singularity (Extended Version), film controls" hidden>
+  <button class="film-toggle" type="button"><span>Play</span><span>Pause</span></button>
+  <button class="film-sound" type="button"><span>Mute</span><span>Sound on</span></button>
+  <span class="film-bar-title" aria-hidden="true">Berlin Evening: Singularity (Extended Version)</span>
+</div>
 
 <footer>
   <p>© 2026 Latent Heinzels. All rights reserved. Music, pictures and stories made with AI.</p>

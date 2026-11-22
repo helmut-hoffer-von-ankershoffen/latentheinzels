@@ -32,8 +32,9 @@
 <p><em>Status: 22 November 2026.</em></p>
 <h2>In short</h2>
 <ul>
-<li>This website itself sets no cookies, stores nothing in your browser's local storage and uses no analytics, tracking or advertising services. Its fonts, scripts, images and video come from your device or from this website.</li>
+<li>This website itself sets no cookies, stores nothing in your browser's local storage, keeps one entry for the film player in session storage (section 7) and uses no analytics, tracking or advertising services. Its fonts, scripts, images and video come from your device or from this website.</li>
 <li>The website is hosted on GitHub Pages and delivered through Cloudflare. Both process technical data such as your IP address (sections 3 and 4). Cloudflare also asks your browser to report failed connections to it.</li>
+<li>The film of the top song, with its music, comes from this website. It starts loading and playing when you open the main page, unless your device asks for reduced motion or data saving (section 2).</li>
 <li>SoundCloud's players load only when you press play. SoundCloud then receives your IP address and may set cookies (section 5).</li>
 </ul>
 <h2>1. Controller</h2>
@@ -41,6 +42,7 @@
 <p>Email: <!--email_off--><a translate="no" href="mailto:helmut@heinzel.team">helmut@heinzel.team</a><!--/email_off-->. Use the same address for any data protection question.</p>
 <h2>2. What we process ourselves</h2>
 <p>The website consists of static files. We run no server of our own, keep no access logs of our own and do not analyse visits. The only data we receive ourselves is what you write to us (section 6).</p>
+<p>The film of the top song, "Berlin Evening: Singularity (Extended Version)", is a video file with sound that this website hosts itself. When you open a page that shows it, your browser starts loading and playing it, muted if it doesn't allow sound without a press. With reduced motion or data saving switched on, it loads only when you press play, and after you paused it, only when you press play again. Its requests reach GitHub and Cloudflare like those for the website's other files (sections 3 and 4). No video or music service is involved.</p>
 <h2>3. Hosting on GitHub Pages</h2>
 <p>The website's files are hosted on GitHub Pages, a service of GitHub Inc., USA (part of Microsoft), and reach you through Cloudflare (section 4). According to GitHub, visitors' IP addresses are logged and stored for security purposes when a page is visited, whether or not they are signed in to GitHub. Cloudflare can pass your IP address on to GitHub with the request. GitHub's privacy statement says further technical details may be collected, such as the time of the request, the page and the referrer. We have no influence on these logs.</p>
 <ul>
@@ -76,7 +78,8 @@
 <li>Retention: we delete your message once your enquiry is dealt with and no legal retention duty applies. Cloudflare and Resend apply their own periods.</li>
 </ul>
 <h2>7. Cookies and browser storage (§ 25 TDDDG)</h2>
-<p>The website itself sets no cookies and writes nothing to local storage, session storage or a database in your browser. Your browser may cache the website's files as usual. The error-reporting instruction from Cloudflare is described in section 4, what SoundCloud may store after a press in section 5.</p>
+<p>The website itself sets no cookies and writes nothing to local storage or a database in your browser. In session storage the film player keeps one entry, <code>latentheinzels-film</code>, with five values: <code>film</code> (the film's file name), <code>time</code> (how far it has played), <code>paused</code> (whether you paused it), <code>muted</code> (whether you muted it) and <code>heard</code> (whether it has played with sound). The entry serves only to respect your pause and mute and to let the film carry on when you change pages. It is never sent to us or anyone else, applies to that browser tab only, and your browser deletes it when the tab's session ends.</p>
+<p>Your browser may cache the website's files as usual. The error-reporting instruction from Cloudflare is described in section 4, what SoundCloud may store after a press in section 5.</p>
 <h2>8. Links to other websites</h2>
 <p>The website links to the band's profiles on music, video and social platforms (the Channels row) and, in the imprint, to the controller's own website. These are plain links: nothing is loaded from those sites before you follow one. Only then do you leave this website, and the operator of the target site processes your data under its own privacy notice.</p>
 <h2>9. Disclosure</h2>

@@ -22,11 +22,11 @@
 <link rel="alternate" hreflang="x-default" href="https://latentheinzels.heinzel.team/">
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="/style.css?v=45c1c202">
-<link rel="stylesheet" href="/home.css?v=8223a12b">
+<link rel="stylesheet" href="/home.css?v=b6ddbe07">
 <script src="/snow.js?v=555f3e8a" defer></script>
-<script src="/player.js?v=ab7f2a98" defer></script>
+<script src="/player.js?v=f3fd605a" defer></script>
 <script src="/info.js?v=e3eb4e8d" defer></script>
-<script src="/film.js?v=a482d8f3" defer></script>
+<script src="/film.js?v=3437702e" defer></script>
 <link rel="stylesheet" href="/langs.css?v=1beda26c">
 <script src="/langs.js?v=0afe3b42" defer></script>
 </head>
@@ -34,7 +34,7 @@
 <canvas id="snow" aria-hidden="true"></canvas>
 <a class="skip" href="#main">跳到正文</a>
 <header>
-  <nav class="langs" aria-label="Language"><a href="/" data-lang="en" lang="en" hreflang="en">EN</a><a href="/zh/" data-lang="zh" aria-current="page" lang="zh-Hans" hreflang="zh-Hans">中文</a><a href="/fr/" data-lang="fr" lang="fr" hreflang="fr">FR</a><a href="/de/" data-lang="de" lang="de" hreflang="de">DE</a></nav>
+  <nav class="langs" aria-label="语言"><a href="/" data-lang="en" lang="en" hreflang="en">EN</a><a href="/zh/" data-lang="zh" aria-current="page" lang="zh-Hans" hreflang="zh-Hans">中文</a><a href="/fr/" data-lang="fr" lang="fr" hreflang="fr">FR</a><a href="/de/" data-lang="de" lang="de" hreflang="de">DE</a></nav>
   <nav aria-label="页面导航"><a href="#music">音乐</a><a href="#band">乐队</a><a href="#crew">Heinzel 们</a><a href="#saga">传说</a></nav>
   <button id="motion" type="button" hidden><span>让雪停一停</span><span>让雪下吧</span></button>
 </header>
@@ -42,14 +42,14 @@
 <main id="main">
 <section class="hero">
   <img class="street" src="/assets/hero.jpg" fetchpriority="high" width="1568" height="875" alt="夜里落雪的柏林街头，四个毛毡 Heinzel 带着鼓机、合成器、三角铁和模块合成器">
-  <h1><span data-ghost="Latent">Latent</span> <span data-ghost="Heinzels">Heinzel 们</span></h1>
+  <h1 translate="no"><span data-ghost="Latent">Latent</span> <span data-ghost="Heinzels">Heinzels</span></h1>
   <p class="bio">来自潜空间的小帮手。陪你深度工作的音乐和影片：柏林、巴黎、旧金山、深圳。用 AI 制作。</p>
   <nav aria-label="各平台主页"><a href="https://www.youtube.com/@latentheinzels">YouTube</a><a href="https://music.youtube.com/@latentheinzels">YouTube Music</a><a href="https://soundcloud.com/latentheinzels">SoundCloud</a><a href="https://www.facebook.com/profile.php?id=61596746794980">Facebook</a><a href="https://www.instagram.com/latent_heinzels_ai/">Instagram</a><a href="https://suno.com/@latentheinzels">Suno</a><span class="pending">Spotify · 即将上线</span></nav>
 </section>
 
 <section id="music">
   <h2 class="sr">音乐</h2>
-  <article class="album" data-playlist="album" data-title="Dreaming of Electric Snow" data-label="播放整张专辑" data-player="SoundCloud 播放器：Dreaming of Electric Snow" data-after=": Dreaming of Electric Snow">
+  <article class="album" data-playlist="album" data-title="Dreaming of Electric Snow" data-label="播放整张专辑" data-player="SoundCloud 播放器：Dreaming of Electric Snow" data-after="：Dreaming of Electric Snow">
     <div class="day-head album-head">
       <figure class="album-art"><img class="day-cover" src="/assets/stills/album-31dedb0d-480.webp" srcset="/assets/stills/album-31dedb0d-480.webp 480w, /assets/stills/album-31dedb0d-960.webp 960w" sizes="300px" width="480" height="480" loading="lazy" decoding="async" alt="四座城市上空悬着黑洞，下面是 Latent Heinzels 全体成员和 AI 嘉宾"></figure>
       <div class="day-title"><p class="kicker">专辑</p><h3>Dreaming of Electric Snow</h3><div class="whole"></div><p class="album-note">按下播放键会加载 SoundCloud。SoundCloud 会收到你的 IP 地址，并可能设置 Cookie。</p>
@@ -66,18 +66,19 @@
     <div class="featured-name"><p class="kicker">主打歌</p><h3>Berlin Evening: Singularity (Extended Version)</h3></div>
     <div class="visual">
       <img id="featured-still" src="/assets/stills/singularity-tall-bb06c654-720.webp" srcset="/assets/stills/singularity-tall-bb06c654-720.webp 720w, /assets/stills/singularity-tall-bb06c654-1080.webp 1080w" sizes="(max-width: 760px) calc(100vw - 56px), 420px" width="720" height="1290" loading="lazy" decoding="async" alt="两个 Heinzel 坐在路边，望着鲸鱼停在柏林上空燃烧的巨大黑洞前">
-      <video data-src="/assets/film/singularity-loop-9d9ea203.mp4" width="720" height="1280" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video>
+      <video class="film" data-film="/assets/film/extended-83cffc52.mp4" width="720" height="1280" controls controlslist="nodownload" playsinline preload="none" aria-label="Berlin Evening: Singularity (Extended Version)：影片与音乐" hidden></video>
     </div>
     <div class="featured-slot">
       <button class="featured-play" type="button" aria-describedby="featured-still featured-note" hidden><span class="mark" aria-hidden="true">▶</span><span><span class="song">Berlin Evening: Singularity</span> <span class="version">(Extended Version)，11:16</span></span></button>
-      <p class="featured-note" id="featured-note">按下播放键会加载 SoundCloud。SoundCloud 会收到你的 IP 地址，并可能设置 Cookie。</p>
+      <p class="featured-note" id="featured-note">影片及其音乐由本站提供，并在你访问时开始播放，除非你的设备要求减少动态效果或节省流量。整部影片 87 MB。</p>
+      <p class="featured-note film-failed" role="status"><span hidden>影片无法播放。请按播放键重试。</span></p>
       <noscript><p class="featured-note"><a href="https://soundcloud.com/latentheinzels/berlin-evening-singularity-1">去 SoundCloud 听 Berlin Evening: Singularity (Extended Version)</a></p></noscript>
     </div>
   </article>
   <h2 class="cities-title">一天，四城</h2>
   <p class="play-note" id="play-note">点一张图，听一首歌；也可以听完一座城，或者整张专辑。每首歌的故事都在 i 按钮里。按下播放键会加载 SoundCloud。SoundCloud 会收到你的 IP 地址，并可能设置 Cookie。</p>
   <noscript><p class="play-note">播放器需要 JavaScript。在 <a href="https://soundcloud.com/latentheinzels">SoundCloud</a> 上也能听到这些音乐。</p></noscript>
-  <article class="day berlin" data-playlist="berlin" data-title="Heinzels in Berlin" data-player="SoundCloud 播放器：Heinzels in Berlin" data-after=": Heinzels in Berlin" data-label="播放整个歌单">
+  <article class="day berlin" data-playlist="berlin" data-title="Heinzels in Berlin" data-player="SoundCloud 播放器：Heinzels in Berlin" data-after="：Heinzels in Berlin" data-label="播放整个歌单">
     <div class="day-head">
       <img class="day-cover" src="/assets/stills/berlin-playlist-480.webp" srcset="/assets/stills/berlin-playlist-240.webp 240w, /assets/stills/berlin-playlist-480.webp 480w" sizes="(max-width: 760px) 100px, 148px" width="480" height="480" loading="lazy" decoding="async" alt="歌单封面：雪中柏林的 Heinzel 们、螃蟹、鲸鱼和黑石碑">
       <div class="day-title"><h3>Heinzels in Berlin: <span>Dreaming of Electric Snow</span></h3><div class="whole"></div><p class="album-note">连播十首：先是第 1 到 9 首，再接第 37 首 Extended Version。</p></div>
@@ -101,7 +102,7 @@
       <li class="tile" data-track="berlin-evening-extended" data-title="Berlin Evening: Singularity (Extended Version)" data-player="SoundCloud 播放器：Berlin Evening: Singularity (Extended Version)" data-play="播放 Berlin Evening: Singularity (Extended Version)"><span class="cover"><img src="/assets/stills/berlin-evening-extended-480.webp" srcset="/assets/stills/berlin-evening-extended-240.webp 240w, /assets/stills/berlin-evening-extended-480.webp 480w" sizes="(max-width: 760px) 124px, 232px" width="480" height="480" loading="lazy" decoding="async" id="still-berlin-evening-extended" alt="两个 Heinzel 坐在路边，望着鲸鱼停在柏林上空燃烧的巨大黑洞前"><span class="badge" hidden></span></span><div class="about"><span class="name">Berlin Evening: Singularity (Extended Version)</span><div class="meta"><span class="time">11:16</span><button class="info" type="button" aria-expanded="false" aria-controls="info-berlin-evening-extended" aria-label="关于 Berlin Evening: Singularity (Extended Version)" hidden><span aria-hidden="true">i</span></button></div></div><div class="details" id="info-berlin-evening-extended" hidden><strong>Berlin Evening: Singularity (Extended Version)</strong><p>事件视界说，再给它十分钟。门卫准了。深度工作配乐，用 AI 制作。</p></div></li>
     </ul>
   </article>
-  <article class="day paris" data-playlist="paris" data-title="Heinzels in Paris" data-player="SoundCloud 播放器：Heinzels in Paris" data-after=": Heinzels in Paris" data-label="播放整个歌单">
+  <article class="day paris" data-playlist="paris" data-title="Heinzels in Paris" data-player="SoundCloud 播放器：Heinzels in Paris" data-after="：Heinzels in Paris" data-label="播放整个歌单">
     <div class="day-head">
       <img class="day-cover" src="/assets/stills/paris-playlist-480.webp" srcset="/assets/stills/paris-playlist-240.webp 240w, /assets/stills/paris-playlist-480.webp 480w" sizes="(max-width: 760px) 100px, 148px" width="480" height="480" loading="lazy" decoding="async" alt="歌单封面：巴黎屋顶上的 Heinzel 们、螃蟹、鲸鱼和黑石碑">
       <div class="day-title"><h3>Heinzels in Paris: <span>Dreaming of Electric Rain</span></h3><div class="whole"></div></div>
@@ -121,7 +122,7 @@
       <li class="tile" data-track="paris-night" data-title="Paris Night: Superintelligence (Raindrops in Paris)" data-player="SoundCloud 播放器：Paris Night: Superintelligence (Raindrops in Paris)" data-play="播放 Paris Night: Superintelligence (Raindrops in Paris)"><span class="cover"><img src="/assets/stills/paris-night-480.webp" srcset="/assets/stills/paris-night-240.webp 240w, /assets/stills/paris-night-480.webp 480w" sizes="(max-width: 760px) 124px, 232px" width="480" height="480" loading="lazy" decoding="async" id="still-paris-night" alt="夜里湿漉漉的屋顶上，两个 Heinzel 在数电子羊"><span class="badge" hidden></span></span><div class="about"><span class="name">Paris Night: Superintelligence (Raindrops in Paris)</span><div class="meta"><span class="time">10:41</span><button class="info" type="button" aria-expanded="false" aria-controls="info-paris-night" aria-label="关于 Paris Night: Superintelligence (Raindrops in Paris)" hidden><span aria-hidden="true">i</span></button></div></div><div class="details" id="info-paris-night" hidden><strong>Paris Night: Superintelligence (Raindrops in Paris)</strong><p>雨敲锌皮，还有一家咖啡馆亮着灯。椅子都摞起来了，有个很大很大的东西没走，留下来陪服务生。深度工作配乐，用 AI 制作。</p></div></li>
     </ol>
   </article>
-  <article class="day sf" data-playlist="sf" data-title="Heinzels in San Francisco" data-player="SoundCloud 播放器：Heinzels in San Francisco" data-after=": Heinzels in San Francisco" data-label="播放整个歌单">
+  <article class="day sf" data-playlist="sf" data-title="Heinzels in San Francisco" data-player="SoundCloud 播放器：Heinzels in San Francisco" data-after="：Heinzels in San Francisco" data-label="播放整个歌单">
     <div class="day-head">
       <img class="day-cover" src="/assets/stills/sf-playlist-480.webp" srcset="/assets/stills/sf-playlist-240.webp 240w, /assets/stills/sf-playlist-480.webp 480w" sizes="(max-width: 760px) 100px, 148px" width="480" height="480" loading="lazy" decoding="async" alt="歌单封面：旧金山雾海之上的 Heinzel 们、螃蟹、鲸鱼和黑石碑">
       <div class="day-title"><h3>Heinzels in San Francisco: <span>Dreaming of Electric Fog</span></h3><div class="whole"></div></div>
@@ -141,7 +142,7 @@
       <li class="tile" data-track="san-francisco-night" data-title="San Francisco Night: Superintelligence (Fog in San Francisco)" data-player="SoundCloud 播放器：San Francisco Night: Superintelligence (Fog in San Francisco)" data-play="播放 San Francisco Night: Superintelligence (Fog in San Francisco)"><span class="cover"><img src="/assets/stills/san-francisco-night-480.webp" srcset="/assets/stills/san-francisco-night-240.webp 240w, /assets/stills/san-francisco-night-480.webp 480w" sizes="(max-width: 760px) 124px, 232px" width="480" height="480" loading="lazy" decoding="async" id="still-san-francisco-night" alt="雾海之上的山头，两个 Heinzel 在数发光的羊"><span class="badge" hidden></span></span><div class="about"><span class="name">San Francisco Night: Superintelligence (Fog in San Francisco)</span><div class="meta"><span class="time">10:01</span><button class="info" type="button" aria-expanded="false" aria-controls="info-san-francisco-night" aria-label="关于 San Francisco Night: Superintelligence (Fog in San Francisco)" hidden><span aria-hidden="true">i</span></button></div></div><div class="details" id="info-san-francisco-night" hidden><strong>San Francisco Night: Superintelligence (Fog in San Francisco)</strong><p>凌晨三点，雾笛响起，一间车库亮着灯。羊都电子化了，还是得有人一只只数。深度工作配乐，用 AI 制作。</p></div></li>
     </ol>
   </article>
-  <article class="day shenzhen" data-playlist="shenzhen" data-title="Heinzels in Shenzhen" data-player="SoundCloud 播放器：Heinzels in Shenzhen" data-after=": Heinzels in Shenzhen" data-label="播放整个歌单">
+  <article class="day shenzhen" data-playlist="shenzhen" data-title="Heinzels in Shenzhen" data-player="SoundCloud 播放器：Heinzels in Shenzhen" data-after="：Heinzels in Shenzhen" data-label="播放整个歌单">
     <div class="day-head">
       <img class="day-cover" src="/assets/stills/shenzhen-playlist-480.webp" srcset="/assets/stills/shenzhen-playlist-240.webp 240w, /assets/stills/shenzhen-playlist-480.webp 480w" sizes="(max-width: 760px) 100px, 148px" width="480" height="480" loading="lazy" decoding="async" alt="歌单封面：雨中深圳的 Heinzel 们、螃蟹、鲸鱼和黑石碑">
       <div class="day-title"><h3>Heinzels in Shenzhen: <span>Dreaming of Electric Monsoon</span></h3><div class="whole"></div></div>
@@ -218,10 +219,15 @@
   <p><a href="https://commons.wikimedia.org/wiki/Category:Heinzelm%C3%A4nnchen">看看后来的人都把它们画成了什么样</a></p>
 </section>
 </main>
+<div class="film-bar" role="group" aria-label="Berlin Evening: Singularity (Extended Version)：影片控制" hidden>
+  <button class="film-toggle" type="button"><span>播放</span><span>暂停</span></button>
+  <button class="film-sound" type="button"><span>静音</span><span>打开声音</span></button>
+  <span class="film-bar-title" aria-hidden="true">Berlin Evening: Singularity (Extended Version)</span>
+</div>
 
 <footer>
   <p>© 2026 Latent Heinzels. All rights reserved. Music, pictures and stories made with AI.</p>
-  <nav aria-label="Legal"><a href="/zh/imprint/">Imprint</a><a href="/zh/privacy/">Privacy</a></nav>
+  <nav aria-label="法律信息"><a href="/zh/imprint/">版本说明</a><a href="/zh/privacy/">隐私</a></nav>
 </footer>
 <!-- SoundCloud addresses: put one between the quotes and its play button appears. Nothing else to edit. -->
 <script type="application/json" id="soundcloud">

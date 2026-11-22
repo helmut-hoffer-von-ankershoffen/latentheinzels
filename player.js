@@ -50,6 +50,7 @@
 
   function start(holder, frame, place, preventScroll = false) {
     stop();
+    document.dispatchEvent(new Event("soundcloud:play"));
     current = { holder, frame };
     holder.classList.add("playing");
     place(frame);
@@ -59,17 +60,7 @@
   const album = addressOf("playlists", "album");
   const albumTitle = document.querySelector('[data-playlist="album"]')?.dataset.title;
 
-  // The featured song's player takes the button's place, so its picture stays and nothing moves.
-  for (const featured of document.querySelectorAll("[data-featured]")) {
-    const url = addressOf("tracks", featured.dataset.featured);
-    if (!url) continue;
-    const slot = featured.querySelector(".featured-slot");
-    const button = slot.querySelector(".featured-play");
-    button.hidden = false;
-    button.addEventListener("click", () => {
-      start(slot, player(url, featured.dataset.title, "featured-frame", featured.dataset.player), frame => slot.append(frame), true);
-    });
-  }
+  document.addEventListener("film:play", stop);
 
   for (const tile of document.querySelectorAll(".tile[data-track]")) {
     const cover = tile.querySelector(".cover");

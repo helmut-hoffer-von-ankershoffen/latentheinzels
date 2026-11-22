@@ -22,11 +22,11 @@
 <link rel="alternate" hreflang="x-default" href="https://latentheinzels.heinzel.team/">
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="/style.css?v=45c1c202">
-<link rel="stylesheet" href="/home.css?v=8223a12b">
+<link rel="stylesheet" href="/home.css?v=b6ddbe07">
 <script src="/snow.js?v=555f3e8a" defer></script>
-<script src="/player.js?v=ab7f2a98" defer></script>
+<script src="/player.js?v=f3fd605a" defer></script>
 <script src="/info.js?v=e3eb4e8d" defer></script>
-<script src="/film.js?v=a482d8f3" defer></script>
+<script src="/film.js?v=3437702e" defer></script>
 <link rel="stylesheet" href="/langs.css?v=1beda26c">
 <script src="/langs.js?v=0afe3b42" defer></script>
 </head>
@@ -34,7 +34,7 @@
 <canvas id="snow" aria-hidden="true"></canvas>
 <a class="skip" href="#main">Aller au contenu</a>
 <header>
-  <nav class="langs" aria-label="Language"><a href="/" data-lang="en" lang="en" hreflang="en">EN</a><a href="/zh/" data-lang="zh" lang="zh-Hans" hreflang="zh-Hans">中文</a><a href="/fr/" data-lang="fr" aria-current="page" lang="fr" hreflang="fr">FR</a><a href="/de/" data-lang="de" lang="de" hreflang="de">DE</a></nav>
+  <nav class="langs" aria-label="Langue"><a href="/" data-lang="en" lang="en" hreflang="en">EN</a><a href="/zh/" data-lang="zh" lang="zh-Hans" hreflang="zh-Hans">中文</a><a href="/fr/" data-lang="fr" aria-current="page" lang="fr" hreflang="fr">FR</a><a href="/de/" data-lang="de" lang="de" hreflang="de">DE</a></nav>
   <nav aria-label="Rubriques"><a href="#music">Musique</a><a href="#band">Le groupe</a><a href="#crew">Heinzels</a><a href="#saga">La légende</a></nav>
   <button id="motion" type="button" hidden><span>Suspendre la neige</span><span>Qu’il neige</span></button>
 </header>
@@ -42,7 +42,7 @@
 <main id="main">
 <section class="hero">
   <img class="street" src="/assets/hero.jpg" fetchpriority="high" width="1568" height="875" alt="Quatre Heinzels en feutre avec une boîte à rythmes, un synthétiseur, un triangle et un synthé modulaire, la nuit, dans une rue enneigée de Berlin">
-  <h1><span data-ghost="Latent">Latent</span> <span data-ghost="Heinzels">Heinzels</span></h1>
+  <h1 translate="no"><span data-ghost="Latent">Latent</span> <span data-ghost="Heinzels">Heinzels</span></h1>
   <p class="bio">Les petites mains de l’espace latent. Musique et films pour travailler en profondeur : Berlin, Paris, San Francisco, Shenzhen. Réalisés avec l’IA.</p>
   <nav aria-label="Chaînes et réseaux"><a href="https://www.youtube.com/@latentheinzels">YouTube</a><a href="https://music.youtube.com/@latentheinzels">YouTube Music</a><a href="https://soundcloud.com/latentheinzels">SoundCloud</a><a href="https://www.facebook.com/profile.php?id=61596746794980">Facebook</a><a href="https://www.instagram.com/latent_heinzels_ai/">Instagram</a><a href="https://suno.com/@latentheinzels">Suno</a><span class="pending">Spotify · bientôt</span></nav>
 </section>
@@ -66,11 +66,12 @@
     <div class="featured-name"><p class="kicker">Le morceau phare</p><h3>Berlin Evening: Singularity (Extended Version)</h3></div>
     <div class="visual">
       <img id="featured-still" src="/assets/stills/singularity-tall-bb06c654-720.webp" srcset="/assets/stills/singularity-tall-bb06c654-720.webp 720w, /assets/stills/singularity-tall-bb06c654-1080.webp 1080w" sizes="(max-width: 760px) calc(100vw - 56px), 420px" width="720" height="1290" loading="lazy" decoding="async" alt="Assis au bord du trottoir, deux Heinzels regardent une baleine devant un immense trou noir en feu au-dessus de Berlin">
-      <video data-src="/assets/film/singularity-loop-9d9ea203.mp4" width="720" height="1280" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video>
+      <video class="film" data-film="/assets/film/extended-83cffc52.mp4" width="720" height="1280" controls controlslist="nodownload" playsinline preload="none" aria-label="Berlin Evening: Singularity (Extended Version), le film avec sa musique" hidden></video>
     </div>
     <div class="featured-slot">
       <button class="featured-play" type="button" aria-describedby="featured-still featured-note" hidden><span class="mark" aria-hidden="true">▶</span><span><span class="song">Berlin Evening: Singularity</span> <span class="version">(Extended Version), 11:16</span></span></button>
-      <p class="featured-note" id="featured-note">Lancer la lecture charge SoundCloud, qui reçoit votre adresse IP et peut déposer des cookies.</p>
+      <p class="featured-note" id="featured-note">Le film et sa musique viennent de ce site et démarrent à votre visite, sauf si votre appareil demande moins d'animations ou moins de données. Le film entier pèse 87 Mo.</p>
+      <p class="featured-note film-failed" role="status"><span hidden>Le film n'a pas pu être lu. Appuyez sur lecture pour réessayer.</span></p>
       <noscript><p class="featured-note"><a href="https://soundcloud.com/latentheinzels/berlin-evening-singularity-1">Écouter « Berlin Evening: Singularity (Extended Version) » sur SoundCloud</a></p></noscript>
     </div>
   </article>
@@ -218,10 +219,15 @@
   <p><a href="https://commons.wikimedia.org/wiki/Category:Heinzelm%C3%A4nnchen">Voir comment on les a dessinés depuis</a></p>
 </section>
 </main>
+<div class="film-bar" role="group" aria-label="Berlin Evening: Singularity (Extended Version), commandes du film" hidden>
+  <button class="film-toggle" type="button"><span>Lecture</span><span>Pause</span></button>
+  <button class="film-sound" type="button"><span>Couper le son</span><span>Activer le son</span></button>
+  <span class="film-bar-title" aria-hidden="true">Berlin Evening: Singularity (Extended Version)</span>
+</div>
 
 <footer>
   <p>© 2026 Latent Heinzels. All rights reserved. Music, pictures and stories made with AI.</p>
-  <nav aria-label="Legal"><a href="/fr/imprint/">Imprint</a><a href="/fr/privacy/">Privacy</a></nav>
+  <nav aria-label="Informations légales"><a href="/fr/imprint/">Mentions légales</a><a href="/fr/privacy/">Confidentialité</a></nav>
 </footer>
 <!-- SoundCloud addresses: put one between the quotes and its play button appears. Nothing else to edit. -->
 <script type="application/json" id="soundcloud">
