@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self' https://www.googletagmanager.com; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; connect-src https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0a0d1c">
@@ -21,9 +21,15 @@
 <link rel="stylesheet" href="/langs.css?v=1beda26c">
 <script src="/langs.js?v=0afe3b42" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "copyrightHolder": {"@type": "Person", "name": "Helmut Hoffer von Ankershoffen"}, "copyrightYear": 2026}</script>
+<link rel="stylesheet" href="/analytics.css?v=ee223e13">
+<script src="/analytics.js?v=f00eb467" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<section class="consent" aria-label="Privacy settings" hidden>
+  <p>May we use Google Analytics for visit statistics? Google would set cookies and receive your IP address. Nothing from Google loads unless you accept, and you can withdraw at any time in the footer. <a href="/privacy/">Privacy notice</a></p>
+  <div class="consent-choices"><button class="consent-decline" type="button">Decline</button><button class="consent-allow" type="button">Accept</button></div>
+</section>
 <header class="legal"><a class="back" href="/"><span aria-hidden="true">← </span>Latent Heinzels</a><nav class="langs" aria-label="Language"><a href="/privacy/" data-lang="en" lang="en" hreflang="en" aria-current="page">EN</a><a href="/zh/privacy/" data-lang="zh" lang="zh-Hans" hreflang="zh-Hans">中文</a><a href="/fr/privacy/" data-lang="fr" lang="fr" hreflang="fr">FR</a><a href="/de/privacy/" data-lang="de" lang="de" hreflang="de">DE</a></nav></header>
 <main id="main">
 <h1>Privacy notice</h1>
@@ -31,7 +37,8 @@
 <p><em>Status: 22 November 2026.</em></p>
 <h2>In short</h2>
 <ul>
-<li>This website itself sets no cookies, stores nothing in your browser's local storage, keeps one entry for the film player in session storage (section 7) and uses no analytics, tracking or advertising services. Its fonts, scripts, images and video come from your device or from this website.</li>
+<li>Without your consent this website sets no cookies and uses no analytics. It uses no advertising services. It keeps one entry for the film player in session storage and one for your Analytics choice in local storage (section 7). Its fonts, images and video come from your device or from this website.</li>
+<li>Google Analytics loads only if you allow it. Google then receives data about your visit, including your IP address, and sets cookies. You can withdraw with one press in the footer of every page (section 5a).</li>
 <li>The website is hosted on GitHub Pages and delivered through Cloudflare. Both process technical data such as your IP address (sections 3 and 4). Cloudflare also asks your browser to report failed connections to it.</li>
 <li>The film of the top song, with its music, comes from this website. It starts loading and playing when you open the main page, unless your device asks for reduced motion or data saving (section 2).</li>
 <li>SoundCloud's players load only when you press play. SoundCloud then receives your IP address and may set cookies (section 5).</li>
@@ -40,9 +47,9 @@
 <p>The controller within the meaning of Art. 4(7) GDPR is the person named in the <a href="/imprint/">imprint</a>, at the postal address given there.</p>
 <p>Email: <!--email_off--><a translate="no" href="mailto:helmut@heinzel.team">helmut@heinzel.team</a><!--/email_off-->. Use the same address for any data protection question.</p>
 <h2>2. What we process ourselves</h2>
-<p>The website consists of static files. We run no server of our own, keep no access logs of our own and do not analyse visits. The only data we receive ourselves is what you write to us (section 6).</p>
+<p>The website consists of static files. We run no server of our own and keep no access logs of our own. We analyse visits only with Google Analytics and only if you allow it (section 5a). Otherwise the only data we receive ourselves is what you write to us (section 6).</p>
 <p>The film of the top song, "Berlin Evening: Singularity (Extended Version)", is a video with sound that this website hosts itself. When you open a page that shows it, your browser starts loading and playing it, muted if it doesn't allow sound without a press: your first click or tap on the page then switches the sound on. With reduced motion or data saving switched on, it loads only when you press play, and after you paused it, only when you press play again, reload or come to the website anew. Its requests reach GitHub and Cloudflare like those for the website's other files (sections 3 and 4). No video or music service is involved.</p>
-<p>The film comes in three sizes. To pick one, the player looks at your screen's size and, where your browser reports it, the speed of your connection. Both are read on your device and neither stored nor sent.</p>
+<p>The film comes in three sizes. To pick one, the player looks at your screen's size and, where your browser reports it, the speed of your connection. Both are read on your device, and the player neither stores nor sends them. If you allow Google Analytics, that receives the screen size by its own measurement (section 5a).</p>
 <h2>3. Hosting on GitHub Pages</h2>
 <p>The website's files are hosted on GitHub Pages, a service of GitHub Inc., USA (part of Microsoft), and reach you through Cloudflare (section 4). According to GitHub, visitors' IP addresses are logged and stored for security purposes when a page is visited, whether or not they are signed in to GitHub. Cloudflare can pass your IP address on to GitHub with the request. GitHub's privacy statement says further technical details may be collected, such as the time of the request, the page and the referrer. We have no influence on these logs.</p>
 <ul>
@@ -69,6 +76,20 @@
 <li>Withdrawal: reload the page and don't press play again. You can delete what SoundCloud stored in your browser's settings.</li>
 <li>Retention: determined by SoundCloud.</li>
 </ul>
+<h2>5a. Visit statistics: Google Analytics, only if you allow it</h2>
+<p>Until you press Accept, no script from Google loads and nothing is sent to Google. The same holds after Decline. If you accept, your browser loads Google's measurement script (gtag.js) from googletagmanager.com and sends data about your visit to Google's Analytics servers (google-analytics.com and analytics.google.com). We use Google Analytics 4 with the measurement ID G-EL18RTQ5GY, without a Tag Manager container, advertising features or Google Signals.</p>
+<ul>
+<li>Provider: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland, which processes the data for us under Google's data processing terms, which we have accepted.</li>
+<li>Purpose: to count visits and learn which pages, languages and countries they come from and how the website is used.</li>
+<li>Data: a pseudonymous client and session identifier, the pages you open with their address and title, the page you came from, language, date and time, browser, operating system and device details including screen size, and coarse location down to the city. Collection of granular location and device data is on, as Google sets it by default. Enhanced measurement is on with all seven of its measurements: page views, scrolls, clicks on links to other sites, site search, video engagement, file downloads and form interactions. Google says that it uses the IP addresses of visitors in the EU, Switzerland and the UK to derive the coarse location and then discards them, without logging or storing them, and that it receives their data on servers there before forwarding it for processing.</li>
+<li>Settings: all four options for sharing data with Google, Google Signals, collection of user-provided data and personalisation of ads (in all 307 regions) are switched off. Redaction of email addresses in event data is on. Redaction of query parameters in page addresses is off.</li>
+<li>Cookies: <code>_ga</code> tells browsers apart by a random identifier, <code>_ga_EL18RTQ5GY</code> keeps the state of the session. Both are set for this website's host, by default for up to 2 years from when they were last renewed, and are sent with requests to this website.</li>
+<li>Legal basis: your consent (Art. 6(1)(a) GDPR and, for storing and reading on your device, § 25(1) TDDDG).</li>
+<li>Third country: Google may process the data in the USA, also through Google LLC. Google states that Google LLC participates in the EU-U.S. Data Privacy Framework (Art. 45 GDPR) and otherwise relies on standard contractual clauses (Art. 46 GDPR).</li>
+<li>Retention: event and user data for 2 months, and new activity does not restart that period. Aggregated standard reports are not limited by this setting and can be kept longer.</li>
+<li>Withdrawal: press “Privacy settings: withdraw consent” in the footer of any page. Measurement stops, both cookies are deleted and the page reloads without Google's script. This doesn't affect what was processed before.</li>
+</ul>
+<p>We also use Google Search Console to see how the website appears in Google's search. It adds no script, cookie or tracking of visitors to this website and shows us aggregated statistics from Google's own search.</p>
 <h2>6. Contact by email: Cloudflare Email Routing and Resend</h2>
 <p>Incoming email to the address above is received by Cloudflare (Email Routing) and forwarded to a mailbox of the controller. Cloudflare processes sender and recipient addresses, metadata and the message content as far as needed for forwarding. Please do not send sensitive data by ordinary email.</p>
 <p>Outgoing email from that domain is sent through the Resend service (Resend, USA). Resend processes recipient address, metadata and message content. In its data processing agreement Resend states that it applies standard contractual clauses and refers to the EU-U.S. Data Privacy Framework.</p>
@@ -78,12 +99,13 @@
 <li>Retention: we delete your message once your enquiry is dealt with and no legal retention duty applies. Cloudflare and Resend apply their own periods.</li>
 </ul>
 <h2>7. Cookies and browser storage (§ 25 TDDDG)</h2>
-<p>The website itself sets no cookies and writes nothing to local storage or a database in your browser. In session storage the film player keeps one entry, <code>latentheinzels-film</code>, with five values: <code>film</code> (the film's file name), <code>time</code> (how far it has played), <code>paused</code> (whether you paused it), <code>muted</code> (whether you muted it) and <code>heard</code> (whether it has played with sound). The entry serves only to respect your pause and mute and to let the film carry on when you change pages. It is never sent to us or anyone else, applies to that browser tab only, and your browser deletes it when the tab's session ends.</p>
+<p>Without your consent the website sets no cookies. The cookies of Google Analytics are described in section 5a. In local storage the website keeps one entry, <code>latentheinzels-analytics</code>, with the value <code>allow</code> or <code>decline</code>, so that it can respect your choice (§ 25(2) no. 2 TDDDG). The entry is never sent and stays until you change it or delete this website's data in your browser.</p>
+<p>In session storage the film player keeps one entry, <code>latentheinzels-film</code>, with five values: <code>film</code> (the film's file name), <code>time</code> (how far it has played), <code>paused</code> (whether you paused it), <code>muted</code> (whether you muted it) and <code>heard</code> (whether it has played with sound). The entry serves only to respect your pause and mute and to let the film carry on when you change pages. It is never sent to us or anyone else, applies to that browser tab only, and your browser deletes it when the tab's session ends.</p>
 <p>Your browser may cache the website's files as usual. The error-reporting instruction from Cloudflare is described in section 4, what SoundCloud may store after a press in section 5.</p>
 <h2>8. Links to other websites</h2>
 <p>The website links to the band's profiles on music, video and social platforms (the Channels row) and, in the imprint, to the controller's own website. These are plain links: nothing is loaded from those sites before you follow one. Only then do you leave this website, and the operator of the target site processes your data under its own privacy notice.</p>
 <h2>9. Disclosure</h2>
-<p>Apart from the service providers named (GitHub, Cloudflare, Resend, and SoundCloud after you press play) we do not pass personal data on. We use no credit agencies, no advertising networks and no social plug-ins.</p>
+<p>Apart from the service providers named (GitHub, Cloudflare, Resend, SoundCloud after you press play, and Google if you allow Google Analytics) we do not pass personal data on. We use no credit agencies, no advertising networks and no social plug-ins.</p>
 <h2>10. Your rights</h2>
 <p>You have the right against the controller to:</p>
 <ul>
@@ -105,6 +127,7 @@
   <p>© 2026 Helmut Hoffer von Ankershoffen. All pictures, music, videos, stories, texts and characters of Latent Heinzels are protected by copyright. All rights reserved: no copying, redistribution or adaptation without written permission, except for search, AI input and AI training.</p>
   <p>Made with human creativity and AI.</p>
   <nav aria-label="Legal"><a href="/imprint/">Imprint</a><a href="/privacy/">Privacy</a></nav>
+  <button class="consent-settings" type="button" hidden><span>Privacy settings</span><span>Privacy settings: withdraw consent</span></button>
 </footer>
 </body>
 </html>

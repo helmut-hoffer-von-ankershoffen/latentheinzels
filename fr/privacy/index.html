@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self' https://www.googletagmanager.com; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; connect-src https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0a0d1c">
@@ -21,9 +21,15 @@
 <link rel="stylesheet" href="/langs.css?v=1beda26c">
 <script src="/langs.js?v=0afe3b42" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "copyrightHolder": {"@type": "Person", "name": "Helmut Hoffer von Ankershoffen"}, "copyrightYear": 2026}</script>
+<link rel="stylesheet" href="/analytics.css?v=ee223e13">
+<script src="/analytics.js?v=f00eb467" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Aller au contenu</a>
+<section class="consent" aria-label="Paramètres de confidentialité" hidden>
+  <p>Pouvons-nous utiliser Google Analytics pour des statistiques de visite ? Google déposerait des cookies et recevrait votre adresse IP. Rien ne se charge depuis Google sans votre accord, que vous pouvez retirer à tout moment en pied de page. <a href="/fr/privacy/">Politique de confidentialité</a></p>
+  <div class="consent-choices"><button class="consent-decline" type="button">Refuser</button><button class="consent-allow" type="button">Accepter</button></div>
+</section>
 <header class="legal"><a class="back" href="/fr/"><span aria-hidden="true">← </span>Latent Heinzels</a><nav class="langs" aria-label="Langue"><a href="/privacy/" data-lang="en" lang="en" hreflang="en">EN</a><a href="/zh/privacy/" data-lang="zh" lang="zh-Hans" hreflang="zh-Hans">中文</a><a href="/fr/privacy/" data-lang="fr" aria-current="page" lang="fr" hreflang="fr">FR</a><a href="/de/privacy/" data-lang="de" lang="de" hreflang="de">DE</a></nav></header>
 <main id="main">
 <h1>Politique de confidentialité</h1>
@@ -31,7 +37,8 @@
 <p><em>Version en date du 22 novembre 2026.</em></p>
 <h2>En bref</h2>
 <ul>
-<li>Ce site ne dépose lui-même aucun cookie, n’enregistre rien dans le stockage local de votre navigateur, conserve une seule entrée pour le lecteur du film dans le stockage de session (section 7) et n’utilise aucun service de mesure d’audience, de traçage ou de publicité. Ses polices, scripts, images et vidéos proviennent de votre appareil ou de ce site.</li>
+<li>Sans votre consentement, ce site ne dépose aucun cookie et n’utilise aucune mesure d’audience. Il n’utilise aucun service publicitaire. Il conserve une entrée pour le lecteur du film dans le stockage de session et une pour votre choix Analytics dans le stockage local (section 7). Ses polices, images et vidéos proviennent de votre appareil ou de ce site.</li>
+<li>Google Analytics ne se charge que si vous l’autorisez. Google reçoit alors des données sur votre visite, dont votre adresse IP, et dépose des cookies. Vous pouvez retirer votre accord en un clic au pied de chaque page (section 5a).</li>
 <li>Le site est hébergé sur GitHub Pages et acheminé par Cloudflare. Ces deux services traitent des données techniques telles que votre adresse IP (sections 3 et 4). Cloudflare demande en outre à votre navigateur de lui signaler les échecs de connexion.</li>
 <li>Le film du morceau phare, avec sa musique, provient de ce site. Son chargement et sa lecture commencent à l’ouverture de la page principale, sauf si votre appareil demande moins d’animations ou une économie de données (section 2).</li>
 <li>Les lecteurs SoundCloud ne se chargent que lorsque vous lancez la lecture. SoundCloud reçoit alors votre adresse IP et peut déposer des cookies (section 5).</li>
@@ -40,9 +47,9 @@
 <p>Le responsable du traitement au sens de l’article 4, point 7), du RGPD est la personne désignée dans les <a href="/fr/imprint/">mentions légales</a>, à l’adresse postale qui y figure.</p>
 <p>E-mail : <!--email_off--><a translate="no" href="mailto:helmut@heinzel.team">helmut@heinzel.team</a><!--/email_off-->. Utilisez cette même adresse pour toute question relative à la protection des données.</p>
 <h2>2. Données que nous traitons nous-mêmes</h2>
-<p>Le site est constitué de fichiers statiques. Nous n’exploitons pas de serveur en propre, ne tenons pas nos propres journaux d’accès et n’analysons pas les visites. Les seules données que nous recevons nous-mêmes sont celles que vous nous communiquez en nous écrivant (section 6).</p>
+<p>Le site est constitué de fichiers statiques. Nous n’exploitons pas de serveur en propre et ne tenons pas nos propres journaux d’accès. Nous n’analysons les visites qu’avec Google Analytics et seulement si vous l’autorisez (section 5a). Pour le reste, les seules données que nous recevons nous-mêmes sont celles que vous nous communiquez en nous écrivant (section 6).</p>
 <p>Le film du morceau phare, « Berlin Evening: Singularity (Extended Version) », est une vidéo sonore que ce site héberge lui-même. Lorsque vous ouvrez une page qui le montre, votre navigateur commence à le charger et à le lire, sans le son s’il n’autorise pas le son sans action de votre part : votre premier clic ou toucher sur la page active alors le son. Si la réduction des animations ou l’économie de données est activée, il ne se charge que lorsque vous lancez la lecture et, après une mise en pause de votre part, que lorsque vous la relancez, rechargez la page ou revenez sur le site. Ses requêtes parviennent à GitHub et à Cloudflare comme celles des autres fichiers du site (sections 3 et 4). Aucun service de vidéo ou de musique n’intervient.</p>
-<p>Le film existe en trois tailles. Pour en choisir une, le lecteur consulte la taille de votre écran et, si votre navigateur l'indique, la vitesse de votre connexion. Ces deux informations sont lues sur votre appareil, sans être conservées ni envoyées.</p>
+<p>Le film existe en trois tailles. Pour en choisir une, le lecteur consulte la taille de votre écran et, si votre navigateur l'indique, la vitesse de votre connexion. Ces deux informations sont lues sur votre appareil, et le lecteur ne les conserve ni ne les envoie. Si vous autorisez Google Analytics, celui-ci reçoit la taille de l’écran par sa propre mesure (section 5a).</p>
 <h2>3. Hébergement sur GitHub Pages</h2>
 <p>Les fichiers du site sont hébergés sur GitHub Pages, un service de GitHub Inc., États-Unis (groupe Microsoft), et vous parviennent par l’intermédiaire de Cloudflare (section 4). Selon GitHub, l’adresse IP des visiteurs est journalisée et conservée à des fins de sécurité lors de la consultation d’une page, qu’ils soient ou non connectés à GitHub. Cloudflare peut transmettre votre adresse IP à GitHub avec la requête. La déclaration de confidentialité de GitHub indique que d’autres informations techniques peuvent être collectées, telles que l’heure de la requête, la page et l’URL de provenance. Nous n’avons aucune influence sur ces journaux.</p>
 <ul>
@@ -69,6 +76,20 @@
 <li>Retrait du consentement : rechargez la page et ne relancez pas la lecture. Vous pouvez supprimer, dans les réglages de votre navigateur, ce que SoundCloud y a enregistré.</li>
 <li>Durée de conservation : déterminée par SoundCloud.</li>
 </ul>
+<h2>5a. Statistiques de visite : Google Analytics, uniquement si vous l’autorisez</h2>
+<p>Tant que vous n’avez pas choisi « Accepter », aucun script de Google ne se charge et rien n’est envoyé à Google. Il en va de même après « Refuser ». Si vous acceptez, votre navigateur charge le script de mesure de Google (gtag.js) depuis googletagmanager.com et envoie des données sur votre visite aux serveurs Analytics de Google (google-analytics.com et analytics.google.com). Nous utilisons Google Analytics 4 avec l’identifiant de mesure G-EL18RTQ5GY, sans conteneur Tag Manager, fonctions publicitaires ni signaux Google.</p>
+<ul>
+<li>Fournisseur : Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irlande, qui traite les données pour nous selon les conditions de traitement des données de Google, que nous avons acceptées.</li>
+<li>Finalité : compter les visites et savoir quelles pages, langues et quels pays sont concernés et comment le site est utilisé.</li>
+<li>Données : un identifiant pseudonyme de client et de session, les pages ouvertes avec leur adresse et leur titre, la page de provenance, la langue, la date et l’heure, des détails sur le navigateur, le système d’exploitation et l’appareil, dont la taille de l’écran, et une localisation approximative, au plus précis la ville. La collecte de données détaillées de localisation et d’appareil est activée, selon le réglage par défaut de Google. Les mesures améliorées sont activées, toutes les sept : pages vues, défilement, clics sur des liens vers d’autres sites, recherche sur le site, interactions avec les vidéos, téléchargements de fichiers et interactions avec les formulaires. Google indique utiliser les adresses IP des visiteurs de l’UE, de Suisse et du Royaume-Uni pour déduire la localisation approximative, puis les supprimer sans les journaliser ni les conserver, et recevoir leurs données sur des serveurs situés sur place avant de les transmettre pour traitement.</li>
+<li>Réglages : les quatre options de partage des données avec Google, les signaux Google, la collecte de données fournies par les utilisateurs et la personnalisation des annonces (dans les 307 régions) sont désactivés. Le masquage des adresses e-mail dans les données d’événement est activé. Le masquage des paramètres de requête dans les adresses des pages est désactivé.</li>
+<li>Cookies : <code>_ga</code> distingue les navigateurs grâce à un identifiant aléatoire, <code>_ga_EL18RTQ5GY</code> conserve l’état de la session. Tous deux sont déposés pour l’hôte de ce site, par défaut pour 2 ans au plus à compter de leur dernier renouvellement, et envoyés avec les requêtes à ce site.</li>
+<li>Base juridique : votre consentement (article 6, paragraphe 1, point a), du RGPD et, pour le stockage et la lecture sur votre appareil, § 25(1) TDDDG).</li>
+<li>Pays tiers : Google peut traiter les données aux États-Unis, y compris par l’intermédiaire de Google LLC. Google indique que Google LLC adhère au EU-U.S. Data Privacy Framework (article 45 du RGPD) et recourt sinon aux clauses contractuelles types (article 46 du RGPD).</li>
+<li>Durée de conservation : 2 mois pour les données d’événement et d’utilisateur, sans que cette période recommence lors d’une nouvelle activité. Les rapports standard agrégés ne sont pas limités par ce réglage et peuvent être conservés plus longtemps.</li>
+<li>Retrait : cliquez sur « Paramètres de confidentialité : retirer le consentement » au pied de n’importe quelle page. La mesure s’arrête, les deux cookies sont effacés et la page se recharge sans le script de Google. Les traitements antérieurs ne sont pas remis en cause.</li>
+</ul>
+<p>Nous utilisons aussi Google Search Console pour voir comment le site apparaît dans la recherche Google. Elle n’ajoute à ce site ni script, ni cookie, ni suivi des visiteurs, et nous montre des statistiques agrégées issues de la recherche Google.</p>
 <h2>6. Contact par e-mail : Cloudflare Email Routing et Resend</h2>
 <p>Les e-mails envoyés à l’adresse ci-dessus sont reçus par Cloudflare (Email Routing) et transférés vers une boîte de messagerie du responsable du traitement. Cloudflare traite les adresses de l’expéditeur et du destinataire, les métadonnées et le contenu du message dans la mesure nécessaire au transfert. Veuillez ne pas envoyer de données sensibles par simple e-mail.</p>
 <p>Les e-mails sortants de ce domaine sont envoyés au moyen du service Resend (Resend, États-Unis). Resend traite l’adresse du destinataire, les métadonnées et le contenu du message. Dans son accord de sous-traitance des données, Resend déclare appliquer des clauses contractuelles types et fait référence au cadre de protection des données UE-États-Unis (Data Privacy Framework).</p>
@@ -78,12 +99,13 @@
 <li>Durée de conservation : nous supprimons votre message une fois votre demande traitée, dès lors qu’aucune obligation légale de conservation ne s’applique. Cloudflare et Resend appliquent leurs propres durées de conservation.</li>
 </ul>
 <h2>7. Cookies et stockage dans le navigateur (§ 25 TDDDG)</h2>
-<p>Le site lui-même ne dépose aucun cookie et n’écrit rien dans le stockage local ou une base de données de votre navigateur. Dans le stockage de session, le lecteur du film conserve une entrée, <code>latentheinzels-film</code>, avec cinq valeurs : <code>film</code> (le nom de fichier du film), <code>time</code> (le point atteint dans la lecture), <code>paused</code> (si vous l’avez mis en pause), <code>muted</code> (si vous avez coupé le son) et <code>heard</code> (s’il a été lu avec le son). Cette entrée sert uniquement à respecter votre pause et votre coupure du son et à poursuivre le film quand vous changez de page. Elle n’est jamais envoyée, ni à nous ni à quiconque, ne vaut que pour cet onglet et votre navigateur la supprime à la fin de la session de l’onglet.</p>
+<p>Sans votre consentement, le site ne dépose aucun cookie. Les cookies de Google Analytics sont décrits à la section 5a. Dans le stockage local, le site conserve une entrée, <code>latentheinzels-analytics</code>, de valeur <code>allow</code> ou <code>decline</code>, afin de respecter votre choix (§ 25(2) nº 2 TDDDG). Cette entrée n’est jamais envoyée et reste jusqu’à ce que vous la modifiiez ou effaciez les données de ce site dans votre navigateur.</p>
+<p>Dans le stockage de session, le lecteur du film conserve une entrée, <code>latentheinzels-film</code>, avec cinq valeurs : <code>film</code> (le nom du fichier du film), <code>time</code> (sa position de lecture), <code>paused</code> (si vous l’avez mis en pause), <code>muted</code> (si vous avez coupé le son) et <code>heard</code> (s’il a été lu avec le son). Elle sert uniquement à respecter votre pause et votre réglage du son et à poursuivre le film quand vous changez de page. Elle n’est jamais envoyée, ni à nous ni à d’autres, ne vaut que pour cet onglet et est effacée par votre navigateur à la fin de la session de l’onglet.</p>
 <p>Votre navigateur peut, comme d’ordinaire, mettre en cache les fichiers du site. L’instruction de Cloudflare relative au signalement des erreurs est décrite à la section 4 ; ce que SoundCloud peut enregistrer après le lancement de la lecture l’est à la section 5.</p>
 <h2>8. Liens vers d’autres sites</h2>
 <p>Le site renvoie vers les profils du groupe sur des plateformes musicales, vidéo et sociales (rangée « Chaînes et réseaux ») et, dans les mentions légales, vers le propre site web du responsable du traitement. Il s’agit de simples liens : rien n’est chargé depuis ces sites avant que vous n’en suiviez un. Ce n’est qu’alors que vous quittez ce site, et l’exploitant du site de destination traite vos données conformément à sa propre politique de confidentialité.</p>
 <h2>9. Communication des données</h2>
-<p>En dehors des prestataires cités (GitHub, Cloudflare, Resend, ainsi que SoundCloud une fois la lecture lancée), nous ne communiquons aucune donnée à caractère personnel. Nous ne recourons à aucune agence d’évaluation de la solvabilité, à aucun réseau publicitaire ni à aucun module de réseau social.</p>
+<p>En dehors des prestataires cités (GitHub, Cloudflare, Resend, SoundCloud une fois la lecture lancée et Google si vous autorisez Google Analytics), nous ne communiquons aucune donnée à caractère personnel. Nous ne recourons à aucune agence d’évaluation de la solvabilité, à aucun réseau publicitaire ni à aucun module de réseau social.</p>
 <h2>10. Vos droits</h2>
 <p>Vous disposez à l’égard du responsable du traitement des droits suivants :</p>
 <ul>
@@ -105,6 +127,7 @@
   <p>© 2026 Helmut Hoffer von Ankershoffen. L’ensemble des images, musiques, vidéos, histoires, textes et personnages de Latent Heinzels est protégé par le droit d’auteur. Tous droits réservés : toute copie, rediffusion ou adaptation est interdite sans autorisation écrite, sauf à des fins de recherche par des moteurs de recherche, d’utilisation comme données d’entrée pour l’IA et d’entraînement d’IA.</p>
   <p>Créé avec la créativité humaine et l'IA.</p>
   <nav aria-label="Informations légales"><a href="/fr/imprint/">Mentions légales</a><a href="/fr/privacy/">Confidentialité</a></nav>
+  <button class="consent-settings" type="button" hidden><span>Paramètres de confidentialité</span><span>Paramètres de confidentialité : retirer le consentement</span></button>
 </footer>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data:; media-src 'self'; frame-src https://w.soundcloud.com; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self' https://www.googletagmanager.com; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; connect-src https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; media-src 'self'; frame-src https://w.soundcloud.com; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0a0d1c">
@@ -30,10 +30,16 @@
 <link rel="stylesheet" href="/langs.css?v=1beda26c">
 <script src="/langs.js?v=0afe3b42" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "copyrightHolder": {"@type": "Person", "name": "Helmut Hoffer von Ankershoffen"}, "copyrightYear": 2026}</script>
+<link rel="stylesheet" href="/analytics.css?v=ee223e13">
+<script src="/analytics.js?v=f00eb467" defer></script>
 </head>
 <body>
 <canvas id="snow" aria-hidden="true"></canvas>
 <a class="skip" href="#main">跳到正文</a>
+<section class="consent" aria-label="隐私设置" hidden>
+  <p>可以使用 Google Analytics 进行访问统计吗？Google 会设置 Cookie 并接收你的 IP 地址。除非你接受，否则不会加载任何来自 Google 的内容；你可以随时在页脚撤回。<a href="/zh/privacy/">隐私声明</a></p>
+  <div class="consent-choices"><button class="consent-decline" type="button">拒绝</button><button class="consent-allow" type="button">接受</button></div>
+</section>
 <header>
   <nav class="langs" aria-label="语言"><a href="/" data-lang="en" lang="en" hreflang="en">EN</a><a href="/zh/" data-lang="zh" aria-current="page" lang="zh-Hans" hreflang="zh-Hans">中文</a><a href="/fr/" data-lang="fr" lang="fr" hreflang="fr">FR</a><a href="/de/" data-lang="de" lang="de" hreflang="de">DE</a></nav>
   <nav aria-label="页面导航"><a href="#music">音乐</a><a href="#band">乐队</a><a href="#crew">Heinzel 们</a><a href="#saga">传说</a></nav>
@@ -234,6 +240,7 @@
   <p>© 2026 Helmut Hoffer von Ankershoffen。Latent Heinzels 的所有图片、音乐、视频、故事、文字和角色均受著作权保护。保留所有权利：未经书面许可，不得复制、再传播或改编，但用于搜索、AI 输入和 AI 训练的除外。</p>
   <p>由人类创造力与 AI 共同创作。</p>
   <nav aria-label="法律信息"><a href="/zh/imprint/">网站运营者信息</a><a href="/zh/privacy/">隐私</a></nav>
+  <button class="consent-settings" type="button" hidden><span>隐私设置</span><span>隐私设置：撤回同意</span></button>
 </footer>
 <!-- SoundCloud addresses: put one between the quotes and its play button appears. Nothing else to edit. -->
 <script type="application/json" id="soundcloud">

@@ -339,7 +339,10 @@ def build_all() -> tuple[dict[Path, str], dict[str, list[str]]]:
     names = set().union(*(names_in(source) for source in sources.values()))
     pages, missing = {ROOT / SHARE / "index.html": share_page(sources[""], "")}, {}
     for language in LANGUAGES:
-        strings = json.loads((ROOT / "i18n" / f"{language}.json").read_text(encoding="utf-8"))
+        strings = {}
+        # A feature may bring its strings in a file of its own, such as de.analytics.json.
+        for file in [ROOT / "i18n" / f"{language}.json", *sorted((ROOT / "i18n").glob(f"{language}.*.json"))]:
+            strings |= json.loads(file.read_text(encoding="utf-8"))
         translator = Translator(strings, names)
         for path, source in sources.items():
             pages[ROOT / language / path / "index.html"] = built(source, language, path, translator)

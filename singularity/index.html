@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data:; media-src 'self'; frame-src https://w.soundcloud.com; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self' https://www.googletagmanager.com; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; connect-src https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; media-src 'self'; frame-src https://w.soundcloud.com; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0a0d1c">
@@ -39,10 +39,16 @@
 <link rel="stylesheet" href="/langs.css?v=1beda26c">
 <script src="/langs.js?v=0afe3b42" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "copyrightHolder": {"@type": "Person", "name": "Helmut Hoffer von Ankershoffen"}, "copyrightYear": 2026}</script>
+<link rel="stylesheet" href="/analytics.css?v=ee223e13">
+<script src="/analytics.js?v=f00eb467" defer></script>
 </head>
 <body data-open="film">
 <canvas id="snow" aria-hidden="true"></canvas>
 <a class="skip" href="#main">Skip to content</a>
+<section class="consent" aria-label="Privacy settings" hidden>
+  <p>May we use Google Analytics for visit statistics? Google would set cookies and receive your IP address. Nothing from Google loads unless you accept, and you can withdraw at any time in the footer. <a href="/privacy/">Privacy notice</a></p>
+  <div class="consent-choices"><button class="consent-decline" type="button">Decline</button><button class="consent-allow" type="button">Accept</button></div>
+</section>
 <header>
   <nav class="langs" aria-label="Language"><a href="/singularity/" data-lang="en" lang="en" hreflang="en" aria-current="page">EN</a><a href="/zh/singularity/" data-lang="zh" lang="zh-Hans" hreflang="zh-Hans">中文</a><a href="/fr/singularity/" data-lang="fr" lang="fr" hreflang="fr">FR</a><a href="/de/singularity/" data-lang="de" lang="de" hreflang="de">DE</a></nav>
   <nav aria-label="Sections"><a href="#music">Music</a><a href="#band">Band</a><a href="#crew">Heinzels</a><a href="#saga">The saga</a></nav>
@@ -243,6 +249,7 @@
   <p>© 2026 Helmut Hoffer von Ankershoffen. All pictures, music, videos, stories, texts and characters of Latent Heinzels are protected by copyright. All rights reserved: no copying, redistribution or adaptation without written permission, except for search, AI input and AI training.</p>
   <p>Made with human creativity and AI.</p>
   <nav aria-label="Legal"><a href="/imprint/">Imprint</a><a href="/privacy/">Privacy</a></nav>
+  <button class="consent-settings" type="button" hidden><span>Privacy settings</span><span>Privacy settings: withdraw consent</span></button>
 </footer>
 <!-- SoundCloud addresses: put one between the quotes and its play button appears. Nothing else to edit. -->
 <script type="application/json" id="soundcloud">
