@@ -10,11 +10,7 @@
   const sound = bar.querySelector(".film-sound");
   const cue = document.querySelector(".film-cue");
   const failed = document.querySelector(".film-failed > span");
-  // Phones and slow lines get the light file. It is chosen once a page, before anything loads.
-  const phone = matchMedia("(max-width: 760px), (pointer: coarse) and (max-height: 500px)").matches;
-  const line = navigator.connection;
-  const slow = ["slow-2g", "2g", "3g"].includes(line?.effectiveType) || line?.downlink < 1.5 || line?.saveData === true;
-  const source = ((phone || slow) && film.dataset.filmSmall) || film.dataset.film;
+  const source = rendition();
   // The large file's name stands for the film, so a language switch or a turned phone carries on where it was.
   const name = film.dataset.film.split("/").pop();
   // One entry for this tab only. The privacy page names it and what it holds.
@@ -28,6 +24,18 @@
   let mutedByUs = false;
   let leaving = false;
   let onScreen = false;
+
+  // 720x1280 for large screens, 540x960 for phones, 360x640 for the smallest and for slow lines. One choice a page,
+  // before the first request, so nothing is fetched twice. Browsers that don't report the line go by the screen.
+  function rendition() {
+    const { film: large, filmMid: middle = large, filmSmall: light = middle } = film.dataset;
+    const line = navigator.connection;
+    const phone = matchMedia("(max-width: 760px), (pointer: coarse) and (max-height: 500px)").matches;
+    if (line?.saveData || ["slow-2g", "2g", "3g"].includes(line?.effectiveType) || line?.downlink < 1.5) return light;
+    const modest = line?.downlink < 3;
+    if (!phone) return modest ? middle : large;
+    return modest || matchMedia("(max-width: 340px)").matches ? light : middle;
+  }
 
   function read() {
     choice = { film: name, time: 0, paused: false, muted: false, heard: false };
@@ -85,6 +93,8 @@
 
   function load() {
     if (!film.getAttribute("src")) {
+      // The film's own first picture, so nothing jumps when it starts.
+      if (film.dataset.poster) film.poster = film.dataset.poster;
       film.src = source;
       seek(choice.time);
     }
