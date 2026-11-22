@@ -62,6 +62,11 @@ dd { color: var(--dim); margin-bottom: 12px; }
 .city > div { display: grid; gap: 18px; align-content: center; padding: 26px; }
 .city h3 span { display: block; color: var(--glow); margin-top: 6px; }
 .city ol { list-style: none; padding: 0; display: grid; gap: 8px; }
+.listen { justify-self: start; min-height: 44px; display: inline-flex; align-items: center; padding: 0 16px; border: 1px solid var(--glow); border-radius: 3px; color: var(--glow); font-weight: 700; }
+.city .soon { background: none; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.city ol:has(a) { gap: 0; }
+.city ol a { min-height: 44px; display: inline-flex; align-items: center; }
 .berlin { --glow: var(--spark); }
 .paris { --glow: var(--lamp); }
 .sf { --glow: var(--rose); }
