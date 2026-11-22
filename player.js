@@ -28,14 +28,14 @@
     return made;
   }
 
-  function player(url, title, className) {
+  function player(url, title, className, label) {
     const frame = element("iframe", className);
     const settings = new URLSearchParams({
       url, auto_play: "true", visual: "false", hide_related: "true",
       show_comments: "false", show_reposts: "false", show_teaser: "false", color: "#f2b860"
     });
     frame.src = `https://w.soundcloud.com/player/?${settings}`;
-    frame.title = `SoundCloud player: ${title}`;
+    frame.title = label || `SoundCloud player: ${title}`;
     frame.allow = "autoplay; encrypted-media";
     frame.tabIndex = 0;
     return frame;
@@ -67,7 +67,7 @@
     const button = slot.querySelector(".featured-play");
     button.hidden = false;
     button.addEventListener("click", () => {
-      start(slot, player(url, featured.dataset.title, "featured-frame"), frame => slot.append(frame), true);
+      start(slot, player(url, featured.dataset.title, "featured-frame", featured.dataset.player), frame => slot.append(frame), true);
     });
   }
 
@@ -84,7 +84,7 @@
     const { title } = tile.dataset;
     const button = element("button", "cover");
     button.type = "button";
-    button.setAttribute("aria-label", `Play ${title}`);
+    button.setAttribute("aria-label", tile.dataset.play || `Play ${title}`);
     // A button's label hides the picture's alt text, so the picture also describes the button.
     button.setAttribute("aria-describedby", `${cover.querySelector("img").id} play-note`);
     badge.textContent = "▶";
@@ -92,7 +92,7 @@
     button.append(...cover.childNodes);
     cover.replaceWith(button);
     button.addEventListener("click", () => {
-      start(tile, player(url, title, "card-frame"), frame => tile.prepend(frame));
+      start(tile, player(url, title, "card-frame", tile.dataset.player), frame => tile.prepend(frame));
     });
   }
 
@@ -107,10 +107,10 @@
     button.setAttribute("aria-describedby", "play-note");
     const mark = element("span", "", "▶");
     mark.setAttribute("aria-hidden", "true");
-    button.append(mark, day.dataset.label || "Play the whole playlist", element("span", "sr", `: ${title}`));
+    button.append(mark, day.dataset.label || "Play the whole playlist", element("span", "sr", day.dataset.after || `: ${title}`));
     slot.append(button);
     button.addEventListener("click", () => {
-      start(head, player(url, title, "list-frame"), frame => head.append(frame));
+      start(head, player(url, title, "list-frame", day.dataset.player), frame => head.append(frame));
     });
   }
 })();

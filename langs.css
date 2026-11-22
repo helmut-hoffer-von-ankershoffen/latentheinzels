@@ -1,0 +1,16 @@
+/* The language switch and the Chinese type, on every page. */
+.langs { flex-wrap: nowrap; gap: 0; }
+.langs a { min-width: 44px; justify-content: center; font-size: 15px; text-decoration: none; }
+.langs a[aria-current] { color: var(--lamp); font-weight: 700; text-decoration: underline; }
+:lang(zh-Hans) { --display: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; }
+body:lang(zh-Hans) { font-family: system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; }
+h1, h2, h3 { overflow-wrap: break-word; }
+@media (max-width: 760px) {
+  header .langs { grid-area: 1 / 1; justify-content: flex-start; }
+  header nav:not(.langs) { grid-area: 2 / 1 / 3 / 3; }
+}
+@media (max-width: 370px) {
+  header .langs a { min-width: 40px; }
+  header #motion { font-size: 14px; }
+  header nav:not(.langs) { flex-wrap: nowrap; gap: 0 6px; font-size: 14px; white-space: nowrap; }
+}
