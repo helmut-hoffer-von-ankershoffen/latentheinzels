@@ -14,10 +14,11 @@ Spotify (soon).
 
 ## Listen
 
-- [Heinzels in Berlin](https://suno.com/playlist/fad615b2-c5f3-46a2-88d3-515361f6ea76)
-- [Heinzels in Paris](https://suno.com/playlist/6cfbb02c-be30-474b-9838-70ed84c19555)
-- [Heinzels in San Francisco](https://suno.com/playlist/a0e15a6a-afdd-4d7c-9a38-b5bb305137e1)
-- [Heinzels in Shenzhen](https://suno.com/playlist/a2c5000e-2f09-4086-a6cc-3e5150de0972)
+On SoundCloud:
+
+- [Heinzels in Berlin](https://soundcloud.com/latentheinzels/sets/heinzels-in-berlin-dreaming-of)
+- [Berlin Evening: Singularity (Extended Version)](https://soundcloud.com/latentheinzels/berlin-evening-singularity-1)
+- Paris, San Francisco and Shenzhen: soon.
 
 ## Development
 
