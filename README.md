@@ -3,6 +3,8 @@
 The website at [latentheinzels.heinzel.team](https://latentheinzels.heinzel.team), a sister site of
 [heinzel.team](https://heinzel.team). Static files on GitHub Pages: no build, no trackers, no external requests.
 
+The band is on [Instagram](https://www.instagram.com/latent_heinzels_ai/).
+
 Preview it locally:
 
 ```sh
