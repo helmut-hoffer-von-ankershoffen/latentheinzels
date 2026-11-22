@@ -376,7 +376,6 @@
  "Retention: we delete your message once your enquiry is dealt with and no legal retention duty applies. Cloudflare and Resend apply their own periods.": "保存期限：你的咨询处理完毕且不存在法定保存义务时，我们即删除你的邮件。Cloudflare 和 Resend 适用其各自的保存期限。",
  "7. Cookies and browser storage (§ 25 TDDDG)": "7. Cookie 与浏览器存储（§ 25 TDDDG）",
  "8. Links to other websites": "8. 指向其他网站的链接",
- "The website links to the band's profiles on music, video and social platforms (the Channels row) and, in the imprint, to the controller's own website. These are plain links: nothing is loaded from those sites before you follow one. Only then do you leave this website, and the operator of the target site processes your data under its own privacy notice.": "本网站链接至乐队在音乐、视频和社交平台上的主页（“各平台主页”一栏），并在网站运营者信息中链接至控制者本人的网站。这些均为普通链接：在你点击之前，不会从这些网站加载任何内容。只有在点击之后，你才会离开本网站，届时目标网站的运营者将依据其自身的隐私声明处理你的数据。",
  "9. Disclosure": "9. 数据披露",
  "Apart from the service providers named (GitHub, Cloudflare, Resend, and SoundCloud after you press play) we do not pass personal data on. We use no credit agencies, no advertising networks and no social plug-ins.": "除上述服务提供商（GitHub、Cloudflare、Resend，以及在你按下播放键之后的 SoundCloud）外，我们不向他人提供个人数据。我们不使用任何征信机构、广告网络或社交插件。",
  "10. Your rights": "10. 你的权利",
@@ -408,5 +407,7 @@
  "Link copied": "链接已复制",
  "Copy this link:": "请复制此链接：",
  "Eleven minutes at the event horizon: the film with its music, by Latent Heinzels.": "在事件视界上的十一分钟：Latent Heinzels 的影片与音乐。",
- "Track 37 of the album": "专辑第 37 首"
+ "Track 37 of the album": "专辑第 37 首",
+ "The website links to the band's profiles on music, video and social platforms (the Channels row), to the top song's film on YouTube and, in the imprint, to the controller's own website. These are plain links: nothing is loaded from those sites before you follow one. Only then do you leave this website, and the operator of the target site processes your data under its own privacy notice.": "本网站链接至乐队在音乐、视频和社交平台上的主页（“各平台主页”一栏）和主打歌曲在 YouTube 上的影片，并在网站运营者信息中链接至控制者本人的网站。这些均为普通链接：在你点击之前，不会从这些网站加载任何内容。只有在点击之后，你才会离开本网站，届时目标网站的运营者将依据其自身的隐私声明处理你的数据。",
+ "Watch on YouTube": "在 YouTube 上观看"
 }

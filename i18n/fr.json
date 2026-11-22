@@ -335,7 +335,6 @@
  "Retention: we delete your message once your enquiry is dealt with and no legal retention duty applies. Cloudflare and Resend apply their own periods.": "Durée de conservation : nous supprimons votre message une fois votre demande traitée, dès lors qu’aucune obligation légale de conservation ne s’applique. Cloudflare et Resend appliquent leurs propres durées de conservation.",
  "7. Cookies and browser storage (§ 25 TDDDG)": "7. Cookies et stockage dans le navigateur (§ 25 TDDDG)",
  "8. Links to other websites": "8. Liens vers d’autres sites",
- "The website links to the band's profiles on music, video and social platforms (the Channels row) and, in the imprint, to the controller's own website. These are plain links: nothing is loaded from those sites before you follow one. Only then do you leave this website, and the operator of the target site processes your data under its own privacy notice.": "Le site renvoie vers les profils du groupe sur des plateformes musicales, vidéo et sociales (rangée « Chaînes et réseaux ») et, dans les mentions légales, vers le propre site web du responsable du traitement. Il s’agit de simples liens : rien n’est chargé depuis ces sites avant que vous n’en suiviez un. Ce n’est qu’alors que vous quittez ce site, et l’exploitant du site de destination traite vos données conformément à sa propre politique de confidentialité.",
  "9. Disclosure": "9. Communication des données",
  "Apart from the service providers named (GitHub, Cloudflare, Resend, and SoundCloud after you press play) we do not pass personal data on. We use no credit agencies, no advertising networks and no social plug-ins.": "En dehors des prestataires cités (GitHub, Cloudflare, Resend, ainsi que SoundCloud une fois la lecture lancée), nous ne communiquons aucune donnée à caractère personnel. Nous ne recourons à aucune agence d’évaluation de la solvabilité, à aucun réseau publicitaire ni à aucun module de réseau social.",
  "10. Your rights": "10. Vos droits",
@@ -367,5 +366,7 @@
  "Link copied": "Lien copié",
  "Copy this link:": "Copiez ce lien :",
  "Eleven minutes at the event horizon: the film with its music, by Latent Heinzels.": "Onze minutes à l'horizon des événements : le film et sa musique, par Latent Heinzels.",
- "Track 37 of the album": "Piste 37 de l'album"
+ "Track 37 of the album": "Piste 37 de l'album",
+ "The website links to the band's profiles on music, video and social platforms (the Channels row), to the top song's film on YouTube and, in the imprint, to the controller's own website. These are plain links: nothing is loaded from those sites before you follow one. Only then do you leave this website, and the operator of the target site processes your data under its own privacy notice.": "Le site renvoie vers les profils du groupe sur des plateformes musicales, vidéo et sociales (rangée « Chaînes et réseaux »), vers le film du morceau phare sur YouTube et, dans les mentions légales, vers le propre site web du responsable du traitement. Il s’agit de simples liens : rien n’est chargé depuis ces sites avant que vous n’en suiviez un. Ce n’est qu’alors que vous quittez ce site, et l’exploitant du site de destination traite vos données conformément à sa propre politique de confidentialité.",
+ "Watch on YouTube": "Voir sur YouTube"
 }

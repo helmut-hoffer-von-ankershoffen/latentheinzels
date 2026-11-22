@@ -1,8 +1,10 @@
-/* The share button, at the film and in its bar. */
+/* The share button, at the film and in its bar, and the film's link to YouTube beside it. */
 .share { display: inline-flex; align-items: center; justify-content: center; gap: .45em; min-height: 48px; padding: 4px 16px; border: 2px solid var(--lamp); border-radius: 4px; background: var(--night); color: var(--lamp); font-weight: 700; line-height: 1.1; }
 .share[hidden] { display: none; }
-.featured-slot > .share { width: 100%; min-height: 60px; font-size: 20px; }
-.featured-slot > .share[hidden] { display: inline-flex; visibility: hidden; }
+.featured-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 8px; }
+.featured-actions > .share, .featured-actions > .watch { width: 100%; min-height: 60px; font-size: 20px; }
+.watch { display: inline-flex; align-items: center; justify-content: center; padding: 4px 12px; border: 2px solid var(--lamp); border-radius: 4px; background: var(--night); color: var(--lamp); font-weight: 700; line-height: 1.1; text-align: center; text-decoration: none; }
+.featured-actions > .share[hidden] { display: inline-flex; visibility: hidden; }
 .film-bar button.share { display: inline-flex; color: var(--lamp); }
 .film-bar button.share > span + span { visibility: visible; }
 .share-status { position: fixed; z-index: 11; left: 50%; bottom: calc(86px + env(safe-area-inset-bottom)); translate: -50% 0; max-width: calc(100vw - 32px); padding: 10px 16px; border-radius: 4px; background: var(--lamp); color: var(--night); font-weight: 700; overflow-wrap: anywhere; }
