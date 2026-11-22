@@ -10,10 +10,8 @@ until you press play. A player then loads SoundCloud, which receives your IP add
 The band is on [YouTube](https://www.youtube.com/@latentheinzels),
 [YouTube Music](https://music.youtube.com/@latentheinzels),
 [SoundCloud](https://soundcloud.com/latentheinzels),
-[Facebook](https://www.facebook.com/profile.php?id=61596746794980),
-[Instagram](https://www.instagram.com/latent_heinzels_ai/),
-[Suno](https://suno.com/@latentheinzels) and
-Spotify (soon).
+[Instagram](https://www.instagram.com/latent_heinzels_ai/) and
+[Suno](https://suno.com/@latentheinzels).
 
 ## Listen
 

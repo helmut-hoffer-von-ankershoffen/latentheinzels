@@ -32,7 +32,6 @@ NAMES = {
     "YouTube",
     "YouTube Music",
     "SoundCloud",
-    "Facebook",
     "Instagram",
     "Suno",
     "EN",
