@@ -68,6 +68,9 @@ dd { color: var(--dim); margin-bottom: 12px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .city ol:has(a) { gap: 0; }
 .city ol a { min-height: 44px; display: inline-flex; align-items: center; }
+.extra { display: grid; justify-items: start; border-top: 1px solid var(--glow); padding-top: 12px; }
+.extra small { color: var(--dim); }
+.extra a { min-height: 44px; display: inline-flex; align-items: center; }
 .berlin { --glow: var(--spark); }
 .paris { --glow: var(--lamp); }
 .sf { --glow: var(--rose); }
