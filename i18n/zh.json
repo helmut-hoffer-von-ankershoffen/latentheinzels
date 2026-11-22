@@ -319,7 +319,6 @@
  "Pause": "暂停",
  "Mute": "静音",
  "Sound on": "打开声音",
- "The film and its music come from this site and start when you visit, unless your device asks for less motion or less data. The whole film is 87 MB.": "影片及其音乐由本站提供，并在你访问时开始播放，除非你的设备要求减少动态效果或节省流量。整部影片 87 MB。",
  "The film could not be played. Press play to try again.": "影片无法播放。请按播放键重试。",
  "Berlin Evening: Singularity (Extended Version), the film with its music": "Berlin Evening: Singularity (Extended Version)：影片与音乐",
  "Berlin Evening: Singularity (Extended Version), film controls": "Berlin Evening: Singularity (Extended Version)：影片控制",
@@ -327,5 +326,6 @@
  ": Heinzels in Berlin": "：Heinzels in Berlin",
  ": Heinzels in Paris": "：Heinzels in Paris",
  ": Heinzels in San Francisco": "：Heinzels in San Francisco",
- ": Heinzels in Shenzhen": "：Heinzels in Shenzhen"
+ ": Heinzels in Shenzhen": "：Heinzels in Shenzhen",
+ "The film and its music come from this site and start when you visit, unless your device asks for less motion or less data. The whole film is 87 MB, on phones and slow connections 27 MB.": "影片及其音乐由本站提供，并在你访问时开始播放，除非你的设备要求减少动态效果或节省流量。整部影片 87 MB，在手机和较慢的网络上为 27 MB。"
 }

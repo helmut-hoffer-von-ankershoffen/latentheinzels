@@ -9,9 +9,13 @@
   const toggle = bar.querySelector(".film-toggle");
   const sound = bar.querySelector(".film-sound");
   const failed = document.querySelector(".film-failed > span");
-  const source = film.dataset.film;
-  // The file's name, so every language's page means the same film whatever its path to it.
-  const name = source.split("/").pop();
+  // Phones and slow lines get the light file. It is chosen once a page, before anything loads.
+  const phone = matchMedia("(max-width: 760px), (pointer: coarse) and (max-height: 500px)").matches;
+  const line = navigator.connection;
+  const slow = ["slow-2g", "2g", "3g"].includes(line?.effectiveType) || line?.downlink < 1.5 || line?.saveData === true;
+  const source = ((phone || slow) && film.dataset.filmSmall) || film.dataset.film;
+  // The large file's name stands for the film, so a language switch or a turned phone carries on where it was.
+  const name = film.dataset.film.split("/").pop();
   // One entry for this tab only. The privacy page names it and what it holds.
   const KEY = "latentheinzels-film";
 
