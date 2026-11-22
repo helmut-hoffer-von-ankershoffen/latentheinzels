@@ -4,12 +4,12 @@ The website at [latentheinzels.heinzel.team](https://latentheinzels.heinzel.team
 [heinzel.team](https://heinzel.team). Static files on GitHub Pages: no build, no trackers, no external requests.
 
 The band is on [YouTube](https://www.youtube.com/@latentheinzels),
-[YouTube Music](https://music.youtube.com/channel/UCg7xLmmMCwyCMKE73tlPAWg),
+[YouTube Music](https://music.youtube.com/@latentheinzels),
 [SoundCloud](https://soundcloud.com/latentheinzels),
 [Facebook](https://www.facebook.com/profile.php?id=61596746794980),
 [Instagram](https://www.instagram.com/latent_heinzels_ai/),
 [Suno](https://suno.com/@latentheinzels) and
-[Spotify](https://open.spotify.com/user/312yu2y27py4xhg27ufftwmwqhby).
+Spotify (soon).
 
 ## Listen
 
