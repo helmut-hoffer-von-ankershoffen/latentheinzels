@@ -8,9 +8,8 @@ The website at [latentheinzels.heinzel.team](https://latentheinzels.heinzel.team
 until you press play. A player then loads SoundCloud, which receives your IP address and may set cookies.
 
 The band is on [YouTube](https://www.youtube.com/@latentheinzels),
-[SoundCloud](https://soundcloud.com/latentheinzels),
-[Instagram](https://www.instagram.com/latent_heinzels_ai/) and
-[Suno](https://suno.com/@latentheinzels).
+[SoundCloud](https://soundcloud.com/latentheinzels) and
+[Instagram](https://www.instagram.com/latent_heinzels_ai/).
 
 ## Listen
 

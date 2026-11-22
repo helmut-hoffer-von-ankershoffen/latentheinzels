@@ -23,8 +23,6 @@ SHARE_PICTURE_SIZE = (1200, 630)
 LANGUAGES = {"zh": "zh-Hans", "fr": "fr", "de": "de"}
 TEXT_ATTRIBUTES = ("alt", "aria-label", "data-label", "data-share-text", "data-copied", "data-failed")
 VOID = {"br", "img", "link", "meta", "source"}
-# Only the profile link may name the platform.
-PROFILE = '<a href="https://suno.com/@latentheinzels">Suno</a>'
 NAMES = {
     "Latent",
     "Heinzels",
@@ -32,7 +30,6 @@ NAMES = {
     "YouTube",
     "SoundCloud",
     "Instagram",
-    "Suno",
     "EN",
     "DE",
     "FR",
@@ -301,15 +298,15 @@ def built(source: str, language: str, path: str, translator: Translator) -> str:
     """One translated page.
 
     Raises:
-        BuildError: When the platform is named outside the profile link.
+        BuildError: When the platform is named.
     """
     scripts = SCRIPT.findall(source)
     body = translated_body(SCRIPT.sub("<!--script-->", source), translator)
     for script in scripts:
         body = body.replace("<!--script-->", script, 1)
     page = moved(body, language, path)
-    if re.search("suno", page.replace(PROFILE, ""), flags=re.IGNORECASE):
-        message = f"/{language}/{path}: the platform is named outside the profile link"
+    if re.search("suno", page, flags=re.IGNORECASE):
+        message = f"/{language}/{path}: the platform is named"
         raise BuildError(message)
     return page
 
