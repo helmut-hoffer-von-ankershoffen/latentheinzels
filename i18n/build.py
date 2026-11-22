@@ -1,4 +1,4 @@
-"""Build the German, French and Chinese pages from the English ones.
+"""Build the Chinese, French and German pages, and the sitemap, from the English pages.
 
 The English pages are the only source. Run `python3 -I i18n/build.py` after editing one, `--check` before pushing
 and `--missing FILE` to list what the translations still need. A missing string fails the build unless
@@ -263,6 +263,24 @@ def built(source: str, language: str, path: str, translator: Translator) -> str:
     return page
 
 
+def sitemap() -> str:
+    """Every public page in every language, each with its alternates. The previews under options/ are not in it."""
+    folders = {"en": "", **{tag: f"{language}/" for language, tag in LANGUAGES.items()}}
+    entries = []
+    for path in PAGES:
+        links = [(tag, f"{SITE}/{folder}{path}") for tag, folder in folders.items()]
+        shared = "".join(
+            f'    <xhtml:link rel="alternate" hreflang="{tag}" href="{url}"/>\n'
+            for tag, url in [*links, ("x-default", f"{SITE}/{path}")]
+        )
+        entries += [f"  <url>\n    <loc>{url}</loc>\n{shared}  </url>\n" for _, url in links]
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+        f"{''.join(entries)}</urlset>\n"
+    )
+
+
 def build_all() -> tuple[dict[Path, str], dict[str, list[str]]]:
     """Every translated page, and what each language lacks."""
     sources = {path: (ROOT / path / "index.html").read_text(encoding="utf-8") for path in PAGES}
@@ -275,6 +293,7 @@ def build_all() -> tuple[dict[Path, str], dict[str, list[str]]]:
             pages[ROOT / language / path / "index.html"] = built(source, language, path, translator)
         if translator.missing:
             missing[language] = translator.missing
+    pages[ROOT / "sitemap.xml"] = sitemap()
     return pages, missing
 
 
@@ -319,7 +338,7 @@ def main() -> int:
     for path in stale:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(pages[path], encoding="utf-8")
-    sys.stdout.write(f"{len(pages)} pages, {len(stale)} written\n")
+    sys.stdout.write(f"{len(pages)} files, {len(stale)} written\n")
     return 0
 
 
