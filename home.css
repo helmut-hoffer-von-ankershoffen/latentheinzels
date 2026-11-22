@@ -30,6 +30,8 @@ header > #motion[hidden] { display: inline-grid; visibility: hidden; }
 .film-bar button:not(.second) > span + span, .film-bar button.second > span:first-child { visibility: hidden; }
 .film-bar .film-sound { min-width: 144px; }
 .film-bar .film-sound.wanted { min-width: min(280px, 52vw); min-height: 56px; background: var(--lamp); color: var(--night); font-size: 22px; }
+.film-cue { position: fixed; z-index: 11; top: max(108px, env(safe-area-inset-top)); left: 50%; translate: -50% 0; width: min(340px, 100% - 32px); min-height: 68px; justify-content: center; padding: 10px 24px; border: 3px solid var(--night); border-radius: 6px; background: var(--lamp); color: var(--night); font: 800 28px/1.2 var(--display); }
+.film-cue[hidden] { display: none; }
 body.with-film { padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
 html:has(body.with-film) { scroll-padding-bottom: 92px; }
 .visual { grid-area: visual; justify-self: center; position: relative; width: min(46vw, 420px, max(220px, (100vh - 120px) * .5625)); width: min(46vw, 420px, max(220px, (100svh - 120px) * .5625)); aspect-ratio: 9 / 16; overflow: hidden; border-radius: 4px; background: #2a1208; }

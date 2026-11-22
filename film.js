@@ -8,6 +8,7 @@
   const start = document.querySelector(".featured-play");
   const toggle = bar.querySelector(".film-toggle");
   const sound = bar.querySelector(".film-sound");
+  const cue = document.querySelector(".film-cue");
   const failed = document.querySelector(".film-failed > span");
   // Phones and slow lines get the light file. It is chosen once a page, before anything loads.
   const phone = matchMedia("(max-width: 760px), (pointer: coarse) and (max-height: 500px)").matches;
@@ -53,7 +54,19 @@
     const playing = !film.paused;
     toggle.classList.toggle("second", playing);
     sound.classList.toggle("second", film.muted);
-    sound.classList.toggle("wanted", film.muted && refused);
+    const wanted = film.muted && refused;
+    sound.classList.toggle("wanted", wanted);
+    // First in the bar for the eye and for the keyboard.
+    if (wanted && bar.firstElementChild !== sound) bar.prepend(sound);
+    if (!wanted && bar.firstElementChild !== toggle) bar.prepend(toggle);
+    if (cue) cue.hidden = !wanted;
+  }
+
+  // A pause belongs to moving around the site. A reload or a new arrival starts the film again, from the top.
+  function arrived() {
+    const [entry] = performance.getEntriesByType("navigation");
+    if (entry?.type === "reload") return true;
+    return entry?.type !== "back_forward" && !document.referrer.startsWith(`${location.origin}/`);
   }
 
   function setMuted(value) {
@@ -106,8 +119,17 @@
     show();
   }
 
+  let first = true;
+
   async function visit() {
     read();
+    if (first) {
+      first = false;
+      if (arrived()) {
+        Object.assign(choice, { paused: false, time: 0, heard: false });
+        write();
+      }
+    }
     setMuted(choice.muted);
     show();
     const saving = navigator.connection?.saveData === true;
@@ -142,11 +164,26 @@
       return;
     }
     attempt += 1;
+    // Paused by hand: a tap elsewhere must not start it again.
+    refused = false;
     choice.paused = true;
     pause();
     write();
     show();
   });
+
+  // Where the browser withheld the sound, the cue and the first tap anywhere but on a control bring it, from 0.
+  function soundFromStart() {
+    play({ fromStart: !choice.heard, withSound: true });
+  }
+  cue?.addEventListener("click", soundFromStart);
+  const CONTROLS = "a, button, input, select, textarea, label, summary, video, audio, iframe, [role=button], .details";
+  // On the page's own blocks, as iPhones send no click to the document from plain text or pictures.
+  for (const area of document.querySelectorAll("header, main, footer")) {
+    area.addEventListener("click", event => {
+      if (refused && film.muted && !event.target.closest(CONTROLS)) soundFromStart();
+    });
+  }
 
   sound.addEventListener("click", () => {
     if (film.muted) {
@@ -236,6 +273,7 @@
   // One sound at a time.
   document.addEventListener("soundcloud:play", () => {
     attempt += 1;
+    refused = false;
     choice.paused = true;
     pause();
     write();

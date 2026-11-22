@@ -241,6 +241,8 @@ def moved(page: str, language: str, path: str) -> str:
     page = page.replace("\0", new)
     address = f'<link rel="canonical" href="{SITE}/'
     page = page.replace(f'{address}{path}">', f'{address}{language}/{path}">')
+    # Search Console's tag stands on the start page only.
+    page = re.sub(r'<meta name="google-site-verification"[^>]*>\n', "", page)
     return page.replace('<html lang="en">', f'<html lang="{LANGUAGES[language]}">', 1)
 
 
