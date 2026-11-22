@@ -1,4 +1,4 @@
-// Every track is a card, every city has its playlist, and one player exists at a time.
+// Every track is a card, the album and any city playlist have a button, and one player exists at a time.
 // SoundCloud hears nothing from this page until someone presses play.
 // The addresses live in the JSON block at the end of index.html: fill one in and its play button appears.
 (() => {
@@ -70,7 +70,8 @@
     const button = element("button", "cover");
     button.type = "button";
     button.setAttribute("aria-label", `Play ${title}`);
-    button.setAttribute("aria-describedby", "play-note");
+    // A button's label hides the picture's alt text, so the picture also describes the button.
+    button.setAttribute("aria-describedby", `${cover.querySelector("img").id} play-note`);
     badge.textContent = "▶";
     badge.setAttribute("aria-hidden", "true");
     button.append(...cover.childNodes);
@@ -80,21 +81,18 @@
     });
   }
 
-  for (const day of document.querySelectorAll(".day[data-playlist]")) {
+  for (const day of document.querySelectorAll("[data-playlist]")) {
     const head = day.querySelector(".day-head");
     const slot = head.querySelector(".whole");
     const url = addressOf("playlists", day.dataset.playlist);
-    if (!url) {
-      slot.append(element("span", "pending", "Playlist soon"));
-      continue;
-    }
+    if (!url) continue;
     const { title } = day.dataset;
     const button = element("button", "play-all");
     button.type = "button";
     button.setAttribute("aria-describedby", "play-note");
     const mark = element("span", "", "▶");
     mark.setAttribute("aria-hidden", "true");
-    button.append(mark, "Play the whole playlist", element("span", "sr", `: ${title}`));
+    button.append(mark, day.dataset.label || "Play the whole playlist", element("span", "sr", `: ${title}`));
     slot.append(button);
     button.addEventListener("click", () => {
       start(head, player(url, title, "list-frame"), frame => head.append(frame));

@@ -18,7 +18,7 @@ On SoundCloud:
 
 - [Heinzels in Berlin](https://soundcloud.com/latentheinzels/sets/heinzels-in-berlin-dreaming-of)
 - [Berlin Evening: Singularity (Extended Version)](https://soundcloud.com/latentheinzels/berlin-evening-singularity-1)
-- Paris, San Francisco and Shenzhen: soon.
+- [The album, Dreaming of Electric Snow](https://soundcloud.com/latentheinzels/sets/dreaming-of-electric-snow)
 
 ## Development
 
