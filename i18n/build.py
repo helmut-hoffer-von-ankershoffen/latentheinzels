@@ -209,7 +209,8 @@ def translated_body(page: str, translator: Translator) -> str:
             done = attribute(token, "data-done") is not None
             own = token.replace(' data-done=""', "")
             out.append(own if fixed else localised_tag(own, translator))
-            if name and name.group(1) not in VOID:
+            # A self-closing tag, such as an SVG path, opens nothing.
+            if name and name.group(1) not in VOID and not token.endswith("/>"):
                 kept.append(fixed or done or attribute(token, "translate") == "no")
         else:
             out.append(token if fixed else translator.node(token))

@@ -1,0 +1,21 @@
+/* The small corner player. It sits above the film's bar and the Analytics question, never over them. */
+:root { --dock-w: clamp(260px, 26vw, 360px); }
+@media (max-width: 760px) { :root { --dock-w: max(160px, 45vw); } }
+.visual.docked video.film, .film-dock { position: fixed; z-index: 9; top: auto; left: auto; right: max(12px, env(safe-area-inset-right)); bottom: var(--dock-bottom, 92px); width: var(--dock-w); height: auto; aspect-ratio: 16 / 9; border-radius: 6px; }
+.visual.docked video.film { inset: auto max(12px, env(safe-area-inset-right)) var(--dock-bottom, 92px) auto; background: #000; box-shadow: 0 6px 24px rgb(0 0 0 / .6); }
+.film-dock { display: grid; grid-template-rows: 1fr auto; border: 2px solid var(--lamp); pointer-events: none; }
+.film-dock[hidden] { display: none; }
+.film-dock button { pointer-events: auto; }
+.dock-back { min-height: 0; padding: 0; background: transparent; cursor: pointer; }
+.dock-back:focus-visible { outline-offset: -4px; }
+.dock-controls { display: flex; justify-content: flex-end; gap: 4px; padding: 4px; background: rgb(10 13 28 / .82); border-radius: 0 0 4px 4px; }
+.dock-controls button { display: inline-grid; place-items: center; min-width: 40px; min-height: 40px; padding: 0; border-radius: 4px; background: transparent; color: var(--fg); }
+.dock-controls button > span { grid-area: 1 / 1; font-size: 18px; line-height: 1; }
+.dock-controls button:not(.second) > span + span, .dock-controls button.second > span:first-child { visibility: hidden; }
+.dock-controls .dock-close { margin-left: auto; font-size: 22px; }
+.dock-controls svg { width: 22px; height: 22px; fill: currentColor; }
+/* With the corner player shown, the page's end and anything scrolled to stays above it. */
+html.film-docked body.with-film { padding-bottom: calc(92px + var(--dock-h, 0px) + 24px + env(safe-area-inset-bottom)); }
+html.film-docked:not(.asking):has(body.with-film) { scroll-padding-bottom: calc(92px + var(--dock-h, 0px) + 24px); }
+html.film-docked.asking body.with-film { padding-bottom: calc(var(--film-bar-room, 0px) + var(--consent-room, 0px) + var(--dock-h, 0px) + 32px); }
+html.film-docked.asking { scroll-padding-bottom: calc(var(--film-bar-room, 0px) + var(--consent-room, 0px) + var(--dock-h, 0px) + 24px); }
