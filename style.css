@@ -28,6 +28,7 @@ header a, nav a, dt a, footer a, button { min-height: 44px; display: inline-flex
 .back { gap: .4em; color: var(--lamp); font-weight: 700; padding: 0 16px; border: 1px solid currentColor; border-radius: 3px; background: var(--night); }
 button { font: inherit; padding: 0 12px; border: 0; background: var(--night); color: var(--dim); cursor: pointer; }
 button[hidden] { display: none; }
+.pending { min-height: 44px; display: inline-flex; align-items: center; color: var(--dim); cursor: default; }
 .skip { position: absolute; left: -999em; }
 .skip:focus { left: 16px; z-index: 2; background: var(--night); }
 :focus-visible { outline: 3px solid var(--spark); outline-offset: 4px; }
