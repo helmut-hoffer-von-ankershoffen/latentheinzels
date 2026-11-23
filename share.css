@@ -17,7 +17,6 @@
   .film-bar { gap: 6px; padding-left: max(8px, env(safe-area-inset-left)); padding-right: max(8px, env(safe-area-inset-right)); }
   .film-bar button, .film-bar button.share { padding: 4px 8px; font-size: 15px; line-height: 1.1; min-width: 0; }
   .film-bar .share .share-mark { display: none; }
-  .film-bar .film-toggle { flex: 0 0 auto; min-width: 0; }
-  .film-bar .film-sound { flex: 1 1 auto; min-width: 0; }
-  .film-bar .film-sound.wanted { min-width: 104px; font-size: 19px; }
+  .film-bar .film-toggle { flex: 1 1 auto; min-width: 0; }
+  .film-bar .film-toggle.wanted { min-width: 104px; font-size: 19px; }
 }

@@ -8,9 +8,7 @@
   if (!film || !visual || !dock || !bar || !("IntersectionObserver" in window)) return;
   const root = document.documentElement;
   const toggle = bar.querySelector(".film-toggle");
-  const sound = bar.querySelector(".film-sound");
   const dockToggle = dock.querySelector(".dock-toggle");
-  const dockSound = dock.querySelector(".dock-sound");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
   let away = false;
   let seen = false; // it docks only after it has been in view, never on arrival below the fold
@@ -21,7 +19,7 @@
   let wasMuted = film.muted;
 
   function label(button, from) {
-    // The bar's two labels, already in the page's language; the one it shows now names what a press does.
+    // The bar button's two labels, already in the page's language; the one it shows now names what a press does.
     const [first, second] = from.querySelectorAll("span");
     button.setAttribute("aria-label", (from.classList.contains("second") ? second : first).textContent);
     button.classList.toggle("second", from.classList.contains("second"));
@@ -29,7 +27,6 @@
 
   function mirror() {
     label(dockToggle, toggle);
-    label(dockSound, sound);
   }
 
   function place() {
@@ -79,14 +76,11 @@
   // A SoundCloud player takes the sound, and the film leaves the corner so the player's controls stay free.
   document.addEventListener("soundcloud:play", () => set(false));
 
-  for (const watched of [toggle, sound]) {
-    new MutationObserver(mirror).observe(watched, { attributes: true, attributeFilter: ["class"] });
-  }
+  new MutationObserver(mirror).observe(toggle, { attributes: true, attributeFilter: ["class"] });
   new MutationObserver(place).observe(root, { attributes: true, attributeFilter: ["class", "style"] });
   addEventListener("resize", place);
 
   dockToggle.addEventListener("click", () => toggle.click());
-  dockSound.addEventListener("click", () => sound.click());
   dock.querySelector(".dock-close").addEventListener("click", () => {
     closed = true;
     set(false);

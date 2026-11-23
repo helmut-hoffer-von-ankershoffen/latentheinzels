@@ -7,7 +7,6 @@
   if (!film || !bar || !film.dataset.film) return;
   const start = document.querySelector(".featured-play");
   const toggle = bar.querySelector(".film-toggle");
-  const sound = bar.querySelector(".film-sound");
   const cue = document.querySelector(".film-cue");
   const failed = document.querySelector(".film-failed > span");
   const source = rendition();
@@ -58,15 +57,19 @@
     }
   }
 
+  // One button: Pause while the film plays with its sound, Play in every other case (muted, paused or ended).
+  function heard() {
+    return !film.paused && !film.ended && !film.muted;
+  }
+
   function show() {
-    const playing = !film.paused;
-    toggle.classList.toggle("second", playing);
-    sound.classList.toggle("second", film.muted);
+    const on = heard();
+    const [playLabel, pauseLabel] = toggle.querySelectorAll("span");
+    toggle.classList.toggle("second", on);
+    toggle.setAttribute("aria-pressed", String(on));
+    toggle.setAttribute("aria-label", (on ? pauseLabel : playLabel).textContent);
     const wanted = film.muted && refused;
-    sound.classList.toggle("wanted", wanted);
-    // First in the bar for the eye and for the keyboard.
-    if (wanted && bar.firstElementChild !== sound) bar.prepend(sound);
-    if (!wanted && bar.firstElementChild !== toggle) bar.prepend(toggle);
+    toggle.classList.toggle("wanted", wanted);
     if (cue) cue.hidden = !wanted;
   }
 
@@ -168,9 +171,10 @@
 
   start.addEventListener("click", () => play({ fromStart: true, withSound: true }));
 
-  toggle.addEventListener("click", () => {
-    if (film.paused) {
-      play();
+  // Play brings the sound, from where the film is; Pause stops it.
+  function press() {
+    if (!heard()) {
+      play({ fromStart: film.ended, withSound: true });
       return;
     }
     attempt += 1;
@@ -180,37 +184,18 @@
     pause();
     write();
     show();
-  });
-
-  // Where the browser withheld the sound, the cue and the first tap anywhere but on a control bring it, from 0.
-  function soundFromStart() {
-    play({ fromStart: !choice.heard, withSound: true });
   }
-  cue?.addEventListener("click", soundFromStart);
+  toggle.addEventListener("click", press);
+
+  // Where the browser withheld the sound, the top button and the first tap anywhere but on a control bring it.
+  cue?.addEventListener("click", press);
   const CONTROLS = "a, button, input, select, textarea, label, summary, video, audio, iframe, [role=button], .details";
   // On the page's own blocks, as iPhones send no click to the document from plain text or pictures.
   for (const area of document.querySelectorAll("header, main, footer")) {
     area.addEventListener("click", event => {
-      if (refused && film.muted && !event.target.closest(CONTROLS)) soundFromStart();
+      if (refused && film.muted && !event.target.closest(CONTROLS)) press();
     });
   }
-
-  sound.addEventListener("click", () => {
-    if (film.muted) {
-      // Never heard in this tab, it starts over with its sound. Heard, on another language's page say, it carries on.
-      if (refused) play({ fromStart: !choice.heard, withSound: true });
-      else {
-        choice.muted = false;
-        setMuted(false);
-      }
-    } else {
-      refused = false;
-      choice.muted = true;
-      setMuted(true);
-    }
-    write();
-    show();
-  });
 
   film.addEventListener("loadedmetadata", () => {
     if (startAt === null) return;
@@ -255,6 +240,8 @@
   });
 
   film.addEventListener("timeupdate", () => {
+    // Some browsers report the end before its event, and the button already says Play then.
+    if (film.ended) show();
     if (startAt !== null || film.ended) return;
     // Kept in memory; storage only hears of it on a press or when the page is left.
     choice.time = film.currentTime;
