@@ -1,0 +1,42 @@
+/* The artwork page: one large picture at a time, a strip of all of them, and full screen. */
+main.artwork { gap: 18px; padding: 24px 0 64px; }
+.artwork h1 { font-size: clamp(38px, 7vw, 68px); line-height: 1; }
+.artwork .lead { max-width: 62ch; color: var(--dim); }
+.viewer { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; min-width: 0; background: var(--night); }
+.stage { position: relative; display: flex; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 6px; }
+.stage::-webkit-scrollbar { display: none; }
+.stage:focus-visible { outline-offset: -3px; }
+.slides { flex: 0 0 100%; min-width: 0; display: flex; margin: 0; padding: 0; list-style: none; }
+.slide { flex: 0 0 100%; width: 100%; scroll-snap-align: center; scroll-snap-stop: always; display: grid; justify-items: center; align-content: start; padding: 4px 0; }
+.slide figure { margin: 0; display: grid; gap: 10px; width: min(100%, 760px, max(260px, 100vh - 300px)); width: min(100%, 760px, max(260px, 100svh - 300px)); transition: transform .45s ease, opacity .45s ease; }
+.viewer.ready .slide:not(.current) figure { transform: scale(.94); opacity: .5; }
+.slide img { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 6px; background: var(--pane); }
+.slide figcaption { display: grid; gap: 4px; font-size: 16px; line-height: 1.45; }
+.slide .kind { color: var(--dim); font-size: 14px; }
+.slide .title { color: var(--lamp); font: 800 20px/1.2 var(--display); }
+.controls { display: none; justify-content: center; align-items: center; gap: 10px; }
+.viewer.ready .controls { display: flex; }
+.controls button { min-width: 48px; min-height: 48px; padding: 4px 14px; border: 2px solid var(--lamp); border-radius: 4px; background: var(--night); color: var(--fg); font-weight: 700; }
+.controls .full { display: inline-grid; }
+.controls .full > span { grid-area: 1 / 1; }
+.controls .full:not(.second) > span + span, .controls .full.second > span:first-child { visibility: hidden; }
+.count { min-width: 5.5em; text-align: center; color: var(--dim); font-variant-numeric: tabular-nums; }
+.thumbs { position: relative; display: flex; gap: 8px; margin: 0; padding: 6px 2px; overflow-x: auto; list-style: none; scrollbar-width: thin; }
+.thumb { flex: none; display: block; width: 64px; height: 64px; padding: 0; border: 2px solid transparent; border-radius: 4px; background: var(--pane); }
+.thumb img { width: 100%; height: 100%; border-radius: 2px; object-fit: cover; }
+.thumb[aria-current] { border-color: var(--lamp); }
+/* Full screen, with the browser's API or as a layer where there is none. */
+.viewer:fullscreen, .viewer.overlay { position: fixed; inset: 0; z-index: 30; align-content: center; padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); overflow-y: auto; background: #000; }
+.viewer:-webkit-full-screen { position: fixed; inset: 0; padding: 12px; background: #000; }
+.viewer:fullscreen .slide figure, .viewer.overlay .slide figure { width: min(100%, max(240px, 100vh - 230px)); width: min(100%, max(240px, 100svh - 230px)); }
+html.viewing { overflow: hidden; }
+@media (max-width: 760px) {
+  .thumb { width: 52px; height: 52px; }
+  .controls { gap: 6px; }
+  .controls button { padding: 4px 10px; }
+  .slide .title { font-size: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide figure { transition: none; }
+  .viewer.ready .slide:not(.current) figure { transform: none; }
+}

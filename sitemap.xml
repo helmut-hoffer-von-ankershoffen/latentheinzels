@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://latentheinzels.heinzel.team/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://latentheinzels.heinzel.team/"/>
@@ -95,6 +95,206 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://latentheinzels.heinzel.team/fr/privacy/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://latentheinzels.heinzel.team/de/privacy/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://latentheinzels.heinzel.team/privacy/"/>
+  </url>
+  <url>
+    <loc>https://latentheinzels.heinzel.team/artwork/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://latentheinzels.heinzel.team/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://latentheinzels.heinzel.team/zh/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://latentheinzels.heinzel.team/fr/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://latentheinzels.heinzel.team/de/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://latentheinzels.heinzel.team/artwork/"/>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/dreaming-of-electric-snow-album-cover-31dedb-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-berlin-playlist-cover-dda86f-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-paris-playlist-cover-0c2e8e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-san-francisco-playlist-cover-54b9d3-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-shenzhen-playlist-cover-96ac3e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-morning-riemanns-hypothesis-latent-heinzels-09f36b-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-morning-to-lunch-latent-heinzels-9f56c2-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-lunch-anthropic-utopia-latent-heinzels-e5b082-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-lunch-to-afternoon-latent-heinzels-4fc55f-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-afternoon-recursive-self-improvement-latent-heinzels-c7f9ac-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-afternoon-to-evening-latent-heinzels-69ca8b-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-evening-singularity-latent-heinzels-fc85a3-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-evening-to-night-latent-heinzels-d19f1d-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-night-superintelligence-snowflakes-in-berlin-latent-heinzels-2f5e43-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-morning-riemanns-hypothesis-latent-heinzels-a181cd-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-morning-to-lunch-latent-heinzels-2d0dfe-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-lunch-anthropic-utopia-latent-heinzels-59df1e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-lunch-to-afternoon-latent-heinzels-30f838-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-afternoon-recursive-self-improvement-latent-heinzels-0a14d0-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-afternoon-to-evening-latent-heinzels-ca75ac-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-evening-singularity-latent-heinzels-935e12-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-evening-to-night-latent-heinzels-04e3fc-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-night-superintelligence-raindrops-in-paris-latent-heinzels-4d1c2c-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-morning-riemanns-hypothesis-latent-heinzels-19debd-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-morning-to-lunch-latent-heinzels-e24c80-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-lunch-anthropic-utopia-latent-heinzels-f153b6-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-lunch-to-afternoon-latent-heinzels-a70971-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-afternoon-recursive-self-improvement-latent-heinzels-1d610e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-afternoon-to-evening-latent-heinzels-9bf480-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-evening-singularity-latent-heinzels-59c6f2-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-evening-to-night-latent-heinzels-ec9d08-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-night-superintelligence-fog-in-san-francisco-latent-heinzels-193154-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-morning-riemanns-hypothesis-latent-heinzels-fb4039-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-morning-to-lunch-latent-heinzels-6c2b4d-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-lunch-anthropic-utopia-latent-heinzels-abdbb3-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-lunch-to-afternoon-latent-heinzels-bd3670-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-afternoon-recursive-self-improvement-latent-heinzels-1fb9a8-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-afternoon-to-evening-latent-heinzels-0dd5cf-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-evening-singularity-latent-heinzels-b53677-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-evening-to-night-latent-heinzels-6c573c-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-night-superintelligence-monsoon-in-shenzhen-latent-heinzels-55c031-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-evening-singularity-extended-version-latent-heinzels-467530-1568.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://latentheinzels.heinzel.team/zh/artwork/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://latentheinzels.heinzel.team/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://latentheinzels.heinzel.team/zh/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://latentheinzels.heinzel.team/fr/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://latentheinzels.heinzel.team/de/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://latentheinzels.heinzel.team/artwork/"/>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/dreaming-of-electric-snow-album-cover-31dedb-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-berlin-playlist-cover-dda86f-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-paris-playlist-cover-0c2e8e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-san-francisco-playlist-cover-54b9d3-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-shenzhen-playlist-cover-96ac3e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-morning-riemanns-hypothesis-latent-heinzels-09f36b-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-morning-to-lunch-latent-heinzels-9f56c2-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-lunch-anthropic-utopia-latent-heinzels-e5b082-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-lunch-to-afternoon-latent-heinzels-4fc55f-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-afternoon-recursive-self-improvement-latent-heinzels-c7f9ac-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-afternoon-to-evening-latent-heinzels-69ca8b-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-evening-singularity-latent-heinzels-fc85a3-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-evening-to-night-latent-heinzels-d19f1d-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-night-superintelligence-snowflakes-in-berlin-latent-heinzels-2f5e43-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-morning-riemanns-hypothesis-latent-heinzels-a181cd-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-morning-to-lunch-latent-heinzels-2d0dfe-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-lunch-anthropic-utopia-latent-heinzels-59df1e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-lunch-to-afternoon-latent-heinzels-30f838-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-afternoon-recursive-self-improvement-latent-heinzels-0a14d0-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-afternoon-to-evening-latent-heinzels-ca75ac-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-evening-singularity-latent-heinzels-935e12-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-evening-to-night-latent-heinzels-04e3fc-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-night-superintelligence-raindrops-in-paris-latent-heinzels-4d1c2c-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-morning-riemanns-hypothesis-latent-heinzels-19debd-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-morning-to-lunch-latent-heinzels-e24c80-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-lunch-anthropic-utopia-latent-heinzels-f153b6-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-lunch-to-afternoon-latent-heinzels-a70971-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-afternoon-recursive-self-improvement-latent-heinzels-1d610e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-afternoon-to-evening-latent-heinzels-9bf480-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-evening-singularity-latent-heinzels-59c6f2-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-evening-to-night-latent-heinzels-ec9d08-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-night-superintelligence-fog-in-san-francisco-latent-heinzels-193154-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-morning-riemanns-hypothesis-latent-heinzels-fb4039-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-morning-to-lunch-latent-heinzels-6c2b4d-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-lunch-anthropic-utopia-latent-heinzels-abdbb3-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-lunch-to-afternoon-latent-heinzels-bd3670-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-afternoon-recursive-self-improvement-latent-heinzels-1fb9a8-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-afternoon-to-evening-latent-heinzels-0dd5cf-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-evening-singularity-latent-heinzels-b53677-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-evening-to-night-latent-heinzels-6c573c-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-night-superintelligence-monsoon-in-shenzhen-latent-heinzels-55c031-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-evening-singularity-extended-version-latent-heinzels-467530-1568.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://latentheinzels.heinzel.team/fr/artwork/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://latentheinzels.heinzel.team/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://latentheinzels.heinzel.team/zh/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://latentheinzels.heinzel.team/fr/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://latentheinzels.heinzel.team/de/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://latentheinzels.heinzel.team/artwork/"/>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/dreaming-of-electric-snow-album-cover-31dedb-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-berlin-playlist-cover-dda86f-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-paris-playlist-cover-0c2e8e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-san-francisco-playlist-cover-54b9d3-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-shenzhen-playlist-cover-96ac3e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-morning-riemanns-hypothesis-latent-heinzels-09f36b-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-morning-to-lunch-latent-heinzels-9f56c2-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-lunch-anthropic-utopia-latent-heinzels-e5b082-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-lunch-to-afternoon-latent-heinzels-4fc55f-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-afternoon-recursive-self-improvement-latent-heinzels-c7f9ac-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-afternoon-to-evening-latent-heinzels-69ca8b-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-evening-singularity-latent-heinzels-fc85a3-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-evening-to-night-latent-heinzels-d19f1d-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-night-superintelligence-snowflakes-in-berlin-latent-heinzels-2f5e43-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-morning-riemanns-hypothesis-latent-heinzels-a181cd-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-morning-to-lunch-latent-heinzels-2d0dfe-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-lunch-anthropic-utopia-latent-heinzels-59df1e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-lunch-to-afternoon-latent-heinzels-30f838-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-afternoon-recursive-self-improvement-latent-heinzels-0a14d0-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-afternoon-to-evening-latent-heinzels-ca75ac-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-evening-singularity-latent-heinzels-935e12-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-evening-to-night-latent-heinzels-04e3fc-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-night-superintelligence-raindrops-in-paris-latent-heinzels-4d1c2c-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-morning-riemanns-hypothesis-latent-heinzels-19debd-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-morning-to-lunch-latent-heinzels-e24c80-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-lunch-anthropic-utopia-latent-heinzels-f153b6-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-lunch-to-afternoon-latent-heinzels-a70971-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-afternoon-recursive-self-improvement-latent-heinzels-1d610e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-afternoon-to-evening-latent-heinzels-9bf480-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-evening-singularity-latent-heinzels-59c6f2-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-evening-to-night-latent-heinzels-ec9d08-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-night-superintelligence-fog-in-san-francisco-latent-heinzels-193154-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-morning-riemanns-hypothesis-latent-heinzels-fb4039-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-morning-to-lunch-latent-heinzels-6c2b4d-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-lunch-anthropic-utopia-latent-heinzels-abdbb3-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-lunch-to-afternoon-latent-heinzels-bd3670-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-afternoon-recursive-self-improvement-latent-heinzels-1fb9a8-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-afternoon-to-evening-latent-heinzels-0dd5cf-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-evening-singularity-latent-heinzels-b53677-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-evening-to-night-latent-heinzels-6c573c-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-night-superintelligence-monsoon-in-shenzhen-latent-heinzels-55c031-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-evening-singularity-extended-version-latent-heinzels-467530-1568.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://latentheinzels.heinzel.team/de/artwork/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://latentheinzels.heinzel.team/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://latentheinzels.heinzel.team/zh/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://latentheinzels.heinzel.team/fr/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://latentheinzels.heinzel.team/de/artwork/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://latentheinzels.heinzel.team/artwork/"/>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/dreaming-of-electric-snow-album-cover-31dedb-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-berlin-playlist-cover-dda86f-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-paris-playlist-cover-0c2e8e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-san-francisco-playlist-cover-54b9d3-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/heinzels-in-shenzhen-playlist-cover-96ac3e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-morning-riemanns-hypothesis-latent-heinzels-09f36b-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-morning-to-lunch-latent-heinzels-9f56c2-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-lunch-anthropic-utopia-latent-heinzels-e5b082-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-lunch-to-afternoon-latent-heinzels-4fc55f-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-afternoon-recursive-self-improvement-latent-heinzels-c7f9ac-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-afternoon-to-evening-latent-heinzels-69ca8b-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-evening-singularity-latent-heinzels-fc85a3-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-interlude-evening-to-night-latent-heinzels-d19f1d-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-night-superintelligence-snowflakes-in-berlin-latent-heinzels-2f5e43-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-morning-riemanns-hypothesis-latent-heinzels-a181cd-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-morning-to-lunch-latent-heinzels-2d0dfe-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-lunch-anthropic-utopia-latent-heinzels-59df1e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-lunch-to-afternoon-latent-heinzels-30f838-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-afternoon-recursive-self-improvement-latent-heinzels-0a14d0-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-afternoon-to-evening-latent-heinzels-ca75ac-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-evening-singularity-latent-heinzels-935e12-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-interlude-evening-to-night-latent-heinzels-04e3fc-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/paris-night-superintelligence-raindrops-in-paris-latent-heinzels-4d1c2c-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-morning-riemanns-hypothesis-latent-heinzels-19debd-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-morning-to-lunch-latent-heinzels-e24c80-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-lunch-anthropic-utopia-latent-heinzels-f153b6-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-lunch-to-afternoon-latent-heinzels-a70971-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-afternoon-recursive-self-improvement-latent-heinzels-1d610e-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-afternoon-to-evening-latent-heinzels-9bf480-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-evening-singularity-latent-heinzels-59c6f2-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-interlude-evening-to-night-latent-heinzels-ec9d08-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/san-francisco-night-superintelligence-fog-in-san-francisco-latent-heinzels-193154-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-morning-riemanns-hypothesis-latent-heinzels-fb4039-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-morning-to-lunch-latent-heinzels-6c2b4d-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-lunch-anthropic-utopia-latent-heinzels-abdbb3-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-lunch-to-afternoon-latent-heinzels-bd3670-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-afternoon-recursive-self-improvement-latent-heinzels-1fb9a8-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-afternoon-to-evening-latent-heinzels-0dd5cf-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-evening-singularity-latent-heinzels-b53677-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-interlude-evening-to-night-latent-heinzels-6c573c-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/shenzhen-night-superintelligence-monsoon-in-shenzhen-latent-heinzels-55c031-1568.jpg</image:loc></image:image>
+    <image:image><image:loc>https://latentheinzels.heinzel.team/assets/artwork/berlin-evening-singularity-extended-version-latent-heinzels-467530-1568.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://latentheinzels.heinzel.team/singularity/</loc>

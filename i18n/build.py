@@ -15,7 +15,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://latentheinzels.heinzel.team"
-PAGES = ("", "imprint/", "privacy/")
+PAGES = ("", "imprint/", "privacy/", "artwork/")
+ARTWORK = "artwork/"
 # The address people share: the main page under its own title and picture, open at the film.
 SHARE = "singularity/"
 SHARE_PICTURE = "assets/share/singularity-2cf5f2d3.jpg"
@@ -284,7 +285,7 @@ def moved(page: str, language: str, path: str) -> str:
         raise BuildError(message)
     old = switch.group(0)
     page = page.replace(old, "\0")
-    page = re.sub(r'(<a [^>]*href=")/((?:imprint/|privacy/)?)"', rf'\1/{language}/\2"', page)
+    page = re.sub(r'(<a [^>]*href=")/((?:imprint/|privacy/|artwork/)?)"', rf'\1/{language}/\2"', page)
     new = old.replace(' aria-current="page"', "")
     new = new.replace(f'data-lang="{language}"', f'data-lang="{language}" aria-current="page"')
     page = page.replace("\0", new)
@@ -312,7 +313,65 @@ def built(source: str, language: str, path: str, translator: Translator) -> str:
     return page
 
 
-def sitemap() -> str:
+ARTWORK_LD = re.compile(r'<script type="application/ld\+json" id="artwork-ld">.*?</script>', flags=re.DOTALL)
+SLIDE = re.compile(
+    r'<li class="slide" id="([^"]+)">.*?<img src="([^"]+)-960\.jpg"[^>]*alt="([^"]*)">'
+    r'.*?<strong class="title">([^<]+)</strong>',
+    flags=re.DOTALL,
+)
+
+
+def artwork_images(page: str) -> list[dict[str, str]]:
+    """Each picture on an artwork page: its address, file stem, description and title."""
+    return [
+        {"slug": slug, "stem": stem, "description": html.unescape(alt), "title": html.unescape(title)}
+        for slug, stem, alt, title in SLIDE.findall(page)
+    ]
+
+
+def artwork_ld(page: str, folder: str) -> str:
+    """The page's ImageGallery data, in the page's own language, from its pictures.
+
+    Raises:
+        BuildError: When the page has no place for it or no picture.
+    """
+    images = artwork_images(page)
+    if not images or not ARTWORK_LD.search(page):
+        message = f"/{folder}{ARTWORK}: no pictures or no place for their data"
+        raise BuildError(message)
+    holder = {"@type": "Person", "name": "Helmut Hoffer von Ankershoffen"}
+    band = {"@type": "MusicGroup", "name": "Latent Heinzels", "url": f"{SITE}/"}
+    data = {
+        "@context": "https://schema.org",
+        "@type": "ImageGallery",
+        "url": f"{SITE}/{folder}{ARTWORK}",
+        "copyrightHolder": holder,
+        "copyrightYear": 2026,
+        "associatedMedia": [
+            {
+                "@type": "ImageObject",
+                "@id": f"{SITE}/{folder}{ARTWORK}#{image['slug']}",
+                "name": image["title"],
+                "description": image["description"],
+                "contentUrl": f"{SITE}{image['stem']}-1568.jpg",
+                "thumbnailUrl": f"{SITE}{image['stem']}-480.jpg",
+                "width": 1568,
+                "height": 1568,
+                "creator": band,
+                "creditText": "Latent Heinzels",
+                "copyrightHolder": holder,
+                "copyrightNotice": "© 2026 Helmut Hoffer von Ankershoffen",
+                "license": f"{SITE}/LICENSE",
+                "acquireLicensePage": f"{SITE}/{folder}imprint/",
+            }
+            for image in images
+        ],
+    }
+    block = '<script type="application/ld+json" id="artwork-ld">' + json.dumps(data, ensure_ascii=False) + "</script>"
+    return ARTWORK_LD.sub(lambda _: block, page, count=1)
+
+
+def sitemap(images: list[dict[str, str]]) -> str:
     """Every public page in every language, each with its alternates. The previews under options/ are not in it."""
     folders = {"en": "", **{tag: f"{language}/" for language, tag in LANGUAGES.items()}}
     entries = []
@@ -322,10 +381,15 @@ def sitemap() -> str:
             f'    <xhtml:link rel="alternate" hreflang="{tag}" href="{url}"/>\n'
             for tag, url in [*links, ("x-default", f"{SITE}/{path}")]
         )
-        entries += [f"  <url>\n    <loc>{url}</loc>\n{shared}  </url>\n" for _, url in links]
+        pictures = "".join(
+            f"    <image:image><image:loc>{SITE}{image['stem']}-1568.jpg</image:loc></image:image>\n"
+            for image in (images if path == ARTWORK else [])
+        )
+        entries += [f"  <url>\n    <loc>{url}</loc>\n{shared}{pictures}  </url>\n" for _, url in links]
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"'
+        ' xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
         f"{''.join(entries)}</urlset>\n"
     )
 
@@ -335,6 +399,7 @@ def build_all() -> tuple[dict[Path, str], dict[str, list[str]]]:
     sources = {path: (ROOT / path / "index.html").read_text(encoding="utf-8") for path in PAGES}
     names = set().union(*(names_in(source) for source in sources.values()))
     pages, missing = {ROOT / SHARE / "index.html": share_page(sources[""], "")}, {}
+    pages[ROOT / ARTWORK / "index.html"] = artwork_ld(sources[ARTWORK], "")
     for language in LANGUAGES:
         strings = {}
         # A feature may bring its strings in a file of its own, such as de.analytics.json.
@@ -342,12 +407,13 @@ def build_all() -> tuple[dict[Path, str], dict[str, list[str]]]:
             strings |= json.loads(file.read_text(encoding="utf-8"))
         translator = Translator(strings, names)
         for path, source in sources.items():
-            pages[ROOT / language / path / "index.html"] = built(source, language, path, translator)
+            page = built(source, language, path, translator)
+            pages[ROOT / language / path / "index.html"] = artwork_ld(page, f"{language}/") if path == ARTWORK else page
         main_page = pages[ROOT / language / "index.html"]
         pages[ROOT / language / SHARE / "index.html"] = share_page(main_page, f"{language}/")
         if translator.missing:
             missing[language] = translator.missing
-    pages[ROOT / "sitemap.xml"] = sitemap()
+    pages[ROOT / "sitemap.xml"] = sitemap(artwork_images(sources[ARTWORK]))
     return pages, missing
 
 
