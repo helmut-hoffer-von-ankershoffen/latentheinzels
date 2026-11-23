@@ -22,6 +22,21 @@ SHARE = "singularity/"
 SHARE_PICTURE = "assets/share/singularity-2cf5f2d3.jpg"
 SHARE_PICTURE_SIZE = (1200, 630)
 LANGUAGES = {"zh": "zh-Hans", "fr": "fr", "de": "de"}
+LOCALES = {"": "en_US", "zh": "zh_CN", "fr": "fr_FR", "de": "de_DE"}
+# The share page's title names it as the film, in the page's language.
+FILM_WORD = {"": "the film", "zh": "影片", "fr": "le film", "de": "der Film"}
+# The picture a page shows in a link preview when it has none of its own.
+CARD_PICTURE = ("assets/hero.jpg", 1568, 875)
+BAND = f"{SITE}/#band"
+ALBUM = f"{SITE}/#album"
+FILM_TITLE = "Berlin Evening: Singularity (Extended Version)"
+SAME_AS = (
+    "https://www.youtube.com/@latentheinzels",
+    "https://soundcloud.com/latentheinzels",
+    "https://www.instagram.com/latent_heinzels_ai/",
+)
+SITE_LD = re.compile(r'<script type="application/ld\+json" id="site-ld">.*?</script>\n', flags=re.DOTALL)
+CARD_TAG = re.compile(r'<meta (?:property="og:|name="twitter:)[^>]*>\n')
 TEXT_ATTRIBUTES = ("alt", "aria-label", "data-label", "data-share-text", "data-copied", "data-failed")
 VOID = {"br", "img", "link", "meta", "source"}
 NAMES = {
@@ -257,7 +272,7 @@ def share_page(main_page: str, folder: str) -> str:
         f'<meta property="og:image:height" content="{height}">\n'
         f'<meta property="og:image:alt" content="{alt}">\n'
         f'<meta name="twitter:card" content="summary_large_image">\n'
-        f"<title>{html.escape(title, quote=False)} · Latent Heinzels</title>"
+        f"<title>{html.escape(title, quote=False)} · {FILM_WORD[folder.strip('/')]} · Latent Heinzels</title>"
     )
     page = re.sub(r'<meta (?:property="og:|name="(?:description|twitter:|google-site))[^>]*>\n', "", rooted(main_page))
     page, titles = re.subn(r"<title>[^<]*</title>", lambda _: card, page, count=1)
@@ -393,12 +408,173 @@ def sitemap(images: list[dict[str, str]]) -> str:
     )
 
 
+def found(pattern: str, page: str) -> str | None:
+    """The first group of a pattern on the page, unescaped."""
+    match = re.search(pattern, page)
+    return html.unescape(match.group(1)) if match else None
+
+
+def band(description: str | None = None) -> dict:
+    """The band, as search engines should know it."""
+    group = {
+        "@type": "MusicGroup",
+        "@id": BAND,
+        "name": "Latent Heinzels",
+        "url": f"{SITE}/",
+        "logo": f"{SITE}/icon-512.png",
+        "image": f"{SITE}/assets/band.jpg",
+        "genre": ["Electronic", "Ambient"],
+        "foundingDate": "2026",
+        "foundingLocation": {
+            "@type": "Place",
+            "name": "Berlin",
+            "address": {"@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE"},
+        },
+        "sameAs": list(SAME_AS),
+    }
+    if description:
+        group["description"] = description
+    return group
+
+
+def album(cover: str) -> dict:
+    """The album and its tracks.
+
+    Raises:
+        BuildError: When the track list is missing.
+    """
+    data = json.loads((ROOT / "i18n" / "album.json").read_text(encoding="utf-8"))
+    if not data.get("tracks"):
+        message = "i18n/album.json: no tracks"
+        raise BuildError(message)
+    tracks = [
+        {
+            "@type": "ListItem",
+            "position": number,
+            "item": {
+                "@type": "MusicRecording",
+                "name": name,
+                "duration": duration,
+                "byArtist": {"@id": BAND},
+                "inAlbum": {"@id": ALBUM},
+            },
+        }
+        for number, (name, duration) in enumerate(data["tracks"], start=1)
+    ]
+    return {
+        "@type": "MusicAlbum",
+        "@id": ALBUM,
+        "name": data["name"],
+        "byArtist": {"@id": BAND},
+        "image": cover,
+        "datePublished": data["datePublished"],
+        "genre": data["genre"],
+        "albumProductionType": "https://schema.org/StudioAlbum",
+        "albumReleaseType": "https://schema.org/AlbumRelease",
+        "numTracks": len(tracks),
+        "track": {"@type": "ItemList", "numberOfItems": len(tracks), "itemListElement": tracks},
+    }
+
+
+def film(page: str, folder: str) -> dict | None:
+    """The film where the page shows it."""
+    source = found(r'<video class="film"[^>]*data-film="([^"]+)"', page)
+    button = re.search(r'<button class="share"[^>]*>', page)
+    if not source or not button:
+        return None
+    return {
+        "@type": "VideoObject",
+        "name": FILM_TITLE,
+        "description": attribute(button.group(0), "data-share-text") or FILM_TITLE,
+        "thumbnailUrl": [f"{SITE}/{SHARE_PICTURE}"],
+        "uploadDate": "2026-11-22T00:00:00+01:00",
+        "duration": "PT11M16S",
+        "contentUrl": f"{SITE}{source}",
+        "url": f"{SITE}/{folder}{SHARE}",
+        "inLanguage": "en",
+        "creator": {"@id": BAND},
+    }
+
+
+def searchable(page: str, language: str, path: str, cover: str) -> str:
+    """The page's link preview and structured data, in its own language, from its title and description.
+
+    Raises:
+        BuildError: When the page has no title, description or canonical address.
+    """
+    folder = f"{language}/" if language else ""
+    title = found(r"<title>([^<]*)</title>", page)
+    description = found(r'<meta name="description" content="([^"]*)"', page)
+    address = found(r'<link rel="canonical" href="([^"]+)"', page)
+    if not (title and description and address):
+        message = f"/{folder}{path}: no title, description or canonical address"
+        raise BuildError(message)
+    # A page's own preview picture counts only with its size; otherwise the band's picture stands in.
+    picture = found(r'<meta property="og:image" content="([^"]+)"', page)
+    width = found(r'<meta property="og:image:width" content="([^"]+)"', page)
+    height = found(r'<meta property="og:image:height" content="([^"]+)"', page)
+    if picture and width and height:
+        alt = found(r'<meta property="og:image:alt" content="([^"]*)"', page) or "Latent Heinzels"
+    else:
+        name, size_x, size_y = CARD_PICTURE
+        picture, width, height, alt = f"{SITE}/{name}", str(size_x), str(size_y), "Latent Heinzels"
+    others = "".join(
+        f'<meta property="og:locale:alternate" content="{locale}">\n'
+        for code, locale in LOCALES.items()
+        if code != language
+    )
+    e = html.escape
+    card = (
+        f'<meta property="og:type" content="website">\n'
+        f'<meta property="og:site_name" content="Latent Heinzels">\n'
+        f'<meta property="og:url" content="{e(address)}">\n'
+        f'<meta property="og:title" content="{e(title)}">\n'
+        f'<meta property="og:description" content="{e(description)}">\n'
+        f'<meta property="og:locale" content="{LOCALES[language]}">\n{others}'
+        f'<meta property="og:image" content="{e(picture)}">\n'
+        f'<meta property="og:image:type" content="image/jpeg">\n'
+        f'<meta property="og:image:width" content="{e(width)}">\n'
+        f'<meta property="og:image:height" content="{e(height)}">\n'
+        f'<meta property="og:image:alt" content="{e(alt)}">\n'
+        f'<meta name="twitter:card" content="summary_large_image">\n'
+        f'<meta name="twitter:title" content="{e(title)}">\n'
+        f'<meta name="twitter:description" content="{e(description)}">\n'
+        f'<meta name="twitter:image" content="{e(picture)}">\n'
+        f'<meta name="twitter:image:alt" content="{e(alt)}">\n'
+    )
+    tag = "en" if not language else LANGUAGES[language]
+    graph: list[dict] = [
+        {
+            "@type": "WebSite",
+            "@id": f"{SITE}/{folder}#website",
+            "url": f"{SITE}/{folder}",
+            "name": "Latent Heinzels",
+            "inLanguage": tag,
+            "publisher": {"@id": BAND},
+        },
+    ]
+    if path in ("", SHARE):
+        graph += [band(description if path == "" else None), album(cover)]
+        if video := film(page, folder):
+            graph.append(video)
+    else:
+        graph.append({"@type": "MusicGroup", "@id": BAND, "name": "Latent Heinzels", "url": f"{SITE}/"})
+    data = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
+    script = f'<script type="application/ld+json" id="site-ld">{data}</script>\n'
+    page = SITE_LD.sub("", CARD_TAG.sub("", page))
+    page = re.sub(r'(<meta name="description" content="[^"]*">\n)', lambda m: m.group(1) + card, page, count=1)
+    return page.replace("</head>", script + "</head>", 1)
+
+
 def build_all() -> tuple[dict[Path, str], dict[str, list[str]]]:
     """Every translated page, and what each language lacks."""
     sources = {path: (ROOT / path / "index.html").read_text(encoding="utf-8") for path in PAGES}
     names = set().union(*(names_in(source) for source in sources.values()))
     pages, missing = {ROOT / SHARE / "index.html": share_page(sources[""], "")}, {}
     pages[ROOT / ARTWORK / "index.html"] = artwork_ld(sources[ARTWORK], "")
+    for path, source in sources.items():
+        if path != ARTWORK:
+            pages[ROOT / path / "index.html"] = source
     for language in LANGUAGES:
         strings = {}
         # A feature may bring its strings in a file of its own, such as de.analytics.json.
@@ -412,6 +588,12 @@ def build_all() -> tuple[dict[Path, str], dict[str, list[str]]]:
         pages[ROOT / language / SHARE / "index.html"] = share_page(main_page, f"{language}/")
         if translator.missing:
             missing[language] = translator.missing
+    cover = found(r'<meta property="og:image" content="([^"]+)"', sources[ARTWORK]) or f"{SITE}/{CARD_PICTURE[0]}"
+    for file, text in pages.items():
+        parts = file.parent.relative_to(ROOT).parts
+        language = parts[0] if parts and parts[0] in LANGUAGES else ""
+        rest = parts[1:] if language else parts
+        pages[file] = searchable(text, language, "".join(f"{part}/" for part in rest), cover)
     pages[ROOT / "sitemap.xml"] = sitemap(artwork_images(sources[ARTWORK]))
     return pages, missing
 
