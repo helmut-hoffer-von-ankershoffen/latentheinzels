@@ -322,9 +322,9 @@ SLIDE = re.compile(
 
 
 def artwork_images(page: str) -> list[dict[str, str]]:
-    """Each picture on an artwork page: its address, file stem, description and title."""
+    """Each picture on an artwork page: its address, file stem, alt text and title."""
     return [
-        {"slug": slug, "stem": stem, "description": html.unescape(alt), "title": html.unescape(title)}
+        {"slug": slug, "stem": stem, "alt": html.unescape(alt), "title": html.unescape(title)}
         for slug, stem, alt, title in SLIDE.findall(page)
     ]
 
@@ -352,7 +352,6 @@ def artwork_ld(page: str, folder: str) -> str:
                 "@type": "ImageObject",
                 "@id": f"{SITE}/{folder}{ARTWORK}#{image['slug']}",
                 "name": image["title"],
-                "description": image["description"],
                 "contentUrl": f"{SITE}{image['stem']}-1568.jpg",
                 "thumbnailUrl": f"{SITE}{image['stem']}-480.jpg",
                 "width": 1568,
