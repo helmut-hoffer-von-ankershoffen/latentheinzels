@@ -8,8 +8,9 @@
   const PARENT = "heinzel.team";
   const SESSION = `_ga_${ID.slice(2)}`;
   const banner = document.querySelector(".consent");
-  const settings = document.querySelector(".consent-settings");
-  if (!banner || !settings) return;
+  // On the privacy page only: the current choice, with withdrawal and a new Accept.
+  const panel = document.querySelector(".consent-panel");
+  if (!banner) return;
   const root = document.documentElement;
   const filmBar = document.querySelector(".film-bar");
   let choice = null;
@@ -111,7 +112,7 @@
         return;
       }
     }
-    settings.classList.toggle("allowed", choice === "allow");
+    if (panel) panel.dataset.choice = choice || "none";
     ask(choice === null);
   }
 
@@ -119,21 +120,16 @@
     keep(value);
     const inside = banner.contains(document.activeElement);
     apply();
-    if (inside) settings.focus({ preventScroll: true });
+    // The question has gone: the privacy link, where the choice can be changed, takes the focus.
+    if (inside) document.querySelector('footer a[href$="/privacy/"]')?.focus({ preventScroll: true });
   }
 
   banner.querySelector(".consent-decline").addEventListener("click", () => decide("decline"));
   banner.querySelector(".consent-allow").addEventListener("click", () => decide("allow"));
 
-  settings.addEventListener("click", () => {
-    // Withdrawing takes one press, as allowing does.
-    if (choice === "allow") {
-      decide("decline");
-      return;
-    }
-    ask(true);
-    banner.querySelector(".consent-decline").focus({ preventScroll: true });
-  });
+  // Withdrawing takes one press there, as allowing does.
+  panel?.querySelector(".consent-withdraw").addEventListener("click", () => decide("decline"));
+  panel?.querySelector(".consent-accept").addEventListener("click", () => decide("allow"));
 
   function followOtherPage() {
     read();
@@ -155,6 +151,6 @@
     if (filmBar) watch.observe(filmBar, { box: "border-box" });
   }
 
-  settings.hidden = false;
+  if (panel) panel.hidden = false;
   followOtherPage();
 })();

@@ -6,8 +6,16 @@
 /* Decline and Allow are alike in size, colour and weight, so neither is the suggested answer. */
 .consent-choices { flex: 0 1 320px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .consent-choices button { justify-content: center; min-height: 48px; padding: 4px 12px; border: 2px solid var(--fg); border-radius: 4px; background: var(--night); color: var(--fg); font-weight: 700; }
-.consent-settings { padding: 0; text-align: left; color: var(--fg); text-decoration: underline; text-underline-offset: 5px; }
-.consent-settings:not(.allowed) > span + span, .consent-settings.allowed > span:first-child { display: none; }
+/* The current choice on the privacy page, with one button to change it. */
+.consent-panel { display: grid; gap: 12px; max-width: 60ch; padding: 14px 16px; border: 2px solid var(--lamp); border-radius: 4px; background: var(--pane); }
+.consent-panel[hidden] { display: none; }
+.consent-panel p { margin: 0; }
+.consent-panel [data-state] { display: none; }
+.consent-panel[data-choice="allow"] [data-state="allow"], .consent-panel[data-choice="decline"] [data-state="decline"],
+.consent-panel[data-choice="none"] [data-state="none"] { display: inline; }
+.consent-panel .consent-choices { display: flex; flex-wrap: wrap; gap: 10px; }
+.consent-panel button { min-height: 48px; padding: 4px 16px; border: 2px solid var(--fg); border-radius: 4px; background: var(--night); color: var(--fg); font-weight: 700; }
+.consent-panel[data-choice="allow"] .consent-accept, .consent-panel:not([data-choice="allow"]) .consent-withdraw { display: none; }
 html.asking body { padding-bottom: calc(var(--film-bar-room, 0px) + var(--consent-room, 0px) + 20px); }
 html.asking { scroll-padding-bottom: calc(var(--film-bar-room, 0px) + var(--consent-room, 0px) + 12px); }
 html.asking body .share-status { bottom: calc(var(--film-bar-room, 0px) + var(--consent-room, 0px) + 8px); }

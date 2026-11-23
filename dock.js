@@ -16,6 +16,9 @@
   let seen = false; // it docks only after it has been in view, never on arrival below the fold
   let closed = false; // for this page: closing undocks and the film stays in its place
   let docked = false;
+  let ratio = 0; // how much of the film's own place is on screen
+  let wanted = false; // sound just came on while the film is not fully in view: show it at once
+  let wasMuted = film.muted;
 
   function label(button, from) {
     // The bar's two labels, already in the page's language; the one it shows now names what a press does.
@@ -50,15 +53,28 @@
   }
 
   function update() {
-    if (closed || !seen || film.hidden || film.ended || !film.getAttribute("src") || !away) set(false);
+    const usual = seen && away;
+    if (closed || film.hidden || film.ended || !film.getAttribute("src") || !(usual || wanted)) set(false);
     else if (!film.paused) set(true);
   }
 
   new IntersectionObserver(entries => {
-    away = entries[entries.length - 1].intersectionRatio < 0.4;
+    ratio = entries[entries.length - 1].intersectionRatio;
+    away = ratio < 0.4;
     if (!away) seen = true;
+    // Once the film is wholly in view, the usual rule takes over again.
+    if (ratio >= 0.99) wanted = false;
     update();
-  }, { threshold: [0, 0.4, 1] }).observe(visual);
+  }, { threshold: [0, 0.4, 0.99, 1] }).observe(visual);
+  // Who turns the sound on should see what they hear: unless the film is fully in view, it comes to the corner.
+  film.addEventListener("volumechange", () => {
+    if (wasMuted && !film.muted && ratio < 0.99) {
+      wanted = true;
+      seen = true;
+    }
+    wasMuted = film.muted;
+    update();
+  });
   for (const type of ["play", "playing", "pause", "ended", "emptied"]) film.addEventListener(type, update);
   // A SoundCloud player takes the sound, and the film leaves the corner so the player's controls stay free.
   document.addEventListener("soundcloud:play", () => set(false));
