@@ -4,17 +4,19 @@
 // place stays, so nothing on the page jumps. It never covers the bar, the page's top links or the top button.
 (() => {
   const film = document.querySelector("video.film");
-  const visual = film?.parentElement;
+  let visual = film?.closest(".visual") || null;
   const dock = document.querySelector(".film-dock");
   const bar = document.querySelector(".film-bar");
-  if (!film || !visual || !dock || !bar || !("IntersectionObserver" in window)) return;
+  if (!film || !dock || !bar || !("IntersectionObserver" in window)) return;
   const root = document.documentElement;
   const toggle = bar.querySelector(".film-toggle");
   const dockToggle = dock.querySelector(".dock-toggle");
   const back = dock.querySelector(".dock-back");
-  const backLabel = back.getAttribute("aria-label");
+  const firstLabel = back.getAttribute("aria-label");
+  // The words for the way back, in the page's language: another language's page brings its own (nav.js).
+  const backLabel = () => back.dataset.label || firstLabel;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
-  let away = false;
+  let away = !visual;
   let closed = false; // for this page: closing undocks and the film stays in its place
   let docked = false;
   let ratio = 0; // how much of the film's own place is on screen
@@ -39,7 +41,7 @@
     // Paused, the whole picture is a play button with its mark on it; playing, it leads back to the film.
     const waiting = !heard();
     dock.classList.toggle("paused", waiting);
-    back.setAttribute("aria-label", waiting ? dockToggle.getAttribute("aria-label") : backLabel);
+    back.setAttribute("aria-label", waiting ? dockToggle.getAttribute("aria-label") : backLabel());
   }
 
   // The corner player keeps clear of the page's top links and the top button, and stays wholly on screen.
@@ -54,11 +56,16 @@
     });
   }
 
+  function room(name, value) {
+    if (root.style.getPropertyValue(name) !== value) root.style.setProperty(name, value);
+  }
+
   function place() {
     const consent = document.querySelector(".consent:not([hidden])");
     const below = (bar.hidden ? 0 : bar.getBoundingClientRect().height) + (consent ? consent.getBoundingClientRect().height : 0);
-    root.style.setProperty("--dock-bottom", `${Math.round(below) + 12}px`);
-    root.style.setProperty("--dock-h", docked ? `${Math.round(dock.getBoundingClientRect().height)}px` : "0px");
+    // Written only when it changes: a style change calls this again.
+    room("--dock-bottom", `${Math.round(below) + 12}px`);
+    room("--dock-h", docked ? `${Math.round(dock.getBoundingClientRect().height)}px` : "0px");
   }
 
   function set(on) {
@@ -73,7 +80,8 @@
     if (!on) unhid = false;
     docked = on;
     dock.hidden = !on;
-    visual.classList.toggle("docked", on);
+    film.classList.toggle("docked", on);
+    film.classList.toggle("parked", !visual);
     root.classList.toggle("film-docked", on);
     // In the corner the dock's own buttons stand in for the browser's controls, which would not fit.
     if (on) film.removeAttribute("controls");
@@ -94,13 +102,25 @@
     mirror();
   }
 
-  new IntersectionObserver(entries => {
+  const watch = new IntersectionObserver(entries => {
     ratio = entries[entries.length - 1].intersectionRatio;
     away = ratio < 0.4;
     // Once the film is wholly in view, the usual rule takes over again.
     if (ratio >= 0.99) wanted = false;
     update();
-  }, { threshold: [0, 0.4, 0.99, 1] }).observe(visual);
+  }, { threshold: [0, 0.4, 0.99, 1] });
+  if (visual) watch.observe(visual);
+  // Another page came in around the film (nav.js). Without a place of its own there, the film stays in the corner.
+  document.addEventListener("site:swap", () => {
+    watch.disconnect();
+    visual = film.closest(".visual");
+    away = true;
+    ratio = 0;
+    wanted = false;
+    film.classList.toggle("parked", !visual);
+    if (visual) watch.observe(visual);
+    update();
+  });
   // Who turns the sound on should see what they hear: unless the film is fully in view, it comes to the corner.
   film.addEventListener("volumechange", () => {
     if (wasMuted && !film.muted && ratio < 0.99) {
@@ -145,7 +165,9 @@
       toggle.click();
       return;
     }
-    visual.scrollIntoView({ block: "center", behavior: reduce.matches ? "instant" : "smooth" });
+    if (visual) visual.scrollIntoView({ block: "center", behavior: reduce.matches ? "instant" : "smooth" });
+    // On a page without the film, the way back is the film's own page, in the page's language.
+    else window.siteGo?.(bar.querySelector(".share")?.dataset.shareUrl || "/singularity/");
   });
   mirror();
   place();

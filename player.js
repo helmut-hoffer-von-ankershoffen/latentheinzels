@@ -1,7 +1,7 @@
 // Every track is a card, the album and any city playlist have a button, and one player exists at a time.
 // SoundCloud hears nothing from this page until someone presses play.
 // The addresses live in the JSON block at the end of index.html: fill one in and its play button appears.
-(() => {
+(window.sitePage || (init => init()))(signal => {
   const data = document.getElementById("soundcloud");
   if (!data) return;
   let known;
@@ -60,7 +60,8 @@
   const album = addressOf("playlists", "album");
   const albumTitle = document.querySelector('[data-playlist="album"]')?.dataset.title;
 
-  document.addEventListener("film:play", stop);
+  document.addEventListener("film:play", stop, { signal });
+  signal?.addEventListener("abort", stop);
 
   for (const tile of document.querySelectorAll(".tile[data-track]")) {
     const cover = tile.querySelector(".cover");
@@ -104,4 +105,4 @@
       start(head, player(url, title, "list-frame", day.dataset.player), frame => head.append(frame));
     });
   }
-})();
+});

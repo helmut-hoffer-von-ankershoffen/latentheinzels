@@ -6,10 +6,8 @@
   const film = document.querySelector("video.film");
   const bar = document.querySelector(".film-bar");
   if (!film || !bar || !film.dataset.film) return;
-  const start = document.querySelector(".featured-play");
   const toggle = bar.querySelector(".film-toggle");
   const cue = document.querySelector(".film-cue");
-  const failed = document.querySelector(".film-failed > span");
   const source = rendition();
   // The large file's name stands for the film, so a language switch or a turned phone carries on where it was.
   const name = film.dataset.film.split("/").pop();
@@ -71,7 +69,8 @@
     toggle.setAttribute("aria-label", (on ? pauseLabel : playLabel).textContent);
     const wanted = refused && !on;
     toggle.classList.toggle("wanted", wanted);
-    if (cue) cue.hidden = !wanted;
+    // The top button belongs to the page that shows the film; elsewhere the bar and the corner are enough.
+    if (cue) cue.hidden = !wanted || !film.closest(".visual");
   }
 
   // A pause belongs to moving around the site. A reload or a new arrival starts the film again, from the top.
@@ -102,7 +101,8 @@
       film.src = source;
       seek(choice.time);
     }
-    failed.hidden = true;
+    const failed = document.querySelector(".film-failed > span");
+    if (failed) failed.hidden = true;
   }
 
   function pause() {
@@ -162,7 +162,6 @@
     show();
   }
 
-  start.addEventListener("click", () => play({ fromStart: true, withSound: true }));
 
   // Play brings the sound, from where the film is; Pause stops it.
   function press() {
@@ -183,12 +182,24 @@
   // Where the browser withheld the sound, the top button and the first tap anywhere but on a control bring it.
   cue?.addEventListener("click", press);
   const CONTROLS = "a, button, input, select, textarea, label, summary, video, audio, iframe, [role=button], .details";
-  // On the page's own blocks, as iPhones send no click to the document from plain text or pictures.
-  for (const area of document.querySelectorAll("header, main, footer")) {
-    area.addEventListener("click", event => {
-      if (refused && !heard() && !event.target.closest(CONTROLS)) press();
-    });
+  // On the page's own blocks, as iPhones send no click to the document from plain text or pictures. Only on the page
+  // that shows the film: a tap on another page is for that page.
+  let page = new AbortController();
+  function bind() {
+    page.abort();
+    page = new AbortController();
+    const start = document.querySelector(".featured-play");
+    if (start) {
+      start.hidden = false;
+      start.addEventListener("click", () => play({ fromStart: true, withSound: true }), { signal: page.signal });
+    }
+    for (const area of document.querySelectorAll("header, main, footer")) {
+      area.addEventListener("click", event => {
+        if (refused && !heard() && film.closest(".visual") && !event.target.closest(CONTROLS)) press();
+      }, { signal: page.signal });
+    }
   }
+  bind();
 
   film.addEventListener("loadedmetadata", () => {
     if (startAt === null) return;
@@ -260,7 +271,8 @@
     film.removeAttribute("src");
     // Without this the element still counts as playing, and the buttons would say so.
     film.load();
-    failed.hidden = false;
+    const failed = document.querySelector(".film-failed > span");
+    if (failed) failed.hidden = false;
     show();
   });
 
@@ -274,11 +286,19 @@
     show();
   });
 
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(entries => {
-      onScreen = entries[entries.length - 1].isIntersecting;
-    }).observe(film.parentElement);
-  }
+  const seen = "IntersectionObserver" in window ? new IntersectionObserver(entries => {
+    onScreen = entries[entries.length - 1].isIntersecting;
+  }) : null;
+  seen?.observe(film.parentElement);
+
+  // Another page of this site came in around the film (nav.js): its buttons, its place for the film, its words.
+  document.addEventListener("site:swap", () => {
+    seen?.disconnect();
+    onScreen = false;
+    if (film.closest(".visual")) seen?.observe(film.parentElement);
+    bind();
+    show();
+  });
 
   addEventListener("pagehide", () => {
     leaving = true;
@@ -297,7 +317,6 @@
   });
 
   bar.hidden = false;
-  start.hidden = false;
   document.body.classList.add("with-film");
   if (document.hidden) {
     read();

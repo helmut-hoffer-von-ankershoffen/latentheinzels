@@ -1,5 +1,5 @@
 // Every track's description sits behind an info button. The panel lies over the page, so nothing moves when it opens.
-(() => {
+(window.sitePage || (init => init()))(signal => {
   let open = null;
 
   function close(refocus) {
@@ -35,14 +35,14 @@
 
   document.addEventListener("keydown", event => {
     if (event.key === "Escape" && open) close(true);
-  });
+  }, { signal });
   document.addEventListener("click", event => {
     if (open && !open.panel.contains(event.target) && !open.button.contains(event.target)) close(false);
-  });
+  }, { signal });
   document.addEventListener("focusin", event => {
     if (open && !open.panel.contains(event.target) && !open.button.contains(event.target)) close(false);
-  });
+  }, { signal });
   addEventListener("resize", () => {
     if (open) show(open.button, open.panel);
-  });
-})();
+  }, { signal });
+});

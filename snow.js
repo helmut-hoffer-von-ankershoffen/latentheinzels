@@ -1,8 +1,8 @@
 // Electric snow in latent space. Points fall, hold hands with near neighbours and light the windows of four cities.
-(() => {
+(window.sitePage || (init => init()))(signal => {
   const canvas = document.getElementById("snow");
   const button = document.getElementById("motion");
-  const g = canvas.getContext("2d");
+  const g = canvas?.getContext("2d");
   if (!g) return;
   const colours = ["#78e6d8", "#f2b860", "#ef86b5", "#eef1fb"];
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
@@ -84,8 +84,14 @@
 
   build();
   button.hidden = false;
-  button.addEventListener("click", () => setMoving(!moving));
-  reduce.addEventListener("change", event => setMoving(!event.matches));
-  addEventListener("resize", () => { build(); if (!moving) draw(0); });
+  button.addEventListener("click", () => setMoving(!moving), { signal });
+  reduce.addEventListener("change", event => setMoving(!event.matches), { signal });
+  addEventListener("resize", () => { build(); if (!moving) draw(0); }, { signal });
+  // On a page without snow, it stops and leaves nothing behind.
+  signal?.addEventListener("abort", () => {
+    moving = false;
+    cancelAnimationFrame(request);
+    document.body.classList.remove("still", "moving");
+  });
   setMoving(moving);
-})();
+});

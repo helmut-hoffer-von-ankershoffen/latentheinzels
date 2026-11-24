@@ -1,0 +1,30 @@
+/* What stays on screen from page to page: the film's bar, its top button and the room kept for them. */
+/* Pause and sound are always in reach, wherever the page is scrolled. */
+.film-bar { position: fixed; z-index: 10; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center; gap: 10px; padding: 8px max(12px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); background: var(--night); border-top: 2px solid var(--lamp); }
+.film-bar[hidden] { display: none; }
+.film-bar-title { min-width: 0; color: var(--fg); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.film-bar button { flex: none; display: inline-grid; place-items: center; min-height: 48px; padding: 4px 16px; border: 2px solid var(--lamp); border-radius: 4px; color: var(--fg); font-weight: 700; }
+.film-bar button > span { grid-area: 1 / 1; }
+.film-bar button:not(.second) > span + span, .film-bar button.second > span:first-child { visibility: hidden; }
+.film-bar .film-toggle { min-width: 144px; }
+.film-bar .film-toggle.wanted { min-width: min(280px, 52vw); min-height: 56px; background: var(--lamp); color: var(--night); font-size: 22px; }
+.film-cue { position: fixed; z-index: 11; top: max(108px, env(safe-area-inset-top)); left: 50%; translate: -50% 0; width: auto; max-width: calc(100% - 24px); min-height: 56px; justify-content: center; padding: 8px 28px; border: 3px solid var(--night); border-radius: 6px; background: var(--lamp); color: var(--night); font: 800 21px/1.2 var(--display); text-align: center; white-space: nowrap; }
+.film-cue[hidden] { display: none; }
+body.with-film { padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
+/* While the Analytics question is open, analytics.css reserves room for it and the bar together. */
+html:not(.asking):has(body.with-film) { scroll-padding-bottom: 92px; }
+@media (max-width: 760px) {
+  .film-cue { font-size: 20px; }
+}
+@media (max-width: 560px) {
+  .film-bar { justify-content: stretch; }
+  .film-bar-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .film-bar .film-toggle { flex: 1 1 0; }
+  .film-bar .film-toggle.wanted { flex-grow: 2; }
+}
+/* The film's place on the page, and the corner and bar, keep still while the rest of a page changes. */
+.film-bar { view-transition-name: film-bar; }
+.film-dock:not([hidden]) { view-transition-name: film-dock; }
+video.film.docked { view-transition-name: film; }
+/* The heading a page change moves to needs no ring of its own. */
+main h1[tabindex="-1"]:focus { outline: none; }

@@ -1,6 +1,6 @@
 // The artwork viewer: one picture at a time, swiped, keyed or picked from the strip, with an address per picture.
 // Without this script the pictures still scroll sideways, snap into place and open by their address.
-(() => {
+(window.sitePage || (init => init()))(signal => {
   const viewer = document.querySelector(".viewer");
   if (!viewer) return;
   const stage = viewer.querySelector(".stage");
@@ -43,7 +43,7 @@
     }
     // The address names the picture once the visitor has moved, so a shared link opens it. Writing it on arrival
     // would make the browser jump to it.
-    if (settled) history.replaceState(null, "", `#${slides[at].id}`);
+    if (settled) history.replaceState(history.state, "", `#${slides[at].id}`);
   }
 
   function show(at, smooth = true) {
@@ -59,6 +59,11 @@
     }
   }, { root: stage, threshold: 0.6 });
   for (const slide of slides) watch.observe(slide);
+  signal?.addEventListener("abort", () => {
+    watch.disconnect();
+    if (inFullscreen()) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    document.documentElement.classList.remove("viewing");
+  });
 
   viewer.querySelector(".prev").addEventListener("click", () => show(current - 1));
   viewer.querySelector(".next").addEventListener("click", () => show(current + 1));
@@ -71,12 +76,12 @@
     else if (event.key === "Escape" && (inFullscreen() || viewer.classList.contains("overlay"))) leave();
     else return;
     event.preventDefault();
-  });
+  }, { signal });
 
   addEventListener("hashchange", () => {
     const at = index(decodeURIComponent(location.hash.slice(1)));
     if (at >= 0 && at !== current) show(at, false);
-  });
+  }, { signal });
 
   // Full screen: the browser's own where it has one, otherwise a layer over the whole page.
   function inFullscreen() {
@@ -110,15 +115,15 @@
       state();
     }
   });
-  document.addEventListener("fullscreenchange", state);
-  document.addEventListener("webkitfullscreenchange", state);
+  document.addEventListener("fullscreenchange", state, { signal });
+  document.addEventListener("webkitfullscreenchange", state, { signal });
   addEventListener("resize", () => {
     if (current >= 0) show(current, false);
-  });
+  }, { signal });
 
   viewer.classList.add("ready");
   setTimeout(() => { settled = true; }, 0);
   const start = index(decodeURIComponent(location.hash.slice(1)));
   show(start >= 0 ? start : 0, false);
   if (start > 0) viewer.scrollIntoView({ block: "start", behavior: "instant" });
-})();
+});

@@ -1,5 +1,5 @@
 // A language link opens the other language at the section being read. Nothing is stored or redirected.
-(() => {
+(window.sitePage || (init => init()))(signal => {
   const links = document.querySelectorAll(".langs a");
   function sectionInView() {
     if (scrollY < innerHeight / 4) return "";
@@ -14,7 +14,7 @@
   }
   for (const link of links) {
     const go = () => { link.hash = sectionInView(); };
-    link.addEventListener("click", go);
-    link.addEventListener("auxclick", go);
+    link.addEventListener("click", go, { signal });
+    link.addEventListener("auxclick", go, { signal });
   }
-})();
+});

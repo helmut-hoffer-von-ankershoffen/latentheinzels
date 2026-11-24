@@ -1,8 +1,8 @@
 /* The small corner player. It sits above the film's bar and the Analytics question, never over them. */
 :root { --dock-w: clamp(260px, 26vw, 360px); }
 @media (max-width: 760px) { :root { --dock-w: max(160px, 45vw); } }
-.visual.docked video.film, .film-dock { position: fixed; z-index: 9; top: auto; left: auto; right: max(12px, env(safe-area-inset-right)); bottom: var(--dock-bottom, 92px); width: var(--dock-w); height: auto; aspect-ratio: 16 / 9; border-radius: 6px; }
-.visual.docked video.film { inset: auto max(12px, env(safe-area-inset-right)) var(--dock-bottom, 92px) auto; background: #000; box-shadow: 0 6px 24px rgb(0 0 0 / .6); }
+video.film.docked, .film-dock { position: fixed; z-index: 9; top: auto; left: auto; right: max(12px, env(safe-area-inset-right)); bottom: var(--dock-bottom, 92px); width: var(--dock-w); height: auto; aspect-ratio: 16 / 9; border-radius: 6px; }
+video.film.docked { object-fit: contain; inset: auto max(12px, env(safe-area-inset-right)) var(--dock-bottom, 92px) auto; background: #000; box-shadow: 0 6px 24px rgb(0 0 0 / .6); }
 .film-dock { display: grid; grid-template-rows: 1fr auto; border: 2px solid var(--lamp); pointer-events: none; }
 .film-dock[hidden] { display: none; }
 .film-dock button { pointer-events: auto; }
@@ -20,6 +20,8 @@
 .film-dock.paused .dock-back { grid-row: 1 / -1; grid-column: 1; }
 .film-dock.paused .dock-controls { grid-row: 2; grid-column: 1; position: relative; z-index: 1; background: transparent; }
 .film-dock.paused::before { content: ""; position: absolute; z-index: 1; left: 50%; top: 50%; translate: -50% -50%; width: max(44px, calc(var(--dock-w) * .5625 * .3)); aspect-ratio: 1; box-sizing: border-box; border: 2px solid var(--fg); border-radius: 50%; background: rgb(10 13 28 / .72) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23eef1fb' d='M8.5 5.5v13l10.5-6.5z'/%3E%3C/svg%3E") center / 56% no-repeat; box-shadow: 0 2px 12px rgb(0 0 0 / .5); pointer-events: none; }
+/* On a page without the film's own place, the film waits out of sight while it is not in the corner. */
+video.film.parked:not(.docked) { display: none; }
 /* With the corner player shown, the page's end and anything scrolled to stays above it. */
 html.film-docked body.with-film { padding-bottom: calc(92px + var(--dock-h, 0px) + 24px + env(safe-area-inset-bottom)); }
 html.film-docked:not(.asking):has(body.with-film) { scroll-padding-bottom: calc(92px + var(--dock-h, 0px) + 24px); }
