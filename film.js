@@ -1,5 +1,6 @@
-// The top song's film, from this site. It starts on a visit, with sound where the browser allows that and muted where
-// it doesn't. It stays off under reduced motion and data saving until someone presses play.
+// The top song's film, from this site. It starts on a visit with its sound where the browser allows that; where it
+// doesn't, it waits paused on its first picture. It never plays muted. It stays off under reduced motion and data
+// saving until someone presses play.
 // Every word it shows is in the HTML, so each language's page brings its own.
 (() => {
   const film = document.querySelector("video.film");
@@ -68,7 +69,7 @@
     toggle.classList.toggle("second", on);
     toggle.setAttribute("aria-pressed", String(on));
     toggle.setAttribute("aria-label", (on ? pauseLabel : playLabel).textContent);
-    const wanted = film.muted && refused;
+    const wanted = refused && !on;
     toggle.classList.toggle("wanted", wanted);
     if (cue) cue.hidden = !wanted;
   }
@@ -143,7 +144,8 @@
         write();
       }
     }
-    setMuted(choice.muted);
+    // The film is only ever heard: a mute kept from an earlier page doesn't carry over.
+    setMuted(false);
     show();
     const saving = navigator.connection?.saveData === true;
     if (saving || matchMedia("(prefers-reduced-motion: reduce)").matches || choice.paused) return;
@@ -154,17 +156,8 @@
     try {
       await film.play();
     } catch (error) {
-      if (mine !== attempt || error.name !== "NotAllowedError" || film.muted) {
-        show();
-        return;
-      }
-      refused = true;
-      setMuted(true);
-      try {
-        await film.play();
-      } catch {
-        // A browser may refuse even this, for example to save power. The play buttons are there.
-      }
+      // The browser withholds the sound: the film waits on its first picture for a press or a first tap.
+      if (mine === attempt && error.name === "NotAllowedError") refused = true;
     }
     show();
   }
@@ -193,7 +186,7 @@
   // On the page's own blocks, as iPhones send no click to the document from plain text or pictures.
   for (const area of document.querySelectorAll("header, main, footer")) {
     area.addEventListener("click", event => {
-      if (refused && film.muted && !event.target.closest(CONTROLS)) press();
+      if (refused && !heard() && !event.target.closest(CONTROLS)) press();
     });
   }
 
@@ -232,7 +225,11 @@
     if (film.muted !== mutedByUs) {
       mutedByUs = film.muted;
       refused = false;
-      choice.muted = film.muted;
+    }
+    // Muted by the film's own controls or the system, it stops as a pause would, and Play brings the sound back.
+    if (film.muted && !film.paused) {
+      choice.paused = true;
+      pause();
     }
     if (!film.muted && !film.paused && film.readyState > 2) choice.heard = true;
     write();

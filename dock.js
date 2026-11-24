@@ -52,7 +52,7 @@
   function update() {
     const usual = seen && away;
     if (closed || film.hidden || film.ended || !film.getAttribute("src") || !(usual || wanted)) set(false);
-    else if (!film.paused) set(true);
+    else if (!film.paused && !film.muted) set(true);
   }
 
   new IntersectionObserver(entries => {
