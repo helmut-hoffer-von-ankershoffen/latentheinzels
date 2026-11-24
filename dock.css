@@ -12,9 +12,11 @@ html.dock-top .film-dock { top: var(--dock-top, 12px); bottom: auto; }
 .film-dock button { pointer-events: auto; }
 .dock-back { min-height: 0; padding: 0; background: transparent; cursor: pointer; }
 .dock-back:focus-visible { outline-offset: -4px; }
-.dock-controls { display: flex; justify-content: flex-end; gap: 4px; padding: 4px; background: rgb(10 13 28 / .82); border-radius: 0 0 4px 4px; }
+.dock-controls { display: flex; justify-content: flex-end; gap: 4px; padding: 4px; background: none; }
 .dock-controls button { display: inline-grid; place-items: center; min-width: 40px; min-height: 40px; padding: 0; border-radius: 4px; background: transparent; color: var(--fg); }
 .dock-controls button > span { grid-area: 1 / 1; font-size: 18px; line-height: 1; }
+/* No band over the film: each mark carries its own shadow to stand out on any picture. */
+.dock-controls button > span, .dock-controls svg { filter: drop-shadow(0 1px 1px rgb(0 0 0 / .9)) drop-shadow(0 0 4px rgb(0 0 0 / .8)); }
 .dock-controls button:not(.second) > span + span, .dock-controls button.second > span:first-child { visibility: hidden; }
 .dock-controls .dock-close { margin-left: auto; font-size: 22px; }
 .dock-controls svg { width: 22px; height: 22px; fill: currentColor; }
@@ -22,7 +24,7 @@ html.dock-top .film-dock { top: var(--dock-top, 12px); bottom: auto; }
    film with its sound and is the only play control. The small control returns as Pause once the film plays. */
 .film-dock.paused .dock-toggle { display: none; }
 .film-dock.paused .dock-back { grid-row: 1 / -1; grid-column: 1; }
-.film-dock.paused .dock-controls { grid-row: 2; grid-column: 1; position: relative; z-index: 1; background: transparent; }
+.film-dock.paused .dock-controls { grid-row: 2; grid-column: 1; position: relative; z-index: 1; }
 .film-dock.paused::before { content: ""; position: absolute; z-index: 1; left: 50%; top: 50%; translate: -50% -50%; width: max(44px, calc(var(--dock-w) * .5625 * .3)); aspect-ratio: 1; box-sizing: border-box; border: 2px solid var(--fg); border-radius: 50%; background: rgb(10 13 28 / .72) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23eef1fb' d='M8.5 5.5v13l10.5-6.5z'/%3E%3C/svg%3E") center / 56% no-repeat; box-shadow: 0 2px 12px rgb(0 0 0 / .5); pointer-events: none; }
 /* On a page without the film's own place, the film waits out of sight while it is not in the corner. */
 video.film.parked:not(.docked) { display: none; }
