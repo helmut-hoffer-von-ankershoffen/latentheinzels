@@ -32,6 +32,7 @@ ALBUM = f"{SITE}/#album"
 FILM_TITLE = "Berlin Evening: Singularity (Extended Version)"
 SAME_AS = (
     "https://www.youtube.com/@latentheinzels",
+    "https://music.youtube.com/@latentheinzels",
     "https://soundcloud.com/latentheinzels",
     "https://www.instagram.com/latent_heinzels_ai/",
 )
@@ -44,6 +45,7 @@ NAMES = {
     "Heinzels",
     "Latent Heinzels",
     "YouTube",
+    "YouTube Music",
     "SoundCloud",
     "Instagram",
     "EN",
