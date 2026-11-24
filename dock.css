@@ -2,7 +2,11 @@
 :root { --dock-w: clamp(260px, 26vw, 360px); }
 @media (max-width: 760px) { :root { --dock-w: max(160px, 45vw); } }
 video.film.docked, .film-dock { position: fixed; z-index: 9; top: auto; left: auto; right: max(12px, env(safe-area-inset-right)); bottom: var(--dock-bottom, 92px); width: var(--dock-w); height: auto; aspect-ratio: 16 / 9; border-radius: 6px; }
-video.film.docked { object-fit: contain; inset: auto max(12px, env(safe-area-inset-right)) var(--dock-bottom, 92px) auto; background: #000; box-shadow: 0 6px 24px rgb(0 0 0 / .6); }
+video.film.docked { z-index: 8; object-fit: contain; inset: auto max(12px, env(safe-area-inset-right)) var(--dock-bottom, 92px) auto; background: #000; box-shadow: 0 6px 24px rgb(0 0 0 / .6); }
+/* The corner player sits above the picture it frames, so its controls stay in reach on every page. */
+/* Where the lower corner would cover a page's own controls, the upper one takes it. */
+html.dock-top video.film.docked { inset: var(--dock-top, 12px) max(12px, env(safe-area-inset-right)) auto auto; }
+html.dock-top .film-dock { top: var(--dock-top, 12px); bottom: auto; }
 .film-dock { display: grid; grid-template-rows: 1fr auto; border: 2px solid var(--lamp); pointer-events: none; }
 .film-dock[hidden] { display: none; }
 .film-dock button { pointer-events: auto; }

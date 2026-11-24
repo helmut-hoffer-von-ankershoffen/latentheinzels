@@ -45,15 +45,28 @@
   }
 
   // The corner player keeps clear of the page's top links and the top button, and stays wholly on screen.
+  // What the corner player never covers: the page's top links, the top button, and a page's own controls such as the
+  // gallery's buttons, title and strip.
+  const TOP = "header a, header button, .film-cue:not([hidden])";
+  const CLEAR = `${TOP}, .viewer .controls, .viewer .slide.current figcaption, .viewer .thumbs`;
+
   function cramped() {
     const own = dock.getBoundingClientRect();
-    if (own.top < 0) return true;
-    const guards = document.querySelectorAll("header a, header button, .film-cue:not([hidden])");
-    return [...guards].some(guard => {
+    if (own.top < 0 || (!bar.hidden && own.bottom > bar.getBoundingClientRect().top + 1)) return true;
+    return [...document.querySelectorAll(CLEAR)].some(guard => {
       const box = guard.getBoundingClientRect();
-      if (!box.width || box.bottom <= 0) return false;
+      if (!box.width || box.bottom <= 0 || box.top >= innerHeight) return false;
       return box.left < own.right + 8 && own.left < box.right + 8 && box.top < own.bottom + 8 && own.top < box.bottom + 8;
     });
+  }
+
+  // The lower corner first; the upper one, below whatever of the top links is on screen, where the lower one is taken.
+  function corner(top) {
+    root.classList.toggle("dock-top", top);
+    if (!top) return;
+    const below = [...document.querySelectorAll(TOP)].map(guard => guard.getBoundingClientRect())
+      .filter(box => box.width && box.bottom > 0).reduce((most, box) => Math.max(most, box.bottom + 8), 12);
+    room("--dock-top", `${Math.round(below)}px`);
   }
 
   function room(name, value) {
@@ -97,8 +110,12 @@
       return;
     }
     set(true);
+    corner(false);
     place();
-    if (cramped()) set(false);
+    if (cramped()) {
+      corner(true);
+      if (cramped()) set(false);
+    }
     mirror();
   }
 
