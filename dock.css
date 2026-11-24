@@ -14,7 +14,9 @@
 .dock-controls button:not(.second) > span + span, .dock-controls button.second > span:first-child { visibility: hidden; }
 .dock-controls .dock-close { margin-left: auto; font-size: 22px; }
 .dock-controls svg { width: 22px; height: 22px; fill: currentColor; }
-/* Paused, a clear play mark on the picture: the whole picture starts the film with its sound. */
+/* Paused, a clear play mark on the picture: the whole picture starts the film with its sound, and it is the only
+   play control; the small one returns as Pause once the film plays. */
+.film-dock.paused .dock-toggle { display: none; }
 .film-dock.paused .dock-back { display: grid; place-items: center; }
 .film-dock.paused .dock-back::after { content: "▶"; display: grid; place-items: center; width: 56px; height: 56px; padding-left: 4px; border: 2px solid var(--fg); border-radius: 50%; background: rgb(10 13 28 / .72); color: var(--fg); font-size: 26px; line-height: 1; box-shadow: 0 2px 12px rgb(0 0 0 / .5); }
 /* With the corner player shown, the page's end and anything scrolled to stays above it. */
