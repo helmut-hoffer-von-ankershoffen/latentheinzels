@@ -42,11 +42,16 @@
     back.setAttribute("aria-label", waiting ? dockToggle.getAttribute("aria-label") : backLabel);
   }
 
-  // The corner player keeps clear of the page's top links and the top button.
+  // The corner player keeps clear of the page's top links and the top button, and stays wholly on screen.
   function cramped() {
-    const top = dock.getBoundingClientRect().top;
-    const guards = [document.querySelector("header"), document.querySelector(".film-cue:not([hidden])")];
-    return guards.some(guard => guard && guard.getBoundingClientRect().bottom > 0 && guard.getBoundingClientRect().bottom + 8 > top);
+    const own = dock.getBoundingClientRect();
+    if (own.top < 0) return true;
+    const guards = document.querySelectorAll("header a, header button, .film-cue:not([hidden])");
+    return [...guards].some(guard => {
+      const box = guard.getBoundingClientRect();
+      if (!box.width || box.bottom <= 0) return false;
+      return box.left < own.right + 8 && own.left < box.right + 8 && box.top < own.bottom + 8 && own.top < box.bottom + 8;
+    });
   }
 
   function place() {

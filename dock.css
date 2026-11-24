@@ -14,11 +14,12 @@
 .dock-controls button:not(.second) > span + span, .dock-controls button.second > span:first-child { visibility: hidden; }
 .dock-controls .dock-close { margin-left: auto; font-size: 22px; }
 .dock-controls svg { width: 22px; height: 22px; fill: currentColor; }
-/* Paused, a clear play mark on the picture: the whole picture starts the film with its sound, and it is the only
-   play control; the small one returns as Pause once the film plays. */
+/* Paused, one clear play mark exactly in the middle of the picture, scaled to the player: the whole picture starts the
+   film with its sound and is the only play control. The small control returns as Pause once the film plays. */
 .film-dock.paused .dock-toggle { display: none; }
-.film-dock.paused .dock-back { display: grid; place-items: center; }
-.film-dock.paused .dock-back::after { content: "▶"; display: grid; place-items: center; width: 56px; height: 56px; padding-left: 4px; border: 2px solid var(--fg); border-radius: 50%; background: rgb(10 13 28 / .72); color: var(--fg); font-size: 26px; line-height: 1; box-shadow: 0 2px 12px rgb(0 0 0 / .5); }
+.film-dock.paused .dock-back { grid-row: 1 / -1; grid-column: 1; }
+.film-dock.paused .dock-controls { grid-row: 2; grid-column: 1; position: relative; z-index: 1; background: transparent; }
+.film-dock.paused::before { content: ""; position: absolute; z-index: 1; left: 50%; top: 50%; translate: -50% -50%; width: max(44px, calc(var(--dock-w) * .5625 * .3)); aspect-ratio: 1; box-sizing: border-box; border: 2px solid var(--fg); border-radius: 50%; background: rgb(10 13 28 / .72) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23eef1fb' d='M8.5 5.5v13l10.5-6.5z'/%3E%3C/svg%3E") center / 56% no-repeat; box-shadow: 0 2px 12px rgb(0 0 0 / .5); pointer-events: none; }
 /* With the corner player shown, the page's end and anything scrolled to stays above it. */
 html.film-docked body.with-film { padding-bottom: calc(92px + var(--dock-h, 0px) + 24px + env(safe-area-inset-bottom)); }
 html.film-docked:not(.asking):has(body.with-film) { scroll-padding-bottom: calc(92px + var(--dock-h, 0px) + 24px); }
