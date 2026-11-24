@@ -1,5 +1,7 @@
-// The film docks into a small corner player while it plays out of view. The same video element moves on screen,
-// never in the document, so it plays on without a break. Its picture's place stays, so nothing on the page jumps.
+// The film docks into a small corner player whenever its own place is out of view, from the first moment of a visit:
+// paused on its first picture with a play mark until someone presses it, then playing with sound. It never plays
+// muted. The same video element moves on screen, never in the document, so it plays on without a break. Its picture's
+// place stays, so nothing on the page jumps. It never covers the bar, the page's top links or the top button.
 (() => {
   const film = document.querySelector("video.film");
   const visual = film?.parentElement;
@@ -9,14 +11,21 @@
   const root = document.documentElement;
   const toggle = bar.querySelector(".film-toggle");
   const dockToggle = dock.querySelector(".dock-toggle");
+  const back = dock.querySelector(".dock-back");
+  const backLabel = back.getAttribute("aria-label");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
   let away = false;
-  let seen = false; // it docks only after it has been in view, never on arrival below the fold
   let closed = false; // for this page: closing undocks and the film stays in its place
   let docked = false;
   let ratio = 0; // how much of the film's own place is on screen
   let wanted = false; // sound just came on while the film is not fully in view: show it at once
   let wasMuted = film.muted;
+  let yielded = false; // a SoundCloud player has the sound: the corner stays free until the film plays again
+  let unhid = false; // the film was put in the corner before it was ever loaded, as its first picture
+
+  function heard() {
+    return !film.paused && !film.ended && !film.muted;
+  }
 
   function label(button, from) {
     // The bar button's two labels, already in the page's language; the one it shows now names what a press does.
@@ -27,6 +36,17 @@
 
   function mirror() {
     label(dockToggle, toggle);
+    // Paused, the whole picture is a play button with its mark on it; playing, it leads back to the film.
+    const waiting = !heard();
+    dock.classList.toggle("paused", waiting);
+    back.setAttribute("aria-label", waiting ? dockToggle.getAttribute("aria-label") : backLabel);
+  }
+
+  // The corner player keeps clear of the page's top links and the top button.
+  function cramped() {
+    const top = dock.getBoundingClientRect().top;
+    const guards = [document.querySelector("header"), document.querySelector(".film-cue:not([hidden])")];
+    return guards.some(guard => guard && guard.getBoundingClientRect().bottom > 0 && guard.getBoundingClientRect().bottom + 8 > top);
   }
 
   function place() {
@@ -38,6 +58,14 @@
 
   function set(on) {
     if (on === docked) return;
+    if (on && film.hidden) {
+      // Never loaded yet, or back at the start after the end: its first picture stands in the corner.
+      if (!film.poster && film.dataset.poster) film.poster = film.dataset.poster;
+      film.hidden = false;
+      unhid = true;
+    }
+    if (!on && unhid && film.paused) film.hidden = true;
+    if (!on) unhid = false;
     docked = on;
     dock.hidden = !on;
     visual.classList.toggle("docked", on);
@@ -50,15 +78,20 @@
   }
 
   function update() {
-    const usual = seen && away;
-    if (closed || film.hidden || film.ended || !film.getAttribute("src") || !(usual || wanted)) set(false);
-    else if (!film.paused && !film.muted) set(true);
+    const playingMuted = !film.paused && film.muted;
+    if (closed || yielded || playingMuted || !(away || wanted)) {
+      set(false);
+      return;
+    }
+    set(true);
+    place();
+    if (cramped()) set(false);
+    mirror();
   }
 
   new IntersectionObserver(entries => {
     ratio = entries[entries.length - 1].intersectionRatio;
     away = ratio < 0.4;
-    if (!away) seen = true;
     // Once the film is wholly in view, the usual rule takes over again.
     if (ratio >= 0.99) wanted = false;
     update();
@@ -67,14 +100,30 @@
   film.addEventListener("volumechange", () => {
     if (wasMuted && !film.muted && ratio < 0.99) {
       wanted = true;
-      seen = true;
     }
     wasMuted = film.muted;
     update();
   });
   for (const type of ["play", "playing", "pause", "ended", "emptied"]) film.addEventListener(type, update);
+  film.addEventListener("play", () => {
+    yielded = false;
+    update();
+  });
   // A SoundCloud player takes the sound, and the film leaves the corner so the player's controls stay free.
-  document.addEventListener("soundcloud:play", () => set(false));
+  document.addEventListener("soundcloud:play", () => {
+    yielded = true;
+    set(false);
+  });
+  // The top links scroll away and the top button comes and goes, so the room is checked again as the page moves.
+  let pending = false;
+  addEventListener("scroll", () => {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(() => {
+      pending = false;
+      update();
+    });
+  }, { passive: true });
 
   new MutationObserver(mirror).observe(toggle, { attributes: true, attributeFilter: ["class"] });
   new MutationObserver(place).observe(root, { attributes: true, attributeFilter: ["class", "style"] });
@@ -86,9 +135,14 @@
     set(false);
     toggle.focus({ preventScroll: true });
   });
-  dock.querySelector(".dock-back").addEventListener("click", () => {
+  back.addEventListener("click", () => {
+    if (!heard()) {
+      toggle.click();
+      return;
+    }
     visual.scrollIntoView({ block: "center", behavior: reduce.matches ? "instant" : "smooth" });
   });
   mirror();
   place();
+  update();
 })();
