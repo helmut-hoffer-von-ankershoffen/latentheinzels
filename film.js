@@ -182,12 +182,55 @@
   // Where the browser withheld the sound, the top button and the first tap anywhere but on a control bring it.
   cue?.addEventListener("click", press);
   const CONTROLS = "a, button, input, select, textarea, label, summary, video, audio, iframe, [role=button], .details";
+  function bindFullscreen(signal) {
+    const visual = film.closest(".visual");
+    const button = visual?.querySelector(".film-fullscreen");
+    if (!button) return;
+    const enter = button.textContent;
+    const expanded = () => document.fullscreenElement === visual || visual.classList.contains("film-expanded");
+    const update = () => {
+      button.textContent = expanded() ? button.dataset.label : enter;
+    };
+    const shrink = () => {
+      visual.classList.remove("film-expanded");
+      update();
+    };
+    button.hidden = false;
+    button.addEventListener("click", async () => {
+      if (document.fullscreenElement === visual) {
+        await document.exitFullscreen();
+      } else if (visual.classList.contains("film-expanded")) {
+        shrink();
+      } else if (document.fullscreenEnabled && visual.requestFullscreen) {
+        try {
+          await visual.requestFullscreen();
+        } catch {
+          if (!signal.aborted) visual.classList.add("film-expanded");
+        }
+      } else if (film.webkitSupportsFullscreen && film.webkitEnterFullscreen) {
+        try {
+          film.webkitEnterFullscreen();
+        } catch {
+          visual.classList.add("film-expanded");
+        }
+      } else {
+        visual.classList.add("film-expanded");
+      }
+      update();
+    }, { signal });
+    document.addEventListener("fullscreenchange", update, { signal });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && visual.classList.contains("film-expanded")) shrink();
+    }, { signal });
+    signal.addEventListener("abort", shrink, { once: true });
+  }
   // On the page's own blocks, as iPhones send no click to the document from plain text or pictures. Only on the page
   // that shows the film: a tap on another page is for that page.
   let page = new AbortController();
   function bind() {
     page.abort();
     page = new AbortController();
+    bindFullscreen(page.signal);
     const start = document.querySelector(".featured-play");
     if (start) {
       start.hidden = false;
